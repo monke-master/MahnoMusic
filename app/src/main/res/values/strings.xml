@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">RockIt</string>
+    <string name="app_name" translatable="false">Mahno Music</string>
     <string name="logo_text" translatable="false">ROCK\nIT</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -18,7 +18,7 @@
     <string name="login_taken_error">This login is already taken!</string>
     <string name="create_password">Create strong password</string>
     <string name="enter_password">Enter password</string>
-    <string name="repeat_password">Repeat password</string>
+    <string name="confirm_password">Confirm password</string>
     <string name="pswrd_form_error">Incorrect password form!</string>
     <string name="pswrd_match_error">Passwords don\'t match!</string>
     <string name="unexpected_error">An unexpected error has occurred</string>
@@ -131,7 +131,7 @@
     <string name="new_from_following">New from artists you follow</string>
     <string name="you_may_like">You may like</string>
     <string name="search_music">Songs, albums and playlists</string>
-    <string name="enter_email">Enter Email Address</string>
+    <string name="email_header">Enter Email Address</string>
     <string name="email_using">Your email address will be used for signing in to your account</string>
     <string name="confirm_email">Confirm Email Address</string>
     <string name="audition">audition</string>

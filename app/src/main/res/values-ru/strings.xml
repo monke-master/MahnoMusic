@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--    email-->
     <string name="email_form_error">Введите правильный Email!</string>
     <string name="email_taken">Данный адрес эл. почты уже занят!</string>
+    <string name="email_header">Введите адрес электронной почты</string>
+    <string name="email_using">Ваш адрес эл. почты будет использоваться для входа в ваш аккаунт</string>
+
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
     <string name="enter_name">Введите ваше имя и фамилию, а также придумайте неповторимый логин</string>
@@ -12,7 +16,7 @@
     <string name="login_taken_error">Данный логин уже занят!</string>
     <string name="create_password">Придумайте надежный пароль</string>
     <string name="enter_password">Введите пароль</string>
-    <string name="repeat_password">Повторите пароль</string>
+    <string name="confirm_password">Повторите пароль</string>
     <string name="pswrd_form_error">Неправильный формат пароля!</string>
     <string name="pswrd_match_error">Пароли не совпадают!</string>
     <string name="unexpected_error">Произошла непредвиденная ошибка</string>
@@ -128,8 +132,7 @@
     <string name="new_from_following">Новинки от избранных исполнителей</string>
     <string name="you_may_like">Вам может понравиться</string>
     <string name="search_music">Треки, альбомы и плейлисты</string>
-    <string name="enter_email">Введите адрес электронной почты</string>
-    <string name="email_using">Ваш адрес эл. почты будет использоваться для входа в ваш аккаунт</string>
+
     <string name="confirm_email">Подтвердите адрес эл. почты</string>
     <string name="audition">прослушивание</string>
     <string name="auditions">прослушивания</string>

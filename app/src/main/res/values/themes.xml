@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MahnoMusic" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.MahnoMusic" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- colors -->
         <item name="backgroundColor">@color/onPrimary</item>
         <item name="colorPrimary">@color/primary</item>
@@ -13,6 +13,7 @@
 
         <!-- styles -->
         <item name="android:textViewStyle">@style/DefaultText</item>
+        <item name="buttonStyle">@style/DefaultButton</item>
     </style>
 
     <style name="Theme.MahnoMusic" parent="Base.Theme.MahnoMusic" />
