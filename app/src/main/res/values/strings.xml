@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name" translatable="false">Mahno Music</string>
     <string name="logo_text" translatable="false">ROCK\nIT</string>
+
+    <string name="tracks">Tracks</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign_up">Sign up</string>

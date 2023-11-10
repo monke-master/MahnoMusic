@@ -15,6 +15,10 @@
         <item name="android:textColor">@color/onSurface</item>
     </style>
 
+    <style name="DescriptionText" parent="Body2">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
 
     <style name="DefaultButton" parent="Widget.MaterialComponents.Button">
         <item name="android:paddingTop">12dp</item>

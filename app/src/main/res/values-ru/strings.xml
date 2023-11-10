@@ -6,6 +6,7 @@
     <string name="email_header">Введите адрес электронной почты</string>
     <string name="email_using">Ваш адрес эл. почты будет использоваться для входа в ваш аккаунт</string>
 
+    <string name="tracks">Треки</string>
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
     <string name="enter_name">Введите ваше имя и фамилию, а также придумайте неповторимый логин</string>

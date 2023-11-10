@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="button_margin_bottom">32dp</dimen>
+    <dimen name="album_pic_size">200dp</dimen>
 
     <dimen name="button_rounding_radius">7dp</dimen>
     <dimen name="default_text_size">18sp</dimen>
