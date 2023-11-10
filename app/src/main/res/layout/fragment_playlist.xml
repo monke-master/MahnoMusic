@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true"
-    tools:context=".ui.musicFeature.album.AlbumFragment">
+    tools:context=".ui.musicFeature.playlist.PlaylistFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -40,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            tools:text="Кризис пивного возраста"
+            tools:text="Лучшие песни МИРЭА"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pic_album" />
@@ -50,7 +49,7 @@
             android:id="@+id/txt_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Супчик-панк 2024"
+            tools:text="MonkeMaster"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_title" />
@@ -61,10 +60,9 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/txt_author"
             tools:itemCount="9"
-            tools:listitem="@layout/item_album_track" />
+            tools:listitem="@layout/item_track" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-</ScrollView>
+</FrameLayout>

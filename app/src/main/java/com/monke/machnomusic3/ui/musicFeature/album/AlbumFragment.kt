@@ -1,4 +1,4 @@
-package com.monke.machnomusic3.ui.musicFeature
+package com.monke.machnomusic3.ui.musicFeature.album
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.monke.machnomusic3.R
 
-class MyMusicFragment : Fragment() {
+class AlbumFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MyMusicFragment()
+        fun newInstance() = AlbumFragment()
     }
 
-    private lateinit var viewModel: MyMusicViewModel
+    private lateinit var viewModel: AlbumViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_my_music, container, false)
+        return inflater.inflate(R.layout.fragment_album, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MyMusicViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(AlbumViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
