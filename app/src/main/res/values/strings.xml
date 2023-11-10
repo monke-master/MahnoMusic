@@ -11,6 +11,13 @@
     <!--  album  -->
     <string name="upload_album">Upload album</string>
 
+    <!--  mocks  -->
+    <string name="big_text">Слава РА!!!! ЗдРАвия и ПРАцветания Славяне!!! Предлагаемая Вашему вниманию книгу Дух Душа Тело, которая написана на основе ведомостей и Древних Ведических Писаний, сохРАненных Родами хРАнителей и РАхМанов РАхМанской ТРАдиции «Путь СААГАСТА»</string>
+
+    <!--  photo  -->
+    <string name="upload_photo">Upload photo</string>
+
+
     <string name="tracks">Tracks</string>
     <string name="email">Email</string>
     <string name="password">Password</string>

@@ -2,6 +2,8 @@
 <resources>
     <dimen name="button_margin_bottom">32dp</dimen>
     <dimen name="album_pic_size">200dp</dimen>
+    <dimen name="profile_pic_size">75dp</dimen>
+    <dimen name="post_photo_size">300dp</dimen>
 
     <dimen name="button_rounding_radius">7dp</dimen>
     <dimen name="default_text_size">18sp</dimen>
