@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/background</item>
+        <item name="titleTextAppearance">@style/h1</item>
+        <item name="titleTextColor">@color/primary</item>
+    </style>
+
+    <style name="CardViewText" parent="Body1">
+        <item name="android:textColor">@color/onSurface</item>
+    </style>
+
+    <style name="DefaultText" parent="Body1">
+        <item name="android:textColor">@color/onSurface</item>
+    </style>
+
+    <style name="DescriptionText" parent="Body2">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+
+    <style name="DefaultButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <style name="TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+
+    <style name="TabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextColor">@color/gray</item>
+        <item name="tabSelectedTextColor">@color/black</item>
+        <item name="tabIndicatorColor">@color/black</item>
+    </style>
+
+    <style name="SeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:progressBackgroundTint">@color/black</item>
+        <item name="android:progressTint">@color/black</item>
+        <item name="android:thumbTint">@color/black</item>
+    </style>
+
+    <style name="BottomSheetDialog" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="buttonStyle">@style/TextButton</item>
+    </style>
+
+</resources>

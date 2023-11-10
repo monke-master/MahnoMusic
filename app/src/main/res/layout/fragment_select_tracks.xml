@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.musicFeature.music.SearchMusicFragment">
+    tools:context=".ui.musicFeature.track.SelectTracksFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         app:navigationIcon="@drawable/ic_back"
@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/search_music" />
+        app:title="@string/select_track" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edit_text_title_layout"
@@ -60,7 +60,5 @@
             tools:listitem="@layout/item_track" />
 
     </ScrollView>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

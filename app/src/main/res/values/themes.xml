@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MahnoMusic" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- colors -->
+        <item name="backgroundColor">@color/onPrimary</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/onSecondary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+
+        <!-- styles -->
+        <item name="android:textViewStyle">@style/DefaultText</item>
+        <item name="buttonStyle">@style/DefaultButton</item>
+    </style>
+
+    <style name="Theme.MahnoMusic" parent="Base.Theme.MahnoMusic" />
+</resources>
