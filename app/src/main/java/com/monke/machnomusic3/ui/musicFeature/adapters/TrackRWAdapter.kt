@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.monke.machnomusic3.databinding.ItemTrackBinding
-import com.monke.machnomusic3.domain.models.Track
+import com.monke.machnomusic3.domain.model.Track
 
 class TrackRWAdapter: RecyclerView.Adapter<TrackRWAdapter.TrackViewHolder>() {
 

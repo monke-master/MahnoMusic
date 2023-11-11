@@ -3,6 +3,7 @@
     <!--  email  -->
     <string name="app_name" translatable="false">Mahno Music</string>
     <string name="logo_text" translatable="false">ROCK\nIT</string>
+    <string name="waiting_for_confirmation">Waiting for confirmation</string>
 
     <!--  track  -->
     <string name="upload_track">Upload track</string>

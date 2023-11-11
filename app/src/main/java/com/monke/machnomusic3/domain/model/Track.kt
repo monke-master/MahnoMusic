@@ -1,4 +1,4 @@
-package com.monke.machnomusic3.domain.models
+package com.monke.machnomusic3.domain.model
 
 data class Track(
     val id: String,

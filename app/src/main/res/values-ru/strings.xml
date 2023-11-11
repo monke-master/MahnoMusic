@@ -5,6 +5,7 @@
     <string name="email_taken">Данный адрес эл. почты уже занят!</string>
     <string name="email_header">Введите адрес электронной почты</string>
     <string name="email_using">Ваш адрес эл. почты будет использоваться для входа в ваш аккаунт</string>
+    <string name="waiting_for_confirmation">Ожидание подтверждения</string>
 
     <!--  track  -->
     <string name="upload_track">Загрузить трек</string>

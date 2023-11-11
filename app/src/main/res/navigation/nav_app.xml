@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/emailFragment"
-        android:name="com.monke.machnomusic3.ui.signUpFeature.EmailFragment"
+        android:name="com.monke.machnomusic3.ui.signUpFeature.email.EmailFragment"
         android:label="fragment_email"
         tools:layout="@layout/fragment_email" >
         <action
