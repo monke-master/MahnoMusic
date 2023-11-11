@@ -42,10 +42,10 @@ class ConfirmEmailDialog: DialogFragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.emailConfirmed.collect { isConfirmed ->
-//                    if (isConfirmed)
-//                        dismiss()
-//                }
+                viewModel.emailConfirmed.collect { isConfirmed ->
+                    if (isConfirmed)
+                        dismiss()
+                }
             }
         }
     }

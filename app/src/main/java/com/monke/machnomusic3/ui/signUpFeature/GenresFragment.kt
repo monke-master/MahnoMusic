@@ -28,7 +28,7 @@ class GenresFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.btnSignUp?.setOnClickListener {
-            it.findNavController().navigate(R.id.action_genresFragment_to_mainFragment)
+            //it.findNavController().navigate(R.id.action_genresFragment_to_mainFragment)
         }
     }
 

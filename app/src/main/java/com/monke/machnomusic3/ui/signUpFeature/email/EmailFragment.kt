@@ -8,12 +8,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import com.monke.machnomusic3.MainActivity
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.FragmentEmailBinding
 import kotlinx.coroutines.launch
@@ -26,13 +28,14 @@ class EmailFragment : Fragment(), DialogInterface.OnDismissListener {
     private var binding: FragmentEmailBinding? = null
 
     lateinit var navController: NavController
-    private lateinit var viewModel: EmailViewModel
+    private val viewModel: EmailViewModel by viewModels { factory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEmailBinding.inflate(inflater, container, false)
+        (activity as? MainActivity)?.loginComponent()?.inject(this)
         return binding?.root
     }
 
@@ -50,7 +53,6 @@ class EmailFragment : Fragment(), DialogInterface.OnDismissListener {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.email.collect { email ->
                     binding?.btnNext?.isEnabled = email.isNotEmpty()
-                    //Patterns.EMAIL_ADDRESS.matcher(email).matches()
                 }
             }
         }

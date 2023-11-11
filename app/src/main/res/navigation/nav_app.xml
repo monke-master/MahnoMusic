@@ -32,9 +32,9 @@
     </fragment>
     <fragment
         android:id="@+id/nameFragment"
-        android:name="com.monke.machnomusic3.ui.signUpFeature.NameFragment"
+        android:name="com.monke.machnomusic3.ui.signUpFeature.username.UsernameFragment"
         android:label="fragment_name"
-        tools:layout="@layout/fragment_name" >
+        tools:layout="@layout/fragment_username" >
         <action
             android:id="@+id/action_nameFragment_to_passwordFragment"
             app:destination="@id/passwordFragment" />
@@ -43,11 +43,7 @@
         android:id="@+id/genresFragment"
         android:name="com.monke.machnomusic3.ui.signUpFeature.GenresFragment"
         android:label="fragment_genres"
-        tools:layout="@layout/fragment_genres" >
-        <action
-            android:id="@+id/action_genresFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_genres" />
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.monke.machnomusic3.ui.signInFeature.SignInFragment"
@@ -63,8 +59,8 @@
         android:label="fragment_password"
         tools:layout="@layout/fragment_password" >
         <action
-            android:id="@+id/action_passwordFragment_to_genresFragment"
-            app:destination="@id/genresFragment" />
+            android:id="@+id/action_passwordFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"

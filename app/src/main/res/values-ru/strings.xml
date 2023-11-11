@@ -27,9 +27,12 @@
     <string name="library">Музыка</string>
     <string name="search">Поиск</string>
 
+    <!--  username  -->
+    <string name="username">Имя</string>
+    <string name="enter_name">Введите ваше имя или название вашей группы и крутой логин</string>
+
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
-    <string name="enter_name">Введите ваше имя и фамилию, а также придумайте неповторимый логин</string>
     <string name="login">Логин</string>
     <string name="name_error">Неправильный формат имени!</string>
     <string name="surname_error">Неправильный формат фамилии!</string>

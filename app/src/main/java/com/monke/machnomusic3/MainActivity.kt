@@ -41,4 +41,6 @@ class MainActivity : AppCompatActivity() {
     fun playTrack(trackUrl: String) {
         musicService?.play(trackUrl)
     }
+
+    fun loginComponent() = (application as App).appComponent.loginComponent().create()
 }
