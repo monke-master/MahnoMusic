@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--  margins  -->
     <dimen name="button_margin_bottom">32dp</dimen>
+
+    <!--  sizes  -->
     <dimen name="album_pic_size">200dp</dimen>
     <dimen name="profile_pic_size">75dp</dimen>
     <dimen name="post_photo_size">300dp</dimen>
+    <dimen name="play_btn_size">25dp</dimen>
 
     <dimen name="button_rounding_radius">7dp</dimen>
     <dimen name="default_text_size">18sp</dimen>
@@ -31,6 +35,6 @@
     <dimen name="genre_view_size">100dp</dimen>
     <dimen name="song_cover_size">50dp</dimen>
     <dimen name="edit_text_profile">400dp</dimen>
-    <dimen name="play_btn_size">40dp</dimen>
+
     <dimen name="posting_image_width">200dp</dimen>
 </resources>

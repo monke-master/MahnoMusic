@@ -16,10 +16,10 @@
         android:label="fragment_search_user"
         tools:layout="@layout/fragment_search_user" />
     <fragment
-        android:id="@+id/musicFragment"
-        android:name="com.monke.machnomusic3.ui.musicFeature.music.MusicFragment"
+        android:id="@+id/myMusicFragment"
+        android:name="com.monke.machnomusic3.ui.musicFeature.music.MyMusicFragment"
         android:label="fragment_music"
-        tools:layout="@layout/fragment_music" />
+        tools:layout="@layout/fragment_my_music" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.monke.machnomusic3.ui.userFeature.ProfileFragment"
