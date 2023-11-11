@@ -6,27 +6,42 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.monke.machnomusic3.R
+import com.monke.machnomusic3.databinding.FragmentMyMusicBinding
+import com.monke.machnomusic3.domain.models.Track
+import com.monke.machnomusic3.domain.models.User
+import com.monke.machnomusic3.domain.models.mockedTracks
+import com.monke.machnomusic3.ui.musicFeature.adapters.TrackRWAdapter
 
 class MyMusicFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MyMusicFragment()
-    }
 
+    private var binding: FragmentMyMusicBinding? = null
     private lateinit var viewModel: MyMusicViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_my_music, container, false)
+        binding = FragmentMyMusicBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MyMusicViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val tracksAdapter = TrackRWAdapter()
+        tracksAdapter.tracks = mockedTracks.toList()
+        binding?.recyclerTracks?.adapter = tracksAdapter
+        binding?.recyclerTracks?.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.VERTICAL,
+            false
+        )
+
     }
 
 }
