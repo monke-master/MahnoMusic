@@ -6,13 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.monke.machnomusic3.R
+import com.monke.machnomusic3.databinding.FragmentEmailBinding
+import com.monke.machnomusic3.databinding.FragmentGenresBinding
 
 class GenresFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = GenresFragment()
-    }
+    private var binding: FragmentGenresBinding? = null
 
     private lateinit var viewModel: GenresViewModel
 
@@ -20,13 +21,15 @@ class GenresFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_genres, container, false)
+        binding = FragmentGenresBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(GenresViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding?.btnSignUp?.setOnClickListener {
+            it.findNavController().navigate(R.id.action_genresFragment_to_mainFragment)
+        }
     }
 
 }

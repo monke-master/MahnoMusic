@@ -20,6 +20,12 @@
     <!--  photo  -->
     <string name="upload_photo">Загрузить фото</string>
 
+    <!--  menu  -->
+    <string name="home">Новости</string>
+    <string name="profile">Профиль</string>
+    <string name="library">Музыка</string>
+    <string name="search">Поиск</string>
+
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
     <string name="enter_name">Введите ваше имя и фамилию, а также придумайте неповторимый логин</string>
@@ -44,7 +50,6 @@
     <string name="invalid_password">Неверный пароль!</string>
     <string name="empty_email_error">Введите эл. почту или логин!</string>
     <string name="empty_password_error">Введите пароль!</string>
-    <string name="profile">Профиль</string>
     <string name="edit">Изменить</string>
     <string name="sign_out">Выйти</string>
     <string name="take_photo">Выбрать фото</string>
@@ -132,7 +137,6 @@
     <string name="sign_in">Вход</string>
     <string name="new_post">Новый пост</string>
     <string name="profile_pic">Фото профиля</string>
-    <string name="search">Поиск</string>
     <string name="new_song">Новый трек</string>
     <string name="pick_genre">Выбрать жанр</string>
     <string name="album_name">Название альбома</string>

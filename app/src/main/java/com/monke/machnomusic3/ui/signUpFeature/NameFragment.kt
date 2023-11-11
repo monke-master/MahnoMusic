@@ -6,13 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.monke.machnomusic3.R
+import com.monke.machnomusic3.databinding.FragmentEmailBinding
+import com.monke.machnomusic3.databinding.FragmentNameBinding
 
 class NameFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = NameFragment()
-    }
+    private var binding: FragmentNameBinding? = null
 
     private lateinit var viewModel: NameViewModel
 
@@ -20,13 +21,16 @@ class NameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_name, container, false)
+        binding = FragmentNameBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(NameViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding?.btnNext?.setOnClickListener {
+            it.findNavController().navigate(R.id.action_nameFragment_to_passwordFragment)
+        }
     }
 
 }

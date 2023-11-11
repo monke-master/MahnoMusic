@@ -17,6 +17,12 @@
     <!--  photo  -->
     <string name="upload_photo">Upload photo</string>
 
+    <!--  menu  -->
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="library">Library</string>
+    <string name="search">Search</string>
+
 
     <string name="tracks">Tracks</string>
     <string name="email">Email</string>
@@ -46,7 +52,7 @@
     <string name="invalid_password">Invalid password!</string>
     <string name="empty_email_error">Input email or login!</string>
     <string name="empty_password_error">Input password!</string>
-    <string name="profile">Profile</string>
+
     <string name="edit">Edit</string>
     <string name="sign_out">Sign out</string>
     <string name="take_photo">Take photo</string>
@@ -133,7 +139,7 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="new_post">New post</string>
     <string name="profile_pic">Profile picture</string>
-    <string name="search">Search</string>
+
     <string name="new_song">New song</string>
     <string name="pick_genre">Pick genre</string>
     <string name="album_name">Album name</string>
