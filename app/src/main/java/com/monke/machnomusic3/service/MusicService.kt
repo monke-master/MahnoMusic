@@ -1,4 +1,4 @@
-package com.monke.machnomusic3.services
+package com.monke.machnomusic3.service
 
 import android.app.Service
 import android.content.Intent

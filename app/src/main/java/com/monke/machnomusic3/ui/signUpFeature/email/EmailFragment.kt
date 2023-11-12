@@ -14,8 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import com.monke.machnomusic3.MainActivity
+import com.monke.machnomusic3.main.MainActivity
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.FragmentEmailBinding
 import kotlinx.coroutines.launch

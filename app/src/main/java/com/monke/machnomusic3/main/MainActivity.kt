@@ -1,4 +1,4 @@
-package com.monke.machnomusic3
+package com.monke.machnomusic3.main
 
 import android.content.ComponentName
 import android.content.Context
@@ -7,7 +7,8 @@ import android.content.ServiceConnection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
-import com.monke.machnomusic3.services.MusicService
+import com.monke.machnomusic3.R
+import com.monke.machnomusic3.service.MusicService
 
 class MainActivity : AppCompatActivity() {
 

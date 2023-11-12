@@ -12,7 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
-import com.monke.machnomusic3.MainActivity
+import com.monke.machnomusic3.main.MainActivity
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.FragmentUsernameBinding
 import kotlinx.coroutines.flow.launchIn
