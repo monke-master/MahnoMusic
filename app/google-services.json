@@ -1,26 +1,131 @@
 {
   "project_info": {
-    "project_number": "79759398975",
-    "project_id": "mahnomusic",
-    "storage_bucket": "mahnomusic.appspot.com"
+    "project_number": "809845690801",
+    "project_id": "rockit-e8345",
+    "storage_bucket": "rockit-e8345.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:79759398975:android:579fc4d22437c8d32c408a",
+        "mobilesdk_app_id": "1:809845690801:android:112738d67e459ce7092d90",
         "android_client_info": {
-          "package_name": "com.monke.machnomusic3"
+          "package_name": "com.brigade.rockit"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "809845690801-tikop791080r23ehs8u34i3re8q73pon.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brigade.rockit",
+            "certificate_hash": "bfbaac572a201df2e02bf1f13ae217e9e9eda52d"
+          }
+        },
+        {
+          "client_id": "809845690801-tvk525eorkk69q66bq6uofivmc1a6367.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyCS8bjNe-98_bR99vbKZaPPBr0ltEzOqtg"
+          "current_key": "AIzaSyC1ZoynHcbrNYDgRTqOdscpYrTWJeuhTMo"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809845690801-tvk525eorkk69q66bq6uofivmc1a6367.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809845690801:android:b79fe6b6ca3b0693092d90",
+        "android_client_info": {
+          "package_name": "com.monke.gosha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809845690801-tvk525eorkk69q66bq6uofivmc1a6367.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1ZoynHcbrNYDgRTqOdscpYrTWJeuhTMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809845690801-tvk525eorkk69q66bq6uofivmc1a6367.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809845690801:android:5eda3da46c545046092d90",
+        "android_client_info": {
+          "package_name": "com.monke.machnomusic3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809845690801-tvk525eorkk69q66bq6uofivmc1a6367.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1ZoynHcbrNYDgRTqOdscpYrTWJeuhTMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809845690801-tvk525eorkk69q66bq6uofivmc1a6367.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809845690801:android:f017d839f8617338092d90",
+        "android_client_info": {
+          "package_name": "com.monke.yarilo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809845690801-tvk525eorkk69q66bq6uofivmc1a6367.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1ZoynHcbrNYDgRTqOdscpYrTWJeuhTMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809845690801-tvk525eorkk69q66bq6uofivmc1a6367.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

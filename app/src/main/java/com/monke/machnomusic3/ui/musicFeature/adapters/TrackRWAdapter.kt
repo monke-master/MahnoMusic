@@ -7,17 +7,21 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.monke.machnomusic3.databinding.ItemTrackBinding
 import com.monke.machnomusic3.domain.model.Track
 
-class TrackRWAdapter: RecyclerView.Adapter<TrackRWAdapter.TrackViewHolder>() {
+class TrackRWAdapter(
+    private val onItemClicked: (Int) -> Unit
+): RecyclerView.Adapter<TrackRWAdapter.TrackViewHolder>() {
 
     var tracks: List<Track> = ArrayList()
 
     class TrackViewHolder(
-        private val binding: ItemTrackBinding
+        private val binding: ItemTrackBinding,
+        private val onItemClicked: (Int) -> Unit
     ): ViewHolder(binding.root) {
 
-        fun bind(track: Track) {
+        fun bind(track: Track, index: Int) {
             binding.txtTitle.text = track.title
             binding.txtAuthor.text = track.author.username
+            binding.root.setOnClickListener { onItemClicked(index) }
         }
 
     }
@@ -28,12 +32,12 @@ class TrackRWAdapter: RecyclerView.Adapter<TrackRWAdapter.TrackViewHolder>() {
             parent,
             false
         )
-        return TrackViewHolder(binding)
+        return TrackViewHolder(binding, onItemClicked)
     }
 
     override fun getItemCount(): Int = tracks.size
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
-        holder.bind(tracks[position])
+        holder.bind(tracks[position], position)
     }
 }

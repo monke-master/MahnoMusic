@@ -6,27 +6,31 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.monke.machnomusic3.R
+import com.monke.machnomusic3.databinding.FragmentMiniPlayerBinding
+import com.monke.machnomusic3.databinding.FragmentMusicLibraryBinding
+import com.monke.machnomusic3.ui.musicFeature.musicPlayer.MiniPlayerViewModel
+import javax.inject.Inject
 
 class MusicLibraryFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MusicLibraryFragment()
-    }
+    @Inject
+    lateinit var factory: MusicLibraryViewModel.Factory
+    private val viewModel: MusicLibraryViewModel by viewModels { factory }
 
-    private lateinit var viewModel: MusicLibraryViewModel
+    private var binding: FragmentMusicLibraryBinding? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_music_library, container, false)
+        binding = FragmentMusicLibraryBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MusicLibraryViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+
+
 
 }

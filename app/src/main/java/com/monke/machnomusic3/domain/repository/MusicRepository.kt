@@ -15,6 +15,6 @@ interface MusicRepository {
 
     fun previousTrack(): Track?
 
-    fun atPosition(position: Int): Track?
+    fun playFromPosition(position: Int): Track?
 
 }
