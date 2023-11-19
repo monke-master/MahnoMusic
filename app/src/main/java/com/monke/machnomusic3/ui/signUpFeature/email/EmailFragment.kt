@@ -34,7 +34,7 @@ class EmailFragment : Fragment(), DialogInterface.OnDismissListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEmailBinding.inflate(inflater, container, false)
-        (activity as? MainActivity)?.loginComponent()?.inject(this)
+        (activity as? MainActivity)?.loginComponent?.inject(this)
         return binding?.root
     }
 

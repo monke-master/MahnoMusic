@@ -34,7 +34,7 @@ class MiniPlayerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMiniPlayerBinding.inflate(inflater, container, false)
-        (activity as? MainActivity)?.mainComponent()?.inject(this)
+        (activity as? MainActivity)?.mainComponent?.inject(this)
         return binding?.root
     }
 

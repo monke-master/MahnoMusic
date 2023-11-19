@@ -12,6 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.monke.machnomusic3.R
+import com.monke.machnomusic3.di.component.LoginComponent
+import com.monke.machnomusic3.di.component.MainComponent
 import com.monke.machnomusic3.domain.model.MusicState
 import com.monke.machnomusic3.main.App
 import com.monke.machnomusic3.service.MusicService
@@ -25,6 +27,9 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
 
     // Music service connection
     private var musicService: MusicService? = null
+
+    lateinit var loginComponent: LoginComponent
+    lateinit var mainComponent: MainComponent
 
     private val connection = object : ServiceConnection {
 
@@ -47,7 +52,11 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mainComponent().inject(this)
+
+        loginComponent = (application as App).appComponent.loginComponent().create()
+        mainComponent = (application as App).appComponent.mainComponent().create()
+
+        mainComponent.inject(this)
 
         lifecycleScope.launch {
             launch {
@@ -116,9 +125,7 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
         musicService?.stopPlaying()
     }
 
-    fun loginComponent() = (application as App).appComponent.loginComponent().create()
 
-    fun mainComponent() = (application as App).appComponent.mainComponent().create()
 
     override fun onTrackComplete() {
         viewModel.nextTrack()

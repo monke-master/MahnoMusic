@@ -1,4 +1,4 @@
-package com.monke.triviamasters.di.components
+package com.monke.machnomusic3.di.component
 
 import com.monke.machnomusic3.di.LoginScope
 import com.monke.machnomusic3.di.module.RegistrationModule

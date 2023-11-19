@@ -38,7 +38,7 @@ class MusicPlayerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMusicPlayerBinding.inflate(inflater, container, false)
-        (activity as? MainActivity)?.mainComponent()?.inject(this)
+        (activity as? MainActivity)?.mainComponent?.inject(this)
         return binding?.root
     }
 

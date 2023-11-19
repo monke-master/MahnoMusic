@@ -2,6 +2,7 @@ package com.monke.machnomusic3.data.repository
 
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
+import com.monke.machnomusic3.di.AppScope
 import com.monke.machnomusic3.di.LoginScope
 import com.monke.machnomusic3.domain.model.User
 import com.monke.machnomusic3.domain.repository.RegistrationRepository

@@ -1,7 +1,7 @@
 package com.monke.machnomusic3.di.module
 
 import com.monke.machnomusic3.di.component.MainComponent
-import com.monke.triviamasters.di.components.LoginComponent
+import com.monke.machnomusic3.di.component.LoginComponent
 import dagger.Module
 
 @Module(

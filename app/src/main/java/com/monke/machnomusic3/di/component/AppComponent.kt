@@ -5,7 +5,7 @@ import com.monke.machnomusic3.di.AppScope
 import com.monke.machnomusic3.di.module.AppModule
 import com.monke.machnomusic3.di.module.FirebaseModule
 import com.monke.machnomusic3.di.module.MusicModule
-import com.monke.triviamasters.di.components.LoginComponent
+import com.monke.machnomusic3.di.module.UserModule
 import dagger.BindsInstance
 import dagger.Component
 
@@ -14,7 +14,8 @@ import dagger.Component
     modules = [
         AppModule::class,
         FirebaseModule::class,
-        MusicModule::class
+        MusicModule::class,
+        UserModule::class
     ]
 )
 @AppScope

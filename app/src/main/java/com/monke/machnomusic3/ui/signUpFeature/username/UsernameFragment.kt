@@ -33,7 +33,7 @@ class UsernameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentUsernameBinding.inflate(inflater, container, false)
-        (activity as? MainActivity)?.loginComponent()?.inject(this)
+        (activity as? MainActivity)?.loginComponent?.inject(this)
         return binding?.root
     }
 
