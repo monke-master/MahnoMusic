@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.monke.machnomusic3.R
@@ -36,6 +37,10 @@ class MainFragment : Fragment() {
         if (navHostFragment != null) {
             val navController = (navHostFragment as NavHostFragment).navController
             binding?.bottomNavigationView?.setupWithNavController(navController)
+        }
+
+        binding?.fragmentMiniPlayer?.setOnClickListener {
+            it.findNavController().navigate(R.id.action_mainFragment_to_musicPlayerFragment)
         }
 
     }

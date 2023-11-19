@@ -55,16 +55,17 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
                     MusicState.Pause -> pauseTrack()
                     MusicState.Resume -> resumeTrack()
                     MusicState.Start -> {
-                        viewModel.currentTrack.first()?.let { track ->
-                            val ref = Firebase.storage.getReference("music/${track.id}")
-                            ref.downloadUrl.addOnSuccessListener {
-                                playTrack(it.toString())
+                        viewModel.currentTrack.collect { track ->
+                            track?.let {
+                                val ref = Firebase.storage.getReference("music/${track.id}")
+                                ref.downloadUrl.addOnSuccessListener {
+                                    playTrack(it.toString())
+                                }
                             }
                         }
                     }
                     MusicState.Stop -> stopTrack()
                 }
-
             }
         }
     }
@@ -72,8 +73,10 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
     override fun onStart() {
         super.onStart()
 
-        Intent(this, MusicService::class.java).also { intent ->
-            bindService(intent, connection, Context.BIND_AUTO_CREATE)
+        if (musicService == null) {
+            Intent(this, MusicService::class.java).also { intent ->
+                bindService(intent, connection, Context.BIND_AUTO_CREATE)
+            }
         }
     }
 

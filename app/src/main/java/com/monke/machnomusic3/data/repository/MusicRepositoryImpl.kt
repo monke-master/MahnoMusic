@@ -31,7 +31,9 @@ class MusicRepositoryImpl @Inject constructor(): MusicRepository {
 
     override fun nextTrack(): Track? {
         val track = tracksQueue.next()
-        track?.let { currentTrack.value = it }
+        track?.let {
+            currentTrack.value = it
+        }
         return track
     }
 

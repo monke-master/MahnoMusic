@@ -2,10 +2,10 @@ package com.monke.machnomusic3.data.collection
 
 import com.monke.machnomusic3.domain.model.Track
 
-class TrackQueue {
+class TrackQueue() {
 
     private val tracksList = ArrayList<Track>()
-    private var currentTrack = -1
+    private var currentTrack = 0
 
     val lastIndex: Int
         get() = tracksList.lastIndex
@@ -28,7 +28,10 @@ class TrackQueue {
         return null
     }
 
-    operator fun get(index: Int) = tracksList[index]
+    operator fun get(index: Int): Track {
+        currentTrack = index
+        return tracksList[index]
+    }
 
 
 

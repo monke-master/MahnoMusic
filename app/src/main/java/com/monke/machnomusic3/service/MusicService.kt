@@ -6,6 +6,7 @@ import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.os.Binder
 import android.os.IBinder
+import android.util.Log
 
 class MusicService : Service(), MediaPlayer.OnPreparedListener {
 
@@ -57,6 +58,11 @@ class MusicService : Service(), MediaPlayer.OnPreparedListener {
                     .build()
             )
         }
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        Log.d("MusicService", "onCreate")
     }
 
     override fun onBind(intent: Intent): IBinder {
