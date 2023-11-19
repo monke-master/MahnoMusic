@@ -5,6 +5,8 @@ import com.monke.machnomusic3.ui.mainFeature.MainFragment
 import com.monke.machnomusic3.ui.musicFeature.music.MyMusicFragment
 import com.monke.machnomusic3.ui.musicFeature.musicPlayer.MusicPlayerFragment
 import com.monke.machnomusic3.ui.musicFeature.musicPlayer.miniPlayer.MiniPlayerFragment
+import com.monke.machnomusic3.ui.musicFeature.track.UploadTrackFragment
+import com.monke.machnomusic3.ui.musicFeature.track.UploadTrackViewModel
 import dagger.Subcomponent
 
 @Subcomponent(
@@ -21,6 +23,8 @@ interface MainComponent {
     fun inject(activity: MainActivity)
 
     fun inject(fragment: MusicPlayerFragment)
+
+    fun inject(fragment: UploadTrackFragment)
 
     @Subcomponent.Factory
     interface Factory {

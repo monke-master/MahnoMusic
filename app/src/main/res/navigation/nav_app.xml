@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_startFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/emailFragment"
@@ -70,10 +73,18 @@
         <action
             android:id="@+id/action_mainFragment_to_musicPlayerFragment"
             app:destination="@id/musicPlayerFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_uploadTrackFragment"
+            app:destination="@id/uploadTrackFragment" />
     </fragment>
     <fragment
         android:id="@+id/musicPlayerFragment"
         android:name="com.monke.machnomusic3.ui.musicFeature.musicPlayer.MusicPlayerFragment"
         android:label="fragment_music_player"
         tools:layout="@layout/fragment_music_player" />
+    <fragment
+        android:id="@+id/uploadTrackFragment"
+        android:name="com.monke.machnomusic3.ui.musicFeature.track.UploadTrackFragment"
+        android:label="fragment_upload_track"
+        tools:layout="@layout/fragment_upload_track" />
 </navigation>

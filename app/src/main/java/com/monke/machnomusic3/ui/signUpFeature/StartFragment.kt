@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.FragmentStartBinding
 
@@ -35,6 +37,8 @@ class StartFragment : Fragment() {
         binding?.btnSignIn?.setOnClickListener {
             it.findNavController().navigate(R.id.action_startFragment_to_signInFragment)
         }
+
+        Firebase.auth.currentUser?.let { view.findNavController().navigate(R.id.action_startFragment_to_mainFragment) }
     }
 
 }

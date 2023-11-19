@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -17,6 +18,8 @@ class MainFragment : Fragment() {
 
     private var binding: FragmentMainBinding? = null
     private lateinit var viewModel: MainViewModel
+
+    lateinit var mainNavController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +45,8 @@ class MainFragment : Fragment() {
         binding?.fragmentMiniPlayer?.setOnClickListener {
             it.findNavController().navigate(R.id.action_mainFragment_to_musicPlayerFragment)
         }
+
+        mainNavController = view.findNavController()
 
     }
 
