@@ -50,21 +50,31 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
         mainComponent().inject(this)
 
         lifecycleScope.launch {
-            viewModel.musicState.collect { state ->
-                when (state) {
-                    MusicState.Pause -> pauseTrack()
-                    MusicState.Resume -> resumeTrack()
-                    MusicState.Start -> {
-                        viewModel.currentTrack.collect { track ->
-                            track?.let {
-                                val ref = Firebase.storage.getReference("music/${track.id}")
-                                ref.downloadUrl.addOnSuccessListener {
-                                    playTrack(it.toString())
+            launch {
+                viewModel.musicState.collect { state ->
+                    when (state) {
+                        MusicState.Pause -> pauseTrack()
+                        MusicState.Resume -> resumeTrack()
+                        MusicState.Start -> {
+                            if (musicService == null) {
+                                Intent(this@MainActivity, MusicService::class.java).also { intent ->
+                                    bindService(intent, connection, Context.BIND_AUTO_CREATE)
                                 }
                             }
                         }
+                        MusicState.Stop -> stopTrack()
                     }
-                    MusicState.Stop -> stopTrack()
+                }
+            }
+
+            launch {
+                viewModel.currentTrack.collect { track ->
+                    track?.let {
+                        val ref = Firebase.storage.getReference("music/${track.id}")
+                        ref.downloadUrl.addOnSuccessListener {
+                            playTrack(it.toString())
+                        }
+                    }
                 }
             }
         }
@@ -72,12 +82,6 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
 
     override fun onStart() {
         super.onStart()
-
-        if (musicService == null) {
-            Intent(this, MusicService::class.java).also { intent ->
-                bindService(intent, connection, Context.BIND_AUTO_CREATE)
-            }
-        }
     }
 
     private fun playTrack(trackUrl: String) {

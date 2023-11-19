@@ -14,6 +14,7 @@ import com.monke.machnomusic3.databinding.FragmentMiniPlayerBinding
 import com.monke.machnomusic3.domain.model.MusicState
 import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.main.activity.MainActivity
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -43,21 +44,27 @@ class MiniPlayerFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.musicState.collect {state ->
-                    when (state) {
-                        MusicState.Pause -> {
-                            updateActionButton(isPlaying = false)
-                        }
-                        MusicState.Resume -> {
-                            updateActionButton(isPlaying = true)
-                        }
-                        MusicState.Start -> {
-                            viewModel.track.first()?.let { setTrackInfo(it) }
-                            updateActionButton(isPlaying = true)
-                        }
-                        MusicState.Stop -> {
+                launch {
+                    viewModel.musicState.collect {state ->
+                        when (state) {
+                            MusicState.Pause -> {
+                                updateActionButton(isPlaying = false)
+                            }
+                            MusicState.Resume -> {
+                                updateActionButton(isPlaying = true)
+                            }
+                            MusicState.Start -> {
+                                updateActionButton(isPlaying = true)
+                            }
+                            MusicState.Stop -> {
 
+                            }
                         }
+                    }
+                }
+                launch {
+                    viewModel.track.collect {
+                        viewModel.track.first()?.let { setTrackInfo(it) }
                     }
                 }
             }

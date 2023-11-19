@@ -43,27 +43,32 @@ class MusicPlayerFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.musicState.collect {state ->
-                    when (state) {
-                        MusicState.Pause -> {
-                            updateActionButton(isPlaying = false)
-                        }
-                        MusicState.Resume -> {
-                            updateActionButton(isPlaying = true)
-                        }
-                        MusicState.Start -> {
-                            viewModel.track.collect { track ->
-                                track?.let {
-                                    viewModel.track.first()?.let { setTrackInfo(it) }
-                                    updateActionButton(isPlaying = true)
-                                }
+                launch {
+                    viewModel.musicState.collect {state ->
+                        when (state) {
+                            MusicState.Pause -> {
+                                updateActionButton(isPlaying = false)
                             }
-                        }
-                        MusicState.Stop -> {
+                            MusicState.Resume -> {
+                                updateActionButton(isPlaying = true)
+                            }
+                            MusicState.Start -> {
+                                updateActionButton(isPlaying = true)
+                            }
+                            MusicState.Stop -> {
 
+                            }
                         }
                     }
                 }
+                launch {
+                    viewModel.track.collect { track ->
+                        track?.let {
+                            setTrackInfo(it)
+                        }
+                    }
+                }
+
             }
         }
     }
