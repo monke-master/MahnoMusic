@@ -16,12 +16,13 @@ import com.monke.machnomusic3.R
 import com.monke.machnomusic3.domain.model.MusicState
 import com.monke.machnomusic3.main.App
 import com.monke.machnomusic3.service.MusicService
+import com.monke.machnomusic3.service.TrackCompletionListener
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TrackCompletionListener {
 
     // Music service connection
     private var musicService: MusicService? = null
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onServiceConnected(p0: ComponentName?, binder: IBinder?) {
             musicService = (binder as MusicService.MusicServiceBinder).getService()
+            musicService?.trackCompletionListener = this@MainActivity
         }
 
         override fun onServiceDisconnected(p0: ComponentName?) {
@@ -94,4 +96,8 @@ class MainActivity : AppCompatActivity() {
     fun loginComponent() = (application as App).appComponent.loginComponent().create()
 
     fun mainComponent() = (application as App).appComponent.mainComponent().create()
+
+    override fun onTrackComplete() {
+        viewModel.nextTrack()
+    }
 }
