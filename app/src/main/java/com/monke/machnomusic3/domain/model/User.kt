@@ -9,5 +9,4 @@ data class User (
     val bio: String? = null,
     val profilePicId: String? = null,
     var tracksIdsList: List<String> = emptyList(),
-
-    )
+)

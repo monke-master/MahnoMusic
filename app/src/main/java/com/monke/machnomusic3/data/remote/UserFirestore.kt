@@ -2,6 +2,8 @@ package com.monke.machnomusic3.data.remote
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
+import com.monke.machnomusic3.data.extensions.toDomain
+import com.monke.machnomusic3.data.remote.dto.UserRemote
 import com.monke.machnomusic3.domain.model.User
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
@@ -25,8 +27,8 @@ class UserFirestore @Inject constructor(
     suspend fun getUserById(id: String): Result<User?> {
         try {
             val response = firestore.collection(USERS_COLLECTION).document(id).get().await()
-            val user = response.toObject<User>()
-            return Result.success(user)
+            val user = response.toObject<UserRemote>()
+            return Result.success(user?.toDomain())
         } catch (exception: Exception) {
             exception.printStackTrace()
             return Result.failure(exception)

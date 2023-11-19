@@ -6,58 +6,100 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.musicFeature.music.MyMusicFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical"
-        android:paddingHorizontal="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/hdr_albums"
             style="@style/h1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/albums" />
+            android:layout_marginStart="16dp"
+            android:text="@string/albums"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_albums"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hdr_albums"
             tools:itemCount="5"
             tools:listitem="@layout/item_album" />
 
         <TextView
+            android:id="@+id/hdr_playlists"
             style="@style/h1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/playlists" />
+            android:layout_marginStart="16dp"
+            android:text="@string/playlists"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_albums" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_playlists"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hdr_playlists"
             tools:itemCount="5"
             tools:listitem="@layout/item_playlist" />
 
         <TextView
+            android:id="@+id/hdr_tracks"
             style="@style/h1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/tracks" />
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/tracks"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recycler_playlists" />
+
+        <Button
+            android:id="@+id/btn_upload_track"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/upload_track"
+            app:icon="@drawable/ic_upload"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hdr_tracks" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_tracks"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_upload_track"
             tools:itemCount="6"
             tools:listitem="@layout/item_track" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
