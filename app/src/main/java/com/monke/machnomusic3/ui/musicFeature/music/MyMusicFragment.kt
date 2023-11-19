@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.monke.machnomusic3.databinding.FragmentMusicLibraryBinding
 import com.monke.machnomusic3.databinding.FragmentMyMusicBinding
 import com.monke.machnomusic3.domain.model.mockedTracks
-import com.monke.machnomusic3.main.MainActivity
+import com.monke.machnomusic3.main.activity.MainActivity
 import com.monke.machnomusic3.ui.musicFeature.adapters.TrackRWAdapter
 import javax.inject.Inject
 

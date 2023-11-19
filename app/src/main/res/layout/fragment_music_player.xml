@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_author" />
 
     <ImageView
-        android:id="@+id/btn_play"
+        android:id="@+id/btn_action"
         android:layout_width="@dimen/player_btn_size"
         android:layout_height="@dimen/player_btn_size"
         android:layout_marginTop="12dp"
@@ -66,8 +66,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:src="@drawable/ic_scip_next"
-        app:layout_constraintStart_toEndOf="@+id/btn_play"
-        app:layout_constraintTop_toTopOf="@+id/btn_play" />
+        app:layout_constraintStart_toEndOf="@+id/btn_action"
+        app:layout_constraintTop_toTopOf="@+id/btn_action" />
 
     <ImageView
         android:id="@+id/btn_prev"
@@ -76,7 +76,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
         android:src="@drawable/ic_scip_prev"
-        app:layout_constraintEnd_toStartOf="@+id/btn_play"
-        app:layout_constraintTop_toTopOf="@+id/btn_play" />
+        app:layout_constraintEnd_toStartOf="@+id/btn_action"
+        app:layout_constraintTop_toTopOf="@+id/btn_action" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

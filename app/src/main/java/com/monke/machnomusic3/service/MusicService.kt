@@ -13,7 +13,6 @@ class MusicService : Service(), MediaPlayer.OnPreparedListener {
     private val binder = MusicServiceBinder()
 
 
-
     inner class MusicServiceBinder: Binder() {
 
         fun getService(): MusicService = this@MusicService
@@ -21,13 +20,28 @@ class MusicService : Service(), MediaPlayer.OnPreparedListener {
     }
 
     fun play(url: String) {
-        if (mediaPlayer == null)
-            mediaPlayer = initMediaPlayer()
+        mediaPlayer?.release()
+        mediaPlayer = initMediaPlayer()
 
         mediaPlayer?.setDataSource(url)
         mediaPlayer?.setOnPreparedListener(this)
         mediaPlayer?.prepareAsync()
     }
+
+
+    fun pause() {
+        mediaPlayer?.pause()
+    }
+
+    fun resume() {
+        mediaPlayer?.start()
+    }
+
+    fun stopPlaying() {
+        mediaPlayer?.release()
+        mediaPlayer = null
+    }
+
 
     private fun initMediaPlayer(): MediaPlayer {
         return MediaPlayer().apply {
@@ -50,7 +64,6 @@ class MusicService : Service(), MediaPlayer.OnPreparedListener {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
-        mediaPlayer?.release()
+        stopPlaying()
     }
 }

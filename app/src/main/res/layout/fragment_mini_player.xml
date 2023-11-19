@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.musicFeature.musicPlayer.MiniPlayerFragment">
+    tools:context=".ui.musicFeature.musicPlayer.miniPlayer.MiniPlayerFragment">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -16,17 +16,17 @@
         android:text="Харакири" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txt_author"
         style="@style/DescriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title"
         android:text="Lumen" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/btn_action"
         android:layout_width="@dimen/play_btn_size"
         android:layout_height="@dimen/play_btn_size"
         android:layout_marginEnd="16dp"

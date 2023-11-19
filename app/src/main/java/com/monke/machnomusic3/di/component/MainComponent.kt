@@ -1,12 +1,8 @@
 package com.monke.machnomusic3.di.component
 
-import com.monke.machnomusic3.di.AppScope
-import com.monke.machnomusic3.di.MainScope
-import com.monke.machnomusic3.di.module.MusicModule
-import com.monke.machnomusic3.main.MainActivity
+import com.monke.machnomusic3.main.activity.MainActivity
 import com.monke.machnomusic3.ui.musicFeature.music.MyMusicFragment
-import com.monke.machnomusic3.ui.musicFeature.musicPlayer.MiniPlayerFragment
-import com.monke.triviamasters.di.components.LoginComponent
+import com.monke.machnomusic3.ui.musicFeature.musicPlayer.miniPlayer.MiniPlayerFragment
 import dagger.Subcomponent
 
 @Subcomponent(

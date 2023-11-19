@@ -4,8 +4,10 @@ import android.util.Log
 import com.monke.machnomusic3.data.collection.TrackQueue
 import com.monke.machnomusic3.di.AppScope
 import com.monke.machnomusic3.di.MainScope
+import com.monke.machnomusic3.domain.model.MusicState
 import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.domain.repository.MusicRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
@@ -14,9 +16,10 @@ class MusicRepositoryImpl @Inject constructor(): MusicRepository {
 
     private val tracksQueue = TrackQueue()
 
-    override var isPlaying: Boolean = true
-
     override val currentTrack = MutableStateFlow<Track?>(null)
+
+    override var musicState = MutableStateFlow<MusicState>(MusicState.Stop)
+
 
     init {
         Log.d("MusicRepositoryImpl", "init block")
@@ -45,6 +48,10 @@ class MusicRepositoryImpl @Inject constructor(): MusicRepository {
             return track
         }
         return null
+    }
+
+    override fun setMusicState(state: MusicState) {
+        musicState.value = state
     }
 
 
