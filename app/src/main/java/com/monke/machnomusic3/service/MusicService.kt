@@ -48,6 +48,14 @@ class MusicService : Service(), MediaPlayer.OnPreparedListener {
         mediaPlayer = null
     }
 
+    fun seekTo(time: Int) {
+        mediaPlayer?.let {
+            mediaPlayer?.seekTo(time)
+        }
+    }
+
+    fun getProgress() = mediaPlayer?.currentPosition
+
 
     private fun initMediaPlayer(): MediaPlayer {
         return MediaPlayer().apply {

@@ -17,10 +17,16 @@ import com.monke.machnomusic3.domain.model.MusicState
 import com.monke.machnomusic3.main.App
 import com.monke.machnomusic3.service.MusicService
 import com.monke.machnomusic3.service.TrackCompletionListener
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.coroutines.suspendCoroutine
 
 class MainActivity : AppCompatActivity(), TrackCompletionListener {
 
@@ -44,6 +50,7 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
     lateinit var factory: ActivityViewModel.Factory
     private val viewModel: ActivityViewModel by viewModels { factory }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -54,13 +61,17 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
                 viewModel.musicState.collect { state ->
                     when (state) {
                         MusicState.Pause -> pauseTrack()
-                        MusicState.Resume -> resumeTrack()
+                        MusicState.Resume -> {
+                            resumeTrack()
+                            getTrackProgress()
+                        }
                         MusicState.Start -> {
                             if (musicService == null) {
                                 Intent(this@MainActivity, MusicService::class.java).also { intent ->
                                     bindService(intent, connection, Context.BIND_AUTO_CREATE)
                                 }
                             }
+
                         }
                         MusicState.Stop -> stopTrack()
                     }
@@ -77,12 +88,22 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
                     }
                 }
             }
+
+            launch {
+
+            }
         }
     }
 
-    override fun onStart() {
-        super.onStart()
+
+    private suspend fun getTrackProgress() {
+        while (viewModel.musicState.first() is MusicState.Resume) {
+            musicService?.getProgress()?.let { viewModel.setProgress(it) }
+            delay(1000)
+        }
     }
+
+
 
     private fun playTrack(trackUrl: String) {
         musicService?.play(trackUrl)

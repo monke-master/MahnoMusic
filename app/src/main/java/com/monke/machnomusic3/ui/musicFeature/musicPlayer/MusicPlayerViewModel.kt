@@ -20,9 +20,11 @@ class MusicPlayerViewModel(
     private val updateMusicStateUseCase = musicPlayerUseCases.updateMusicStateUseCase
     private val nextTrackUseCase = musicPlayerUseCases.nextTrackUseCase
     private val prevTrackUseCase = musicPlayerUseCases.prevTrackUseCase
+    private val getTrackProgressUseCase = musicPlayerUseCases.getTrackProgressUseCase
 
     val track = getCurrentTrackUseCase.execute()
     val musicState = getMusicStateUseCase.execute()
+    val trackProgress = getTrackProgressUseCase.execute()
 
     fun updateState() {
         viewModelScope.launch {

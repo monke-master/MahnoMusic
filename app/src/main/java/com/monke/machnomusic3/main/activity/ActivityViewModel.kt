@@ -17,15 +17,18 @@ class ActivityViewModel(
     private val getCurrentTrackUseCase = activityUseCases.getCurrentTrackUseCase
     private val getMusicStateUseCase = activityUseCases.getMusicStateUseCase
     private val nextTrackUseCase = activityUseCases.nextTrackUseCase
+    private val setTrackProgressUseCase = activityUseCases.setTrackProgressUseCase
 
     val currentTrack = getCurrentTrackUseCase.execute()
     val musicState = getMusicStateUseCase.execute()
 
 
     fun nextTrack() {
-        viewModelScope.launch {
-           nextTrackUseCase.execute()
-        }
+        nextTrackUseCase.execute()
+    }
+
+    fun setProgress(progress: Int) {
+        setTrackProgressUseCase.execute(progress)
     }
 
     class Factory @Inject constructor(

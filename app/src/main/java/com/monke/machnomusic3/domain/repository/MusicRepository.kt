@@ -11,6 +11,8 @@ interface MusicRepository {
 
     val musicState: Flow<MusicState>
 
+    val trackProgress: Flow<Int>
+
     fun addTracksToQueue(trackList: List<Track>)
 
     fun nextTrack(): Track?
@@ -20,5 +22,7 @@ interface MusicRepository {
     fun playFromPosition(position: Int): Track?
 
     fun setMusicState(state: MusicState)
+
+    fun setTrackProgress(progress: Int)
 
 }

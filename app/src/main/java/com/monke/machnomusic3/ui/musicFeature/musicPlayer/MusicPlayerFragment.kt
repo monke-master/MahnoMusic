@@ -12,10 +12,12 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.monke.machnomusic3.R
+import com.monke.machnomusic3.data.extensions.seconds
 import com.monke.machnomusic3.databinding.FragmentMusicPlayerBinding
 import com.monke.machnomusic3.domain.model.MusicState
 import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.main.activity.MainActivity
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -69,9 +71,21 @@ class MusicPlayerFragment : Fragment() {
                     }
                 }
 
+                launch {
+                    viewModel.trackProgress.collect { progress ->
+                        updateProgressBar(progress)
+                    }
+                }
+
             }
         }
     }
+
+    private fun updateProgressBar(progress: Int) {
+        binding?.barProgress?.progress = progress.seconds()
+    }
+
+
 
     private fun setupActionButtons() {
         binding?.btnAction?.setOnClickListener {
@@ -90,6 +104,7 @@ class MusicPlayerFragment : Fragment() {
     private fun setTrackInfo(track: Track) {
         binding?.txtTitle?.text = track.title
         binding?.txtAuthor?.text = track.author.username
+        binding?.barProgress?.max = track.duration.seconds()
         setupActionButtons()
     }
 

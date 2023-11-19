@@ -13,9 +13,10 @@ class PlayTrackListUseCase @Inject constructor(
         tracksList: List<Track>,
         playFromIndex: Int? = null
     ) {
+        musicRepository.setMusicState(MusicState.Start)
         musicRepository.addTracksToQueue(tracksList)
         musicRepository.playFromPosition(playFromIndex ?: 0)
-        musicRepository.setMusicState(MusicState.Start)
+        musicRepository.setMusicState(MusicState.Resume)
     }
 
 }

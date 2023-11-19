@@ -4,5 +4,6 @@ data class Track(
     val id: String,
     val title: String,
     val coverId: String,
-    val author: User
+    val author: User,
+    val duration: Int
 )
