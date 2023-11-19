@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.monke.machnomusic3.domain.model.Track
+import com.monke.machnomusic3.domain.model.TrackProgress
 import com.monke.machnomusic3.domain.usecase.music.GetCurrentTrackUseCase
 import com.monke.machnomusic3.domain.usecase.music.NextTrackUseCase
 import kotlinx.coroutines.launch
@@ -18,9 +19,11 @@ class ActivityViewModel(
     private val getMusicStateUseCase = activityUseCases.getMusicStateUseCase
     private val nextTrackUseCase = activityUseCases.nextTrackUseCase
     private val setTrackProgressUseCase = activityUseCases.setTrackProgressUseCase
+    private val getTrackProgressUseCase = activityUseCases.getTrackProgressUseCase
 
     val currentTrack = getCurrentTrackUseCase.execute()
     val musicState = getMusicStateUseCase.execute()
+    val trackProgress = getTrackProgressUseCase.execute()
 
 
     fun nextTrack() {
@@ -28,7 +31,7 @@ class ActivityViewModel(
     }
 
     fun setProgress(progress: Int) {
-        setTrackProgressUseCase.execute(progress)
+        setTrackProgressUseCase.execute(TrackProgress(progress))
     }
 
     class Factory @Inject constructor(

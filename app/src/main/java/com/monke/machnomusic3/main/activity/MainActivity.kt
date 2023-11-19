@@ -7,7 +7,6 @@ import android.content.ServiceConnection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.ktx.Firebase
@@ -17,16 +16,10 @@ import com.monke.machnomusic3.domain.model.MusicState
 import com.monke.machnomusic3.main.App
 import com.monke.machnomusic3.service.MusicService
 import com.monke.machnomusic3.service.TrackCompletionListener
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import kotlin.coroutines.suspendCoroutine
 
 class MainActivity : AppCompatActivity(), TrackCompletionListener {
 
@@ -88,9 +81,11 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
                     }
                 }
             }
-
             launch {
-
+                viewModel.trackProgress.collect { trackProgress ->
+                    if (trackProgress.changedFromUser)
+                        musicService?.seekTo(trackProgress.progress)
+                }
             }
         }
     }

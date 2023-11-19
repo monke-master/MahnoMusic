@@ -4,9 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.monke.machnomusic3.domain.model.MusicState
-import com.monke.machnomusic3.domain.usecase.music.NextTrackUseCase
-import com.monke.machnomusic3.domain.usecase.music.PrevTrackUseCase
-import com.monke.machnomusic3.ui.musicFeature.musicPlayer.miniPlayer.MiniPlayerViewModel
+import com.monke.machnomusic3.domain.model.TrackProgress
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,6 +19,7 @@ class MusicPlayerViewModel(
     private val nextTrackUseCase = musicPlayerUseCases.nextTrackUseCase
     private val prevTrackUseCase = musicPlayerUseCases.prevTrackUseCase
     private val getTrackProgressUseCase = musicPlayerUseCases.getTrackProgressUseCase
+    private val setTrackProgressUseCase = musicPlayerUseCases.setTrackProgressUseCase
 
     val track = getCurrentTrackUseCase.execute()
     val musicState = getMusicStateUseCase.execute()
@@ -45,6 +44,15 @@ class MusicPlayerViewModel(
         viewModelScope.launch {
             prevTrackUseCase.execute()
         }
+    }
+
+    fun setProgress(progress: Int) {
+        setTrackProgressUseCase.execute(
+            TrackProgress(
+                progress = progress,
+                changedFromUser = true
+            )
+        )
     }
 
     class Factory @Inject constructor(

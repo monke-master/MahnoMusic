@@ -2,6 +2,7 @@ package com.monke.machnomusic3.domain.repository
 
 import com.monke.machnomusic3.domain.model.MusicState
 import com.monke.machnomusic3.domain.model.Track
+import com.monke.machnomusic3.domain.model.TrackProgress
 import kotlinx.coroutines.flow.Flow
 
 interface MusicRepository {
@@ -11,7 +12,7 @@ interface MusicRepository {
 
     val musicState: Flow<MusicState>
 
-    val trackProgress: Flow<Int>
+    val trackProgress: Flow<TrackProgress>
 
     fun addTracksToQueue(trackList: List<Track>)
 
@@ -23,6 +24,6 @@ interface MusicRepository {
 
     fun setMusicState(state: MusicState)
 
-    fun setTrackProgress(progress: Int)
+    fun setTrackProgress(progress: TrackProgress)
 
 }

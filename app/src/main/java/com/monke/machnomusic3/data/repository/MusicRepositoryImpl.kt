@@ -5,6 +5,7 @@ import com.monke.machnomusic3.data.collection.TrackQueue
 import com.monke.machnomusic3.di.AppScope
 import com.monke.machnomusic3.domain.model.MusicState
 import com.monke.machnomusic3.domain.model.Track
+import com.monke.machnomusic3.domain.model.TrackProgress
 import com.monke.machnomusic3.domain.repository.MusicRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
@@ -18,7 +19,7 @@ class MusicRepositoryImpl @Inject constructor(): MusicRepository {
 
     override var musicState = MutableStateFlow<MusicState>(MusicState.Stop)
 
-    override var trackProgress = MutableStateFlow(0)
+    override var trackProgress = MutableStateFlow(TrackProgress(0))
 
 
     init {
@@ -56,7 +57,7 @@ class MusicRepositoryImpl @Inject constructor(): MusicRepository {
         musicState.value = state
     }
 
-    override fun setTrackProgress(progress: Int) {
+    override fun setTrackProgress(progress: TrackProgress) {
         trackProgress.value = progress
     }
 
