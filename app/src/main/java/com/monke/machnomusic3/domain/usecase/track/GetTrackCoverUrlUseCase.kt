@@ -10,8 +10,8 @@ class GetTrackCoverUrlUseCase @Inject constructor(
 ) {
 
     suspend fun execute(
-        trackId: String
+        coverId: String
     ) = withContext(Dispatchers.IO) {
-        return@withContext trackRepository.getTrackCoverUrl(trackId)
+        return@withContext trackRepository.getTrackCoverUrl(coverId)
     }
 }

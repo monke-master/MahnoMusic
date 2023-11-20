@@ -53,10 +53,19 @@ class MyMusicFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
+        setupUploadAlbumButton()
         setupUploadTrackButton()
         setupTracksRecyclerList()
         collectUiState()
     }
+
+    private fun setupUploadAlbumButton() {
+        binding?.btnUploadAlbum?.setOnClickListener {
+            (parentFragment?.parentFragment as? MainFragment)?.mainNavController
+                ?.navigate(R.id.action_mainFragment_to_uploadAlbumFragment)
+        }
+    }
+
 
     private fun setupAlbumsRecyclerList() {
         val albumAdapter = AlbumRWAdapter(

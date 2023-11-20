@@ -15,7 +15,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/menu_confirm"
         app:navigationIcon="@drawable/ic_close"
         app:title="@string/upload_track" />
 
@@ -27,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:src="@tools:sample/avatars" />
+        android:src="@drawable/ic_insert_photo"/>
 
     <EditText
         android:id="@+id/edit_text_title"
@@ -75,6 +74,19 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_upload_track"
         tools:itemCount="5"
         tools:listitem="@layout/item_uploading_track" />
+
+
+    <Button
+        android:id="@+id/btn_upload"
+        style="@style/DefaultButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/button_margin_bottom"
+        android:layout_marginHorizontal="16dp"
+        android:text="@string/upload_album"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 

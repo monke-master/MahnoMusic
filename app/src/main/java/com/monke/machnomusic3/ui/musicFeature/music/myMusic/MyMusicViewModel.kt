@@ -44,7 +44,7 @@ class MyMusicViewModel(
             getUserTracksUseCase.execute().collect { tracks ->
                 val tracksItems = ArrayList<TrackItem>()
                 for (track in tracks) {
-                    val result = getTrackCoverUrlUseCase.execute(track.id)
+                    val result = getTrackCoverUrlUseCase.execute(track.coverId)
                     result.exceptionOrNull()?.let { _uiState.value = UiState.Error(it) }
                     result.getOrNull()?.let { tracksItems.add(TrackItem(track, it)) }
                 }

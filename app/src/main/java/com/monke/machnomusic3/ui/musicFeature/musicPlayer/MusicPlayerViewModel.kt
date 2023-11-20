@@ -35,7 +35,7 @@ class MusicPlayerViewModel(
         viewModelScope.launch {
             track.collect {
                 it?.let { track ->
-                    _coverUrl.value = getTrackCoverUrlUseCase.execute(track.id).getOrNull()
+                    _coverUrl.value = getTrackCoverUrlUseCase.execute(track.coverId).getOrNull()
                 }
             }
         }
