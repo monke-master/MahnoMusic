@@ -14,7 +14,6 @@ import dagger.Component
     modules = [
         AppModule::class,
         FirebaseModule::class,
-        MusicModule::class,
         UserModule::class
     ]
 )

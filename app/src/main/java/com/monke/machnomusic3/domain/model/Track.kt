@@ -5,5 +5,8 @@ data class Track(
     val title: String,
     val coverId: String,
     val author: User,
-    val duration: Int
+    val duration: Int,
+    val releaseDate: Long,
+    val likes: Int = 0,
+    val plays: Int = 0
 )

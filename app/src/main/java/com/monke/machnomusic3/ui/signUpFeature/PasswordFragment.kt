@@ -28,6 +28,7 @@ class PasswordFragment : Fragment() {
     @Inject
     lateinit var factory: PasswordViewModel.Factory
     private val viewModel: PasswordViewModel by viewModels { factory }
+
     private var binding: FragmentPasswordBinding? = null
     lateinit var navController: NavController
 

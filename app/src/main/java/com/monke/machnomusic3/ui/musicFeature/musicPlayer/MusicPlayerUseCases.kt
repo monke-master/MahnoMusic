@@ -1,12 +1,12 @@
 package com.monke.machnomusic3.ui.musicFeature.musicPlayer
 
-import com.monke.machnomusic3.domain.usecase.music.GetCurrentTrackUseCase
-import com.monke.machnomusic3.domain.usecase.music.GetMusicStateUseCase
-import com.monke.machnomusic3.domain.usecase.music.GetTrackProgressUseCase
-import com.monke.machnomusic3.domain.usecase.music.NextTrackUseCase
-import com.monke.machnomusic3.domain.usecase.music.PrevTrackUseCase
-import com.monke.machnomusic3.domain.usecase.music.SetTrackProgressUseCase
-import com.monke.machnomusic3.domain.usecase.music.UpdateMusicStateUseCase
+import com.monke.machnomusic3.domain.usecase.musicPlayer.GetCurrentTrackUseCase
+import com.monke.machnomusic3.domain.usecase.musicPlayer.GetMusicStateUseCase
+import com.monke.machnomusic3.domain.usecase.musicPlayer.GetTrackProgressUseCase
+import com.monke.machnomusic3.domain.usecase.musicPlayer.NextTrackUseCase
+import com.monke.machnomusic3.domain.usecase.musicPlayer.PrevTrackUseCase
+import com.monke.machnomusic3.domain.usecase.musicPlayer.SetTrackProgressUseCase
+import com.monke.machnomusic3.domain.usecase.musicPlayer.UpdateMusicStateUseCase
 import javax.inject.Inject
 
 

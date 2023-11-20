@@ -6,7 +6,7 @@ interface UserRepository {
 
     suspend fun updateUser(user: User): Result<Any?>
 
-    fun getUser() : User?
+    fun getUser() : User
 
     suspend fun signIn(email: String, password: String): Result<User?>
 

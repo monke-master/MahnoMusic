@@ -1,8 +1,9 @@
-package com.monke.machnomusic3.data.remote
+package com.monke.machnomusic3.data.remote.firestore
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.monke.machnomusic3.data.extensions.toDomain
+import com.monke.machnomusic3.data.remote.USERS_COLLECTION
 import com.monke.machnomusic3.data.remote.dto.UserRemote
 import com.monke.machnomusic3.domain.model.User
 import kotlinx.coroutines.tasks.await
@@ -12,7 +13,6 @@ import javax.inject.Inject
 class UserFirestore @Inject constructor(
     private val firestore: FirebaseFirestore
 ) {
-
 
     suspend fun setUser(user: User): Result<Any?> {
         try {

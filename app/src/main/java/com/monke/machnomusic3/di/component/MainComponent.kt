@@ -1,5 +1,7 @@
 package com.monke.machnomusic3.di.component
 
+import com.monke.machnomusic3.di.MainScope
+import com.monke.machnomusic3.di.module.MusicModule
 import com.monke.machnomusic3.main.activity.MainActivity
 import com.monke.machnomusic3.ui.mainFeature.MainFragment
 import com.monke.machnomusic3.ui.musicFeature.music.MyMusicFragment
@@ -11,9 +13,10 @@ import dagger.Subcomponent
 
 @Subcomponent(
     modules = [
-
+        MusicModule::class
     ]
 )
+@MainScope
 interface MainComponent {
 
     fun inject(fragment: MiniPlayerFragment)

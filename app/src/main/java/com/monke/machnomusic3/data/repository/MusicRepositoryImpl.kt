@@ -3,6 +3,7 @@ package com.monke.machnomusic3.data.repository
 import android.util.Log
 import com.monke.machnomusic3.data.collection.TrackQueue
 import com.monke.machnomusic3.di.AppScope
+import com.monke.machnomusic3.di.MainScope
 import com.monke.machnomusic3.domain.model.MusicState
 import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.domain.model.TrackProgress
@@ -10,7 +11,7 @@ import com.monke.machnomusic3.domain.repository.MusicRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
-@AppScope
+@MainScope
 class MusicRepositoryImpl @Inject constructor(): MusicRepository {
 
     private val tracksQueue = TrackQueue()

@@ -1,10 +1,11 @@
 package com.monke.machnomusic3.data.repository
 
 import com.google.firebase.auth.FirebaseAuth
-import com.monke.machnomusic3.data.remote.UserFirestore
+import com.monke.machnomusic3.data.remote.firestore.UserFirestore
 import com.monke.machnomusic3.di.AppScope
 import com.monke.machnomusic3.domain.exception.NoUserException
 import com.monke.machnomusic3.domain.model.User
+import com.monke.machnomusic3.domain.model.mockedUser1
 import com.monke.machnomusic3.domain.repository.UserRepository
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -15,7 +16,11 @@ class UserRepositoryImpl @Inject constructor(
     private val firestore: UserFirestore
 ) : UserRepository {
 
-    private var user: User? = null
+    private lateinit var user: User
+
+    init {
+        user = mockedUser1
+    }
 
     override suspend fun updateUser(user: User): Result<Any?> {
         this.user = user
@@ -27,7 +32,7 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getUser(): User? = user
+    override fun getUser(): User = user
 
 
     override suspend fun signIn(email: String, password: String): Result<User?> {

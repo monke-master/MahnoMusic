@@ -2,12 +2,7 @@ package com.monke.machnomusic3.main.activity
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.domain.model.TrackProgress
-import com.monke.machnomusic3.domain.usecase.music.GetCurrentTrackUseCase
-import com.monke.machnomusic3.domain.usecase.music.NextTrackUseCase
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ActivityViewModel(

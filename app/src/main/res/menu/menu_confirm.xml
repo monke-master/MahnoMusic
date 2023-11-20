@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/close"
+        android:id="@+id/btn_close"
         android:icon="@drawable/ic_pick"
         android:title="close"
         app:showAsAction="always" />
