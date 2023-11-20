@@ -18,9 +18,6 @@ class UserRepositoryImpl @Inject constructor(
 
     private lateinit var user: User
 
-    init {
-        user = mockedUser1
-    }
 
     override suspend fun updateUser(user: User): Result<Any?> {
         this.user = user

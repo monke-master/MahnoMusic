@@ -38,7 +38,7 @@ class StartFragment : Fragment() {
             it.findNavController().navigate(R.id.action_startFragment_to_signInFragment)
         }
 
-        Firebase.auth.currentUser?.let { view.findNavController().navigate(R.id.action_startFragment_to_mainFragment) }
+        //Firebase.auth.currentUser?.let { view.findNavController().navigate(R.id.action_startFragment_to_mainFragment) }
     }
 
 }

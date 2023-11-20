@@ -36,10 +36,18 @@ class UploadTrackUseCase @Inject constructor(
             releaseDate = Calendar.getInstance().timeInMillis
         )
 
-        return@withContext trackRepository.uploadTrack(
+        val uploadRes = trackRepository.uploadTrack(
             track = track,
             trackUri = trackUri,
             coverUri = coverUri
+        )
+
+        if (uploadRes.isFailure) return@withContext uploadRes
+
+        return@withContext userRepository.updateUser(
+            user = user.copy(
+                tracksIdsList = user.tracksIdsList.toMutableList().apply { add(trackId)}
+            )
         )
     }
 }

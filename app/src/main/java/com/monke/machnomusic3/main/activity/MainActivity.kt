@@ -19,6 +19,7 @@ import com.monke.machnomusic3.main.App
 import com.monke.machnomusic3.service.MusicService
 import com.monke.machnomusic3.service.TrackCompletionListener
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -69,24 +70,21 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
                         }
                         MusicState.Start -> {
                             if (musicService == null) {
-                                Intent(this@MainActivity, MusicService::class.java).also { intent ->
+                                Intent(
+                                    this@MainActivity, MusicService::class.java).also {
+                                        intent ->
                                     bindService(intent, connection, Context.BIND_AUTO_CREATE)
                                 }
                             }
-
                         }
                         MusicState.Stop -> stopTrack()
                     }
                 }
             }
-
             launch {
                 viewModel.currentTrack.collect { track ->
                     track?.let {
-                        val ref = Firebase.storage.getReference("music/${track.id}")
-                        ref.downloadUrl.addOnSuccessListener {
-                            playTrack(it.toString())
-                        }
+                        viewModel.getTrackUrl(trackId = track.id)
                     }
                 }
             }
@@ -94,6 +92,11 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
                 viewModel.trackProgress.collect { trackProgress ->
                     if (trackProgress.changedFromUser)
                         musicService?.seekTo(trackProgress.progress)
+                }
+            }
+            launch {
+                viewModel.trackUrl.collect { url ->
+                    url?.let { playTrack(url) }
                 }
             }
         }
@@ -124,7 +127,6 @@ class MainActivity : AppCompatActivity(), TrackCompletionListener {
     private fun stopTrack() {
         musicService?.stopPlaying()
     }
-
 
 
     override fun onTrackComplete() {

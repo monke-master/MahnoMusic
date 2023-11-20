@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_search_user" />
     <fragment
         android:id="@+id/myMusicFragment"
-        android:name="com.monke.machnomusic3.ui.musicFeature.music.MyMusicFragment"
+        android:name="com.monke.machnomusic3.ui.musicFeature.music.myMusic.MyMusicFragment"
         android:label="fragment_music"
         tools:layout="@layout/fragment_my_music" />
     <fragment

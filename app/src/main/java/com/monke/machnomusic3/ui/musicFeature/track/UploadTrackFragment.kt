@@ -197,8 +197,4 @@ class UploadTrackFragment : Fragment() {
         binding = null
     }
 
-
-
-
-
 }

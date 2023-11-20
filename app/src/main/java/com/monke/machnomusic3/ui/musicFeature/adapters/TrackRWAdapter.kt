@@ -2,25 +2,42 @@ package com.monke.machnomusic3.ui.musicFeature.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import com.monke.machnomusic3.databinding.ItemTrackBinding
 import com.monke.machnomusic3.domain.model.Track
+import com.monke.machnomusic3.ui.components.DiffUtilCallback
+import com.monke.machnomusic3.ui.uiModels.TrackItem
 
 class TrackRWAdapter(
     private val onItemClicked: (Int) -> Unit
 ): RecyclerView.Adapter<TrackRWAdapter.TrackViewHolder>() {
 
-    var tracks: List<Track> = ArrayList()
+    var tracksList: List<TrackItem> = ArrayList()
+        set(value) {
+            val diffCallback = DiffUtilCallback<TrackItem>(
+                oldList = field,
+                newList = value,
+                areContentsSame = { oldItem, newItem -> oldItem.track.id == newItem.track.id },
+                areItemsSame = { oldItem, newItem -> oldItem == newItem },
+            )
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
+            field = value
+            diffResult.dispatchUpdatesTo(this)
+        }
+
 
     class TrackViewHolder(
         private val binding: ItemTrackBinding,
         private val onItemClicked: (Int) -> Unit
     ): ViewHolder(binding.root) {
 
-        fun bind(track: Track, index: Int) {
-            binding.txtTitle.text = track.title
-            binding.txtAuthor.text = track.author.username
+        fun bind(trackItem: TrackItem, index: Int) {
+            binding.txtTitle.text = trackItem.track.title
+            binding.txtAuthor.text = trackItem.track.author.username
+            Glide.with(binding.picCover).load(trackItem.coverUrl).into(binding.picCover)
             binding.root.setOnClickListener { onItemClicked(index) }
         }
 
@@ -35,9 +52,9 @@ class TrackRWAdapter(
         return TrackViewHolder(binding, onItemClicked)
     }
 
-    override fun getItemCount(): Int = tracks.size
+    override fun getItemCount(): Int = tracksList.size
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
-        holder.bind(tracks[position], position)
+        holder.bind(tracksList[position], position)
     }
 }
