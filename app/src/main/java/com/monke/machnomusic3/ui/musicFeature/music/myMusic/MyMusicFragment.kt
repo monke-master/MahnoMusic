@@ -19,6 +19,7 @@ import com.monke.machnomusic3.domain.model.mockedTracks
 import com.monke.machnomusic3.main.activity.MainActivity
 import com.monke.machnomusic3.ui.components.LoadingDialog
 import com.monke.machnomusic3.ui.mainFeature.MainFragment
+import com.monke.machnomusic3.ui.musicFeature.adapters.AlbumRWAdapter
 import com.monke.machnomusic3.ui.musicFeature.adapters.TrackRWAdapter
 import com.monke.machnomusic3.ui.uiModels.UiState
 import kotlinx.coroutines.flow.collect
@@ -57,6 +58,16 @@ class MyMusicFragment : Fragment() {
         collectUiState()
     }
 
+    private fun setupAlbumsRecyclerList() {
+        val albumAdapter = AlbumRWAdapter(
+            onItemClicked = {
+
+            }
+        )
+
+        binding?.recyclerAlbums?.adapter = albumAdapter
+    }
+
     private fun setupUploadTrackButton() {
         binding?.btnUploadTrack?.setOnClickListener {
             (parentFragment?.parentFragment as? MainFragment)?.mainNavController
@@ -70,7 +81,6 @@ class MyMusicFragment : Fragment() {
                 viewModel.playTrackList(viewModel.tracksList.value.map { it.track }, index)
             }
         )
-
 
         binding?.recyclerTracks?.adapter = tracksAdapter
         binding?.recyclerTracks?.layoutManager = LinearLayoutManager(

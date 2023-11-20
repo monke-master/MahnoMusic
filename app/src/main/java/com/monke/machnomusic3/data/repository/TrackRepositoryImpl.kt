@@ -47,7 +47,7 @@ class TrackRepositoryImpl @Inject constructor(
                 path = "$TRACKS_COVERS_STORAGE/${track.id}"
             )
             if (imageResult.isFailure)
-                return trackStorageResult
+                return imageResult
         }
         // Создание записи с треком
         val result = trackFirestore.setTrack(track)

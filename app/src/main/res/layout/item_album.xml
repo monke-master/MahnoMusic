@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/pic_genre"
+        android:id="@+id/pic_cover"
         android:layout_width="@dimen/album_pic_size"
         android:layout_height="@dimen/album_pic_size"
         android:scaleType="centerCrop"

@@ -21,6 +21,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/btn_upload_album"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/upload_album"
+            app:icon="@drawable/ic_upload"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hdr_albums" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_albums"
             android:layout_width="match_parent"
@@ -31,7 +44,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hdr_albums"
+            app:layout_constraintTop_toBottomOf="@+id/btn_upload_album"
             tools:itemCount="5"
             tools:listitem="@layout/item_album" />
 
@@ -45,6 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recycler_albums" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_playlists"

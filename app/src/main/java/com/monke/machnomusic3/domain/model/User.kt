@@ -8,5 +8,7 @@ data class User (
     val password: String,
     val bio: String? = null,
     val profilePicId: String? = null,
-    var tracksIdsList: List<String> = emptyList(),
+    val tracksIdsList: List<String> = emptyList(),
+    val albumsIdsList: List<String> = emptyList(),
+    val playlistsIdsList: List<String> = emptyList(),
 )

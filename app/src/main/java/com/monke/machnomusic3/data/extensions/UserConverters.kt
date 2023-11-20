@@ -13,5 +13,7 @@ fun UserRemote.toDomain() =
         password = this.password,
         bio = this.bio,
         profilePicId = this.profilePicId,
-        tracksIdsList = this.tracksIdsList
+        tracksIdsList = this.tracksIdsList,
+        albumsIdsList = this.albumsIdsList,
+        playlistsIdsList = this.playlistsIdsList
 )

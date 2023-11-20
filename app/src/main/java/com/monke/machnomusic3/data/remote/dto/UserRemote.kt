@@ -10,4 +10,6 @@ data class UserRemote(
     val bio: String? = null,
     val profilePicId: String? = null,
     var tracksIdsList: List<String> = emptyList(),
+    val albumsIdsList: List<String> = emptyList(),
+    val playlistsIdsList: List<String> = emptyList(),
 )
