@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.monke.machnomusic3.R
@@ -74,12 +75,17 @@ class MusicPlayerFragment : Fragment() {
                         }
                     }
                 }
-
                 launch {
                     viewModel.trackProgress.collect { progress ->
                         updateProgressBar(progress.progress)
                     }
                 }
+                launch {
+                    viewModel.coverUrl.collect { url ->
+                        url?.let { setCover(url) }
+                    }
+                }
+
 
             }
         }
@@ -133,6 +139,19 @@ class MusicPlayerFragment : Fragment() {
         else
             binding?.btnAction?.setImageResource(R.drawable.ic_play)
     }
+
+    private fun setCover(url: String) {
+        binding?.picCover?.let { view ->
+            Glide
+                .with(this)
+                .load(url)
+                .placeholder(R.drawable.ic_track)
+                .centerCrop()
+                .into(view)
+        }
+    }
+
+
 
 
 

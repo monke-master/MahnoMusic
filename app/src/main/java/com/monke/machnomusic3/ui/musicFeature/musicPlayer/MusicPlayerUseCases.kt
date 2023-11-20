@@ -7,6 +7,7 @@ import com.monke.machnomusic3.domain.usecase.musicPlayer.NextTrackUseCase
 import com.monke.machnomusic3.domain.usecase.musicPlayer.PrevTrackUseCase
 import com.monke.machnomusic3.domain.usecase.musicPlayer.SetTrackProgressUseCase
 import com.monke.machnomusic3.domain.usecase.musicPlayer.UpdateMusicStateUseCase
+import com.monke.machnomusic3.domain.usecase.track.GetTrackCoverUrlUseCase
 import javax.inject.Inject
 
 
@@ -17,5 +18,6 @@ class MusicPlayerUseCases @Inject constructor(
     val nextTrackUseCase: NextTrackUseCase,
     val prevTrackUseCase: PrevTrackUseCase,
     val getTrackProgressUseCase: GetTrackProgressUseCase,
-    val setTrackProgressUseCase: SetTrackProgressUseCase
+    val setTrackProgressUseCase: SetTrackProgressUseCase,
+    val getTrackCoverUrlUseCase: GetTrackCoverUrlUseCase
  )

@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.monke.machnomusic3.domain.model.MusicState
 import com.monke.machnomusic3.domain.model.TrackProgress
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,10 +22,24 @@ class MusicPlayerViewModel(
     private val prevTrackUseCase = musicPlayerUseCases.prevTrackUseCase
     private val getTrackProgressUseCase = musicPlayerUseCases.getTrackProgressUseCase
     private val setTrackProgressUseCase = musicPlayerUseCases.setTrackProgressUseCase
+    private val getTrackCoverUrlUseCase = musicPlayerUseCases.getTrackCoverUrlUseCase
 
     val track = getCurrentTrackUseCase.execute()
     val musicState = getMusicStateUseCase.execute()
     val trackProgress = getTrackProgressUseCase.execute()
+
+    private val _coverUrl = MutableStateFlow<String?>(null)
+    val coverUrl = _coverUrl.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            track.collect {
+                it?.let { track ->
+                    _coverUrl.value = getTrackCoverUrlUseCase.execute(track.id).getOrNull()
+                }
+            }
+        }
+    }
 
     fun updateState() {
         viewModelScope.launch {
@@ -32,6 +48,8 @@ class MusicPlayerViewModel(
             else
                 updateMusicStateUseCase.execute(MusicState.Pause)
         }
+
+
     }
 
     fun nextTrack() {
@@ -54,6 +72,7 @@ class MusicPlayerViewModel(
             )
         )
     }
+
 
     class Factory @Inject constructor(
         private val musicPlayerUseCases: MusicPlayerUseCases

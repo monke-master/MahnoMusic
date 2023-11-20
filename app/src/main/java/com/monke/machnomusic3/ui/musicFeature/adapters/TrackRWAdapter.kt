@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.ItemTrackBinding
 import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.ui.components.DiffUtilCallback
@@ -37,7 +38,11 @@ class TrackRWAdapter(
         fun bind(trackItem: TrackItem, index: Int) {
             binding.txtTitle.text = trackItem.track.title
             binding.txtAuthor.text = trackItem.track.author.username
-            Glide.with(binding.picCover).load(trackItem.coverUrl).into(binding.picCover)
+            Glide
+                .with(binding.picCover)
+                .load(trackItem.coverUrl)
+                .placeholder(R.drawable.ic_track)
+                .into(binding.picCover)
             binding.root.setOnClickListener { onItemClicked(index) }
         }
 
