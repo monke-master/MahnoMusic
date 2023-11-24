@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.FragmentProfileBinding
 import com.monke.machnomusic3.main.activity.MainActivity
 import kotlinx.coroutines.flow.collect
@@ -31,6 +33,7 @@ class ProfileFragment : Fragment() {
         (activity as? MainActivity)?.mainComponent?.inject(this)
 
         setupUserData()
+        setupNewPostButton()
         return binding?.root
     }
 
@@ -50,7 +53,9 @@ class ProfileFragment : Fragment() {
 
 
     private fun setupNewPostButton() {
-
+        binding?.btnNewPost?.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_uploadPostFragment)
+        }
     }
 
 }

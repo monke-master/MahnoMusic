@@ -3,10 +3,10 @@ package com.monke.machnomusic3.domain.model
 data class Post(
     val id: String,
     val author: User,
-    val text: String,
+    val text: String?,
     val tracksIdsList: List<String> = emptyList(),
     val imagesIdsList: List<String> = emptyList(),
-    val albumId: String?,
+    val albumId: String? = null,
     val creationDate: Long,
-    val likes: Int
+    val likes: Int = 0
 )

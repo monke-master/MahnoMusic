@@ -28,10 +28,19 @@
         android:id="@+id/profileFragment"
         android:name="com.monke.machnomusic3.ui.userFeature.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_uploadPostFragment"
+            app:destination="@id/uploadPostFragment" />
+    </fragment>
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.monke.machnomusic3.ui.musicFeature.album.AlbumFragment"
         android:label="fragment_album"
         tools:layout="@layout/fragment_album" />
+    <fragment
+        android:id="@+id/uploadPostFragment"
+        android:name="com.monke.machnomusic3.ui.userFeature.post.UploadPostFragment"
+        android:label="fragment_upload_post"
+        tools:layout="@layout/fragment_upload_post" />
 </navigation>

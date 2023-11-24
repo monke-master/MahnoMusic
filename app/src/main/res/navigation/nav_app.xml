@@ -82,9 +82,6 @@
         <action
             android:id="@+id/action_mainFragment_to_albumFragment"
             app:destination="@id/albumFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_uploadPostFragment"
-            app:destination="@id/uploadPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/musicPlayerFragment"
@@ -101,9 +98,4 @@
         android:name="com.monke.machnomusic3.ui.musicFeature.album.UploadAlbumFragment"
         android:label="fragment_upload_album"
         tools:layout="@layout/fragment_upload_album" />
-    <fragment
-        android:id="@+id/uploadPostFragment"
-        android:name="com.monke.machnomusic3.ui.userFeature.post.UploadPostFragment"
-        android:label="fragment_upload_post"
-        tools:layout="@layout/fragment_upload_post" />
 </navigation>

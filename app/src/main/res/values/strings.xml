@@ -31,6 +31,7 @@
 
     <!--  post  -->
     <string name="write_post">Write new post</string>
+    <string name="upload_post">Upload post</string>
 
     <string name="tracks">Tracks</string>
     <string name="email">Email</string>
