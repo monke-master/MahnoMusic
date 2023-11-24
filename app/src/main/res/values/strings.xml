@@ -29,6 +29,9 @@
     <string name="username">Username</string>
     <string name="enter_name">Please, enter your name or band and your cool login</string>
 
+    <!--  post  -->
+    <string name="write_post">Write new post</string>
+
     <string name="tracks">Tracks</string>
     <string name="email">Email</string>
     <string name="password">Password</string>

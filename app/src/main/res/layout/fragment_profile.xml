@@ -46,7 +46,7 @@
                 app:layout_constraintTop_toTopOf="@+id/pic_profile" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/txt_bio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -55,14 +55,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pic_profile" />
 
+            <Button
+                android:id="@+id/btn_new_post"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/write_post"
+                app:icon="@drawable/ic_new_post"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_bio" />
+
             <androidx.recyclerview.widget.RecyclerView
-                tools:listitem="@layout/item_post"
                 android:id="@+id/recycler_posts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_new_post"
+                tools:listitem="@layout/item_post" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -32,6 +32,9 @@
     <string name="username">Имя</string>
     <string name="enter_name">Введите ваше имя или название вашей группы и крутой логин</string>
 
+    <!--  post  -->
+    <string name="write_post">Write new post</string>
+
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
     <string name="login">Логин</string>

@@ -11,6 +11,7 @@ class ProfileViewModel(
     private val getUserUseCase = profileUseCases.getUserUseCase
 
 
+    val user = getUserUseCase.execute()
 
 
     class Factory @Inject constructor(
