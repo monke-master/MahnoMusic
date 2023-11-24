@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class LoadTrackUseCase @Inject constructor(
+class LoadLikedTracksUseCase @Inject constructor(
     private val trackRepository: TrackRepository,
     private val userRepository: UserRepository
 ) {
@@ -16,6 +16,6 @@ class LoadTrackUseCase @Inject constructor(
     suspend fun execute() = withContext(Dispatchers.IO) {
         val user = userRepository.user.first()
             ?: return@withContext Result.failure(NotFoundException())
-        trackRepository.loadTracks(user)
+        trackRepository.loadLikedTracks(user)
     }
 }

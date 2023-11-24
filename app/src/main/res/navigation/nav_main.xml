@@ -19,10 +19,19 @@
         android:id="@+id/myMusicFragment"
         android:name="com.monke.machnomusic3.ui.musicFeature.music.myMusic.MyMusicFragment"
         android:label="fragment_music"
-        tools:layout="@layout/fragment_my_music" />
+        tools:layout="@layout/fragment_my_music" >
+        <action
+            android:id="@+id/action_myMusicFragment_to_albumFragment"
+            app:destination="@id/albumFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.monke.machnomusic3.ui.userFeature.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/albumFragment"
+        android:name="com.monke.machnomusic3.ui.musicFeature.album.AlbumFragment"
+        android:label="fragment_album"
+        tools:layout="@layout/fragment_album" />
 </navigation>

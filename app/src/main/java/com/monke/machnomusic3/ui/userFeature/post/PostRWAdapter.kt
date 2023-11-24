@@ -1,4 +1,4 @@
-package com.monke.machnomusic3.ui.userFeature.profile
+package com.monke.machnomusic3.ui.userFeature.post
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

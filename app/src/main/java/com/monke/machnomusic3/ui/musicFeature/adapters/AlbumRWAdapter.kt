@@ -11,7 +11,7 @@ import com.monke.machnomusic3.ui.recyclerViewUtils.DiffUtilCallback
 import com.monke.machnomusic3.ui.uiModels.AlbumItem
 
 class AlbumRWAdapter(
-    private val onItemClicked: (Int) -> Unit
+    private val onItemClicked: (String) -> Unit
 ): RecyclerView.Adapter<AlbumRWAdapter.AlbumViewHolder>() {
 
     var albumsList: List<AlbumItem> = ArrayList()
@@ -30,10 +30,10 @@ class AlbumRWAdapter(
 
     class AlbumViewHolder(
         private val binding: ItemAlbumBinding,
-        private val onItemClicked: (Int) -> Unit
+        private val onItemClicked: (String) -> Unit
     ): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(albumItem: AlbumItem, index: Int) {
+        fun bind(albumItem: AlbumItem) {
             binding.txtTitle.text = albumItem.album.title
             binding.txtAuthor.text = albumItem.album.author.username
             Glide
@@ -41,7 +41,7 @@ class AlbumRWAdapter(
                 .load(albumItem.coverUrl)
                 .placeholder(R.drawable.ic_track)
                 .into(binding.picCover)
-            binding.root.setOnClickListener { onItemClicked(index) }
+            binding.root.setOnClickListener { onItemClicked(albumItem.album.id) }
         }
 
     }
@@ -58,6 +58,6 @@ class AlbumRWAdapter(
     override fun getItemCount(): Int = albumsList.size
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-        holder.bind(albumsList[position], position)
+        holder.bind(albumsList[position])
     }
 }

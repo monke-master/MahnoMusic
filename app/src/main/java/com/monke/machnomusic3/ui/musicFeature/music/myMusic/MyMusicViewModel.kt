@@ -17,7 +17,7 @@ class MyMusicViewModel(
 ): ViewModel() {
 
     private val playTrackListUseCase = myMusicUseCases.playTrackListUseCase
-    private val loadTrackUseCase = myMusicUseCases.loadTrackUseCase
+    private val loadTrackUseCase = myMusicUseCases.loadLikedTracksUseCase
     private val getUserTracksUseCase = myMusicUseCases.getUserTracksUseCase
     private val getTrackCoverUrlUseCase = myMusicUseCases.getTrackCoverUrlUseCase
     private val getUserAlbumsUseCase = myMusicUseCases.getUserAlbumsUseCase

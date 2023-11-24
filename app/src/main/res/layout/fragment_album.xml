@@ -29,7 +29,7 @@
             android:layout_height="@dimen/album_pic_size"
             android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/cover"
+            android:src="@drawable/ic_track"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />

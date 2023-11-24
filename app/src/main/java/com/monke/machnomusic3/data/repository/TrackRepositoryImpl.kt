@@ -56,7 +56,7 @@ class TrackRepositoryImpl @Inject constructor(
         return Result.success(null)
     }
 
-    override suspend fun loadTracks(user: User): Result<Any?> {
+    override suspend fun loadLikedTracks(user: User): Result<Any?> {
         for (trackId in user.tracksIdsList) {
             val trackRequest = trackFirestore.getTrackById(trackId)
             if (trackRequest.isFailure) return trackRequest
@@ -73,6 +73,10 @@ class TrackRepositoryImpl @Inject constructor(
 
     override suspend fun getTrackUrl(trackId: String): Result<String> {
         return storage.getDownloadUrl("$TRACKS_STORAGE/${trackId}")
+    }
+
+    override suspend fun getTrackById(trackId: String): Result<Track?> {
+        return trackFirestore.getTrackById(trackId)
     }
 
 

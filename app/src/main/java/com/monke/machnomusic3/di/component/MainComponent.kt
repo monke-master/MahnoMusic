@@ -3,6 +3,7 @@ package com.monke.machnomusic3.di.component
 import com.monke.machnomusic3.di.MainScope
 import com.monke.machnomusic3.di.module.MusicModule
 import com.monke.machnomusic3.main.activity.MainActivity
+import com.monke.machnomusic3.ui.musicFeature.album.AlbumFragment
 import com.monke.machnomusic3.ui.musicFeature.album.UploadAlbumFragment
 import com.monke.machnomusic3.ui.musicFeature.music.myMusic.MyMusicFragment
 import com.monke.machnomusic3.ui.musicFeature.musicPlayer.MusicPlayerFragment
@@ -35,6 +36,8 @@ interface MainComponent {
     fun inject(fragment: UploadPlaylistFragment)
 
     fun inject(fragment: ProfileFragment)
+
+    fun inject(fragment: AlbumFragment)
 
     @Subcomponent.Factory
     interface Factory {

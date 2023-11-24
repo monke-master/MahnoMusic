@@ -23,12 +23,14 @@ interface TrackRepository {
     ): Result<Any?>
 
 
-    suspend fun loadTracks(
+    suspend fun loadLikedTracks(
         user: User
     ): Result<Any?>
 
     suspend fun getTrackCoverUrl(trackId: String): Result<String>
 
     suspend fun getTrackUrl(trackId: String): Result<String>
+
+    suspend fun getTrackById(trackId: String): Result<Track?>
 
 }

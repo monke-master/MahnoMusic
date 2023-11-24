@@ -20,6 +20,7 @@ import com.monke.machnomusic3.ui.components.LoadingDialog
 import com.monke.machnomusic3.ui.mainFeature.MainFragment
 import com.monke.machnomusic3.ui.musicFeature.adapters.AlbumRWAdapter
 import com.monke.machnomusic3.ui.musicFeature.adapters.TrackRWAdapter
+import com.monke.machnomusic3.ui.musicFeature.album.AlbumFragment
 import com.monke.machnomusic3.ui.recyclerViewUtils.HorizontalSpaceItemDecoration
 import com.monke.machnomusic3.ui.uiModels.UiState
 import kotlinx.coroutines.launch
@@ -68,8 +69,10 @@ class MyMusicFragment : Fragment() {
 
     private fun setupAlbumsRecyclerList() {
         val albumAdapter = AlbumRWAdapter(
-            onItemClicked = {
-
+            onItemClicked = { albumId ->
+                val bundle = Bundle()
+                bundle.putString(AlbumFragment.BUNDLE_KEY_ALBUM_ID, albumId)
+                navController.navigate(R.id.action_myMusicFragment_to_albumFragment, bundle)
             }
         )
 
