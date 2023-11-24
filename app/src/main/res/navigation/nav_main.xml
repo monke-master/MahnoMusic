@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_my_music" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.monke.machnomusic3.ui.userFeature.ProfileFragment"
+        android:name="com.monke.machnomusic3.ui.userFeature.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

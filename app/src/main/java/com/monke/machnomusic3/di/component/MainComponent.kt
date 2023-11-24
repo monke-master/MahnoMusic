@@ -9,6 +9,7 @@ import com.monke.machnomusic3.ui.musicFeature.musicPlayer.MusicPlayerFragment
 import com.monke.machnomusic3.ui.musicFeature.musicPlayer.miniPlayer.MiniPlayerFragment
 import com.monke.machnomusic3.ui.musicFeature.playlist.UploadPlaylistFragment
 import com.monke.machnomusic3.ui.musicFeature.track.UploadTrackFragment
+import com.monke.machnomusic3.ui.userFeature.profile.ProfileFragment
 import dagger.Subcomponent
 
 @Subcomponent(
@@ -32,6 +33,8 @@ interface MainComponent {
     fun inject(fragment: UploadAlbumFragment)
 
     fun inject(fragment: UploadPlaylistFragment)
+
+    fun inject(fragment: ProfileFragment)
 
     @Subcomponent.Factory
     interface Factory {

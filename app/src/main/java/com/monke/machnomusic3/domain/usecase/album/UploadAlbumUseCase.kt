@@ -1,6 +1,7 @@
 package com.monke.machnomusic3.domain.usecase.album
 
 import android.net.Uri
+import com.monke.machnomusic3.domain.exception.NotFoundException
 import com.monke.machnomusic3.domain.model.Album
 import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.domain.model.UploadingTrack
@@ -8,6 +9,7 @@ import com.monke.machnomusic3.domain.repository.AlbumRepository
 import com.monke.machnomusic3.domain.repository.TrackRepository
 import com.monke.machnomusic3.domain.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import java.util.Calendar
 import java.util.UUID
@@ -24,7 +26,8 @@ class UploadAlbumUseCase @Inject constructor(
         title: String,
         coverUri: Uri,
     ) = withContext(Dispatchers.IO) {
-        val author = userRepository.getUser()
+        val author = userRepository.user.first()
+            ?: return@withContext Result.failure(NotFoundException())
         val albumId = UUID.randomUUID().toString()
         val releaseDate = Calendar.getInstance().timeInMillis
         val tracksList = uploadingTracksList.map {

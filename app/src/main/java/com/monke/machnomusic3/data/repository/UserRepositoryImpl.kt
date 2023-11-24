@@ -7,6 +7,8 @@ import com.monke.machnomusic3.domain.exception.NoUserException
 import com.monke.machnomusic3.domain.model.User
 import com.monke.machnomusic3.domain.model.mockedUser1
 import com.monke.machnomusic3.domain.repository.UserRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -16,11 +18,10 @@ class UserRepositoryImpl @Inject constructor(
     private val firestore: UserFirestore
 ) : UserRepository {
 
-    private lateinit var user: User
-
+    override val user = MutableStateFlow<User?>(null)
 
     override suspend fun updateUser(user: User): Result<Any?> {
-        this.user = user
+        this.user.value = user
         try {
             return firestore.setUser(user)
         } catch (exception: Exception) {
@@ -28,9 +29,6 @@ class UserRepositoryImpl @Inject constructor(
             return Result.failure(exception)
         }
     }
-
-    override fun getUser(): User = user
-
 
     override suspend fun signIn(email: String, password: String): Result<User?> {
         try {

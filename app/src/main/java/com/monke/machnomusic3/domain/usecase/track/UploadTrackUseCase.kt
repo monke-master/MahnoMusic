@@ -2,10 +2,12 @@ package com.monke.machnomusic3.domain.usecase.track
 
 import android.net.Uri
 import com.monke.machnomusic3.data.remote.DEFAULT_TRACK_COVER_ID
+import com.monke.machnomusic3.domain.exception.NotFoundException
 import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.domain.repository.TrackRepository
 import com.monke.machnomusic3.domain.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import java.util.Calendar
 import java.util.UUID
@@ -22,7 +24,8 @@ class UploadTrackUseCase @Inject constructor(
         coverUri: Uri? = null,
         duration: Int
     ): Result<Any?> = withContext(Dispatchers.IO) {
-        val user = userRepository.getUser()
+        val user = userRepository.user.first()
+            ?: return@withContext Result.failure(NotFoundException())
 
         val trackId = UUID.randomUUID().toString()
         val coverId = if (coverUri == null) DEFAULT_TRACK_COVER_ID else trackId
