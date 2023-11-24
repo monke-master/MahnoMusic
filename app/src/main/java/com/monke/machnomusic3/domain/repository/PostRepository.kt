@@ -24,5 +24,6 @@ interface PostRepository {
         user: User
     ): Result<Any?>
 
+    suspend fun getImageUrl(imageId: String): Result<String?>
 
 }

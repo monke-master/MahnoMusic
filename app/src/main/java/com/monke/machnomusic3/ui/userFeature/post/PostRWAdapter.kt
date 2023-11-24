@@ -3,8 +3,10 @@ package com.monke.machnomusic3.ui.userFeature.post
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.monke.machnomusic3.databinding.ItemAlbumBinding
+import com.monke.machnomusic3.databinding.ItemPostBinding
 import com.monke.machnomusic3.ui.recyclerViewUtils.DiffUtilCallback
 import com.monke.machnomusic3.ui.uiModels.PostItem
 
@@ -25,19 +27,36 @@ class PostRWAdapter: RecyclerView.Adapter<PostRWAdapter.PostViewHolder>() {
 
 
     class PostViewHolder(
-        private val binding: ItemAlbumBinding
+        private val binding: ItemPostBinding
     ): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(postItem: PostItem, index: Int) {
-//            Glide
-//                .with(itemView)
-//                .load(postItem.)
+            binding.txtLogin.text = postItem.post.author.login
+            binding.txtName.text = postItem.post.author.username
+            binding.txtDate.text = postItem.post.text
+            setupPhotoRecyclerList(postItem)
+        }
+
+        private fun setupPhotoRecyclerList(postItem: PostItem) {
+            val imageAdapter = PostImageRWAdapter(
+                onItemClicked = {
+                }
+            )
+
+            binding.recyclerImages.adapter = imageAdapter
+            binding.recyclerImages.layoutManager = LinearLayoutManager(
+                itemView.context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+            imageAdapter.imagesUrlsList = postItem.imagesUrlsList
+
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val binding = ItemAlbumBinding.inflate(
+        val binding = ItemPostBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false

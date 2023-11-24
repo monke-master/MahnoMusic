@@ -4,7 +4,7 @@ import com.monke.machnomusic3.domain.model.Post
 
 data class PostItem (
     val post: Post,
-    val userPictureUrl: String,
-    val tracksUrlsList: List<String> = emptyList(),
+    val userPictureUrl: String? = null,
+    val tracksList: List<TrackItem> = emptyList(),
     val imagesUrlsList: List<String> = emptyList(),
 )

@@ -16,12 +16,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.monke.machnomusic3.R
 import com.monke.machnomusic3.data.files.IMAGE_FILES
 import com.monke.machnomusic3.databinding.FragmentUploadPostBinding
 import com.monke.machnomusic3.main.activity.MainActivity
 import com.monke.machnomusic3.ui.components.LoadingDialog
-import com.monke.machnomusic3.ui.musicFeature.adapters.TrackRWAdapter
 import com.monke.machnomusic3.ui.uiModels.UiState
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -82,14 +80,14 @@ class UploadPostFragment : Fragment() {
     }
 
     private fun setupPhotoRecyclerList() {
-        val imageAdapter = PostingImageRWAdapter(
+        val imageAdapter = UploadingImageRWAdapter(
             onItemClicked = {
 
             }
         )
 
-        binding?.recyclerPhoto?.adapter = imageAdapter
-        binding?.recyclerPhoto?.layoutManager = LinearLayoutManager(
+        binding?.recyclerImages?.adapter = imageAdapter
+        binding?.recyclerImages?.layoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.HORIZONTAL,
             false

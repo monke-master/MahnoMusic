@@ -49,4 +49,8 @@ class PostRepositoryImpl @Inject constructor(
         return Result.success(null)
     }
 
+
+    override suspend fun getImageUrl(imageId: String): Result<String?> {
+        return storage.getDownloadUrl("$POSTS_IMAGES_STORAGE/$imageId")
+    }
 }

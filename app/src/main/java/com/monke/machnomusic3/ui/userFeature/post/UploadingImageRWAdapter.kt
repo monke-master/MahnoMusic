@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.monke.machnomusic3.databinding.ItemPostPhotoBinding
 import com.monke.machnomusic3.ui.recyclerViewUtils.DiffUtilCallback
 
-class PostingImageRWAdapter(
+class UploadingImageRWAdapter(
     private val onItemClicked: (Int) -> Unit
-): RecyclerView.Adapter<PostingImageRWAdapter.ImageViewHolder>() {
+): RecyclerView.Adapter<UploadingImageRWAdapter.ImageViewHolder>() {
 
     var imagesList: List<Uri> = ArrayList()
         set(value) {
