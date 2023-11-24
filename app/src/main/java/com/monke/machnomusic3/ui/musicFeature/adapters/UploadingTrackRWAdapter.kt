@@ -6,9 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.monke.machnomusic3.data.extensions.formatDuration
 import com.monke.machnomusic3.databinding.ItemUploadingTrackBinding
-import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.domain.model.UploadingTrack
-import com.monke.machnomusic3.ui.components.DiffUtilCallback
+import com.monke.machnomusic3.ui.recyclerViewUtils.DiffUtilCallback
 
 class UploadingTrackRWAdapter(
     private val onItemClicked: (Int) -> Unit

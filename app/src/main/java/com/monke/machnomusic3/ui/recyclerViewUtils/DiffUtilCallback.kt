@@ -1,4 +1,4 @@
-package com.monke.machnomusic3.ui.components
+package com.monke.machnomusic3.ui.recyclerViewUtils
 
 import androidx.recyclerview.widget.DiffUtil
 

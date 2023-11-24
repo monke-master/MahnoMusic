@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.ItemAlbumBinding
-import com.monke.machnomusic3.ui.components.DiffUtilCallback
+import com.monke.machnomusic3.ui.recyclerViewUtils.DiffUtilCallback
 import com.monke.machnomusic3.ui.uiModels.AlbumItem
 
 class AlbumRWAdapter(

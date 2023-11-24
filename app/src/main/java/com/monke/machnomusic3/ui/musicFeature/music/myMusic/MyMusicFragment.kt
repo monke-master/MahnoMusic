@@ -15,15 +15,13 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.FragmentMyMusicBinding
-import com.monke.machnomusic3.domain.model.mockedTracks
 import com.monke.machnomusic3.main.activity.MainActivity
 import com.monke.machnomusic3.ui.components.LoadingDialog
 import com.monke.machnomusic3.ui.mainFeature.MainFragment
 import com.monke.machnomusic3.ui.musicFeature.adapters.AlbumRWAdapter
 import com.monke.machnomusic3.ui.musicFeature.adapters.TrackRWAdapter
+import com.monke.machnomusic3.ui.recyclerViewUtils.HorizontalSpaceItemDecoration
 import com.monke.machnomusic3.ui.uiModels.UiState
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -56,6 +54,7 @@ class MyMusicFragment : Fragment() {
         setupUploadAlbumButton()
         setupUploadTrackButton()
         setupTracksRecyclerList()
+        setupAlbumsRecyclerList()
         collectUiState()
     }
 
@@ -75,6 +74,26 @@ class MyMusicFragment : Fragment() {
         )
 
         binding?.recyclerAlbums?.adapter = albumAdapter
+        binding?.recyclerAlbums?.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+
+
+        val spaceDecoration = HorizontalSpaceItemDecoration(
+            horizontalPadding = resources.getDimensionPixelSize(R.dimen.album_padding)
+        )
+
+        binding?.recyclerAlbums?.addItemDecoration(spaceDecoration)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.albumsList.collect {
+                    albumAdapter.albumsList = it
+                }
+            }
+        }
     }
 
     private fun setupUploadTrackButton() {

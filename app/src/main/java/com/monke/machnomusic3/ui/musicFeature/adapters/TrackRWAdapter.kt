@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.ItemTrackBinding
-import com.monke.machnomusic3.domain.model.Track
-import com.monke.machnomusic3.ui.components.DiffUtilCallback
+import com.monke.machnomusic3.ui.recyclerViewUtils.DiffUtilCallback
 import com.monke.machnomusic3.ui.uiModels.TrackItem
 
 class TrackRWAdapter(
