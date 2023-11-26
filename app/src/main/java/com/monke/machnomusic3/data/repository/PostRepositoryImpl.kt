@@ -53,4 +53,13 @@ class PostRepositoryImpl @Inject constructor(
     override suspend fun getImageUrl(imageId: String): Result<String?> {
         return storage.getDownloadUrl("$POSTS_IMAGES_STORAGE/$imageId")
     }
+
+    override suspend fun getPostsListByAuthor(author: User): Result<List<Post>> {
+        val result = postFirestore.getPostsByAuthorId(author.id)
+        result.exceptionOrNull()?.let { error -> return Result.failure(error) }
+        val posts = result.getOrNull()?.map {
+            it?.toDomain(author) ?: return Result.failure(NotFoundException())
+        } ?: emptyList()
+        return Result.success(posts)
+    }
 }

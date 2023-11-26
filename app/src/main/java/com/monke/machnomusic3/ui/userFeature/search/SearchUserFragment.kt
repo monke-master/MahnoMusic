@@ -8,15 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.FragmentSearchUserBinding
 import com.monke.machnomusic3.main.activity.MainActivity
 import com.monke.machnomusic3.ui.uiModels.UiState
 import com.monke.machnomusic3.ui.userFeature.recycler.UserRWAdapter
+import com.monke.machnomusic3.ui.userFeature.user.UserFragment
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -49,8 +53,14 @@ class SearchUserFragment : Fragment() {
 
     private fun setupUserRecycler() {
         val usersAdapter = UserRWAdapter(
-            onItemClicked = { index ->
-                //viewModel.playTrackList(viewModel.tracksList.value.map { it.track }, index)
+            onItemClicked = { userId ->
+                findNavController()
+                    .navigate(
+                        R.id.action_searchUserFragment_to_userFragment,
+                        bundleOf(
+                            UserFragment.BUNDLE_KEY_USER_ID to userId
+                        )
+                    )
             }
         )
 

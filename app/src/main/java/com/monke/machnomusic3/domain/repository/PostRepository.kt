@@ -11,9 +11,6 @@ interface PostRepository {
 
     /**
      * Загружает пост на сервер
-     * @param track - данные трека
-     * @param trackUri - аудио-файл
-     * @param coverUri - изображение обложки
      */
     suspend fun uploadPost(
         post: Post,
@@ -25,5 +22,7 @@ interface PostRepository {
     ): Result<Any?>
 
     suspend fun getImageUrl(imageId: String): Result<String?>
+
+    suspend fun getPostsListByAuthor(author: User): Result<List<Post>>
 
 }

@@ -11,7 +11,7 @@ import com.monke.machnomusic3.ui.uiModels.TrackItem
 import com.monke.machnomusic3.ui.uiModels.UserItem
 
 class UserRWAdapter(
-    private val onItemClicked: (Int) -> Unit
+    private val onItemClicked: (userId: String) -> Unit
 ): RecyclerView.Adapter<UserRWAdapter.UserViewHolder>() {
 
     var usersList: List<UserItem> = ArrayList()
@@ -30,12 +30,15 @@ class UserRWAdapter(
 
     class UserViewHolder(
         private val binding: ItemUserBinding,
-        private val onItemClicked: (Int) -> Unit
+        private val onItemClicked: (userId: String) -> Unit
     ): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(userItem: UserItem) {
             binding.txtLogin.text = userItem.user.login
             binding.txtUsername.text = userItem.user.username
+            binding.root.setOnClickListener {
+                onItemClicked(userItem.user.id)
+            }
         }
 
     }
