@@ -6,6 +6,10 @@ const val TRACKS_COLLECTION = "tracks"
 const val ALBUM_COLLECTION = "albums"
 const val POSTS_COLLECTION = "posts"
 
+object TrackFields {
+    const val title = "title"
+}
+
 // Storage
 const val TRACKS_STORAGE = "tracks"
 const val TRACKS_COVERS_STORAGE = "tracks_covers"

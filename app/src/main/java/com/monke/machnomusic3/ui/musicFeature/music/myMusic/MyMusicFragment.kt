@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.FragmentMyMusicBinding
@@ -56,7 +57,16 @@ class MyMusicFragment : Fragment() {
         setupUploadTrackButton()
         setupTracksRecyclerList()
         setupAlbumsRecyclerList()
+        setupSearchEditText()
         collectUiState()
+    }
+
+    private fun setupSearchEditText() {
+
+        binding?.editTextSearch?.setOnFocusChangeListener { view, focused ->
+            if (focused)
+                findNavController().navigate(R.id.action_myMusicFragment_to_searchMusicFragment)
+        }
     }
 
     private fun setupUploadAlbumButton() {

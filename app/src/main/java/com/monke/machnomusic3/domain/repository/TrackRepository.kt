@@ -33,4 +33,10 @@ interface TrackRepository {
 
     suspend fun getTrackById(trackId: String): Result<Track?>
 
+    /**
+     * Поиск треков в базе данных
+     * @param query запрос
+     * @return Список треков или ошибку
+     */
+    suspend fun searchTracks(query: String): Result<List<Track>>
 }

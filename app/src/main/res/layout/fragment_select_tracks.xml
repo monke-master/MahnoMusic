@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_text_title_layout">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_music"
+            android:id="@+id/recycler_tracks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

@@ -1,4 +1,4 @@
-package com.monke.machnomusic3.ui.musicFeature.music
+package com.monke.machnomusic3.ui.musicFeature.music.library
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

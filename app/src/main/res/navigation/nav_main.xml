@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_myMusicFragment_to_albumFragment"
             app:destination="@id/albumFragment" />
+        <action
+            android:id="@+id/action_myMusicFragment_to_searchMusicFragment"
+            app:destination="@id/searchMusicFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -43,4 +46,9 @@
         android:name="com.monke.machnomusic3.ui.userFeature.post.UploadPostFragment"
         android:label="fragment_upload_post"
         tools:layout="@layout/fragment_upload_post" />
+    <fragment
+        android:id="@+id/searchMusicFragment"
+        android:name="com.monke.machnomusic3.ui.musicFeature.music.search.SearchMusicFragment"
+        android:label="fragment_search_music"
+        tools:layout="@layout/fragment_search_music" />
 </navigation>

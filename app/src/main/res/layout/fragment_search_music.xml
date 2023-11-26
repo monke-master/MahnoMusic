@@ -4,19 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.musicFeature.music.SearchMusicFragment">
+    tools:context=".ui.musicFeature.music.search.SearchMusicFragment">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        app:navigationIcon="@drawable/ic_back"
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/search_music" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edit_text_title_layout"
@@ -28,8 +17,8 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:startIconDrawable="@drawable/ic_search">
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_back">
 
         <com.google.android.material.textfield.TextInputEditText
 
@@ -47,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_text_title_layout">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_music"
+            android:id="@+id/recycler_tracks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

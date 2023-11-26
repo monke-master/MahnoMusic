@@ -2,14 +2,18 @@ package com.monke.machnomusic3.data.repository
 
 import android.net.Uri
 import android.util.Log
+import com.monke.machnomusic3.data.extensions.toDomain
 import com.monke.machnomusic3.data.remote.TRACKS_COVERS_STORAGE
 import com.monke.machnomusic3.data.remote.TRACKS_STORAGE
 import com.monke.machnomusic3.data.remote.firestore.TrackFirestore
+import com.monke.machnomusic3.data.remote.firestore.UserFirestore
 import com.monke.machnomusic3.data.remote.storage.Storage
 import com.monke.machnomusic3.di.MainScope
+import com.monke.machnomusic3.domain.exception.NotFoundException
 import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.domain.model.User
 import com.monke.machnomusic3.domain.repository.TrackRepository
+import com.monke.machnomusic3.domain.repository.UserRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
@@ -17,6 +21,7 @@ import javax.inject.Inject
 @MainScope
 class TrackRepositoryImpl @Inject constructor(
     private val trackFirestore: TrackFirestore,
+    private val userFirestore: UserFirestore,
     private val storage: Storage
 ): TrackRepository {
 
@@ -79,5 +84,20 @@ class TrackRepositoryImpl @Inject constructor(
         return trackFirestore.getTrackById(trackId)
     }
 
+
+    override suspend fun searchTracks(query: String): Result<List<Track>> {
+        val result = trackFirestore.searchTrack(query)
+        result.exceptionOrNull()?.let { return Result.failure(it) }
+        val tracksList = ArrayList<Track>()
+        for (trackRemote in result.getOrNull() ?: emptyList()) {
+            if (trackRemote == null)
+                return Result.failure(NotFoundException())
+            val author = userFirestore
+                .getUserById(trackRemote.authorId)
+                .getOrNull() ?: return Result.failure(NotFoundException())
+            tracksList.add(trackRemote.toDomain(author))
+        }
+        return Result.success(tracksList)
+    }
 
 }

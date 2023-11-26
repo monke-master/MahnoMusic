@@ -7,26 +7,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.monke.machnomusic3.R
+import com.monke.machnomusic3.databinding.FragmentMyMusicBinding
+import com.monke.machnomusic3.databinding.FragmentSearchMusicBinding
 
 class SelectTracksFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = SelectTracksFragment()
-    }
 
     private lateinit var viewModel: SelectTracksViewModel
+    private var binding: FragmentSearchMusicBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_select_tracks, container, false)
+        binding = FragmentSearchMusicBinding.inflate(inflater, container, false)
+
+
+
+        return binding?.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SelectTracksViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding?.editTextTitleLayout?.requestFocus()
     }
 
 }

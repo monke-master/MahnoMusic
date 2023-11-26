@@ -9,8 +9,9 @@ interface UserRepository {
 
     suspend fun updateUser(user: User): Result<Any?>
 
-
     suspend fun signIn(email: String, password: String): Result<User?>
 
     suspend fun createUser(user: User): Result<Any?>
+
+    suspend fun getUserById(userId: String): Result<User?>
 }

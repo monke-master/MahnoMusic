@@ -1,4 +1,4 @@
-package com.monke.machnomusic3.ui.musicFeature.music
+package com.monke.machnomusic3.ui.musicFeature.music.library
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

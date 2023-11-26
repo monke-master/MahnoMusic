@@ -1,11 +1,14 @@
 package com.monke.machnomusic3.data.remote.firestore
 
+import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.monke.machnomusic3.data.extensions.toDomain
 import com.monke.machnomusic3.data.extensions.toRemote
 import com.monke.machnomusic3.data.remote.TRACKS_COLLECTION
+import com.monke.machnomusic3.data.remote.TrackFields
 import com.monke.machnomusic3.data.remote.USERS_COLLECTION
+import com.monke.machnomusic3.data.remote.dto.PostRemote
 import com.monke.machnomusic3.data.remote.dto.TrackRemote
 import com.monke.machnomusic3.data.remote.dto.UserRemote
 import com.monke.machnomusic3.domain.exception.NoUserException
@@ -42,6 +45,21 @@ class TrackFirestore @Inject constructor(
             val author = authorRequest.getOrNull() ?: return Result.failure(NotFoundException())
 
             return Result.success(track.toDomain(author))
+        } catch (exception: Exception) {
+            exception.printStackTrace()
+            return Result.failure(exception)
+        }
+    }
+
+    suspend fun searchTrack(query: String): Result<List<TrackRemote?>> {
+        try {
+            val response = firestore
+                .collection(TRACKS_COLLECTION)
+                .where(Filter.greaterThanOrEqualTo(TrackFields.title, query))
+                .where(Filter.lessThanOrEqualTo(TrackFields.title, query + '\uf8ff'))
+                .get()
+                .await()
+            return Result.success(response.documents.map { it.toObject<TrackRemote>() })
         } catch (exception: Exception) {
             exception.printStackTrace()
             return Result.failure(exception)

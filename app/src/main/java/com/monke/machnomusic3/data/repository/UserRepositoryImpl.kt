@@ -5,9 +5,7 @@ import com.monke.machnomusic3.data.remote.firestore.UserFirestore
 import com.monke.machnomusic3.di.AppScope
 import com.monke.machnomusic3.domain.exception.NoUserException
 import com.monke.machnomusic3.domain.model.User
-import com.monke.machnomusic3.domain.model.mockedUser1
 import com.monke.machnomusic3.domain.repository.UserRepository
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -15,7 +13,7 @@ import javax.inject.Inject
 @AppScope
 class UserRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
-    private val firestore: UserFirestore
+    private val userFirestore: UserFirestore
 ) : UserRepository {
 
     override val user = MutableStateFlow<User?>(null)
@@ -23,7 +21,7 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun updateUser(user: User): Result<Any?> {
         this.user.value = user
         try {
-            return firestore.setUser(user)
+            return userFirestore.setUser(user)
         } catch (exception: Exception) {
             exception.printStackTrace()
             return Result.failure(exception)
@@ -34,7 +32,7 @@ class UserRepositoryImpl @Inject constructor(
         try {
             val result = firebaseAuth.signInWithEmailAndPassword(email, password).await()
             result?.user?.let {
-                return firestore.getUserById(it.uid)
+                return userFirestore.getUserById(it.uid)
             }
             return Result.failure(NoUserException())
         } catch (exception: Exception) {
@@ -44,7 +42,11 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun createUser(user: User): Result<Any?> {
-        return firestore.setUser(user)
+        return userFirestore.setUser(user)
+    }
+
+    override suspend fun getUserById(userId: String): Result<User?> {
+        return userFirestore.getUserById(userId)
     }
 
 }

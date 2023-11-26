@@ -9,6 +9,7 @@
     <string name="upload_track">Upload track</string>
     <string name="select_track">Select track</string>
     <string name="pick_audio_file">Pick an audio file</string>
+    <string name="search_tracks">Search tracks</string>
 
     <!--  album  -->
     <string name="upload_album">Upload album</string>
