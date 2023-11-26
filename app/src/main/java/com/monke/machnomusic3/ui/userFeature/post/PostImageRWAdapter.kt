@@ -1,5 +1,6 @@
 package com.monke.machnomusic3.ui.userFeature.post
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -11,9 +12,13 @@ import com.monke.machnomusic3.ui.recyclerViewUtils.DiffUtilCallback
 class PostImageRWAdapter(
     private val onItemClicked: (Int) -> Unit
 ): RecyclerView.Adapter<PostImageRWAdapter.ImageViewHolder>() {
+    init {
+
+    }
 
     var imagesUrlsList: List<String> = ArrayList()
     set(value) {
+        Log.d("PostImageRWAdapter", value.joinToString(separator = " "))
         val diffCallback = DiffUtilCallback(
             oldList = field,
             newList = value,
@@ -24,7 +29,6 @@ class PostImageRWAdapter(
         field = value
         diffResult.dispatchUpdatesTo(this)
     }
-
 
     class ImageViewHolder(
         private val binding: ItemPostPhotoBinding,
@@ -52,6 +56,7 @@ class PostImageRWAdapter(
     override fun getItemCount(): Int = imagesUrlsList.size
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
+        Log.d("onBindViewHolder", "slsllslslslslslslsls")
         holder.bind(imagesUrlsList[position], position)
     }
 }

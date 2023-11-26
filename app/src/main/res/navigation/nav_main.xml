@@ -45,10 +45,19 @@
         android:id="@+id/uploadPostFragment"
         android:name="com.monke.machnomusic3.ui.userFeature.post.UploadPostFragment"
         android:label="fragment_upload_post"
-        tools:layout="@layout/fragment_upload_post" />
+        tools:layout="@layout/fragment_upload_post" >
+        <action
+            android:id="@+id/action_uploadPostFragment_to_selectTracksFragment"
+            app:destination="@id/selectTracksFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchMusicFragment"
         android:name="com.monke.machnomusic3.ui.musicFeature.music.search.SearchMusicFragment"
         android:label="fragment_search_music"
         tools:layout="@layout/fragment_search_music" />
+    <fragment
+        android:id="@+id/selectTracksFragment"
+        android:name="com.monke.machnomusic3.ui.musicFeature.track.SelectTracksFragment"
+        android:label="fragment_select_tracks"
+        tools:layout="@layout/fragment_select_tracks" />
 </navigation>

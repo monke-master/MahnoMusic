@@ -36,7 +36,7 @@
             android:id="@+id/edit_text_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/search_music" />
+            android:hint="@string/search_tracks" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

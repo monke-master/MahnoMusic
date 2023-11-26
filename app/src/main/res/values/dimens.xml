@@ -8,6 +8,7 @@
     <dimen name="profile_pic_size">75dp</dimen>
     <dimen name="post_photo_size">300dp</dimen>
     <dimen name="play_btn_size">25dp</dimen>
+    <dimen name="track_action_size">30dp</dimen>
 
     <!-- padding  -->
     <dimen name="album_padding">8dp</dimen>

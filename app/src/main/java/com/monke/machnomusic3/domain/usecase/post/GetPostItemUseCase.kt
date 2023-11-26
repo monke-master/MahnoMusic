@@ -18,6 +18,7 @@ class GetPostItemUseCase @Inject constructor(
     suspend fun execute(
         post: Post
     ): Result<PostItem> = withContext(Dispatchers.IO) {
+        // Получение url изображений поста
         val imagesUrlsList = ArrayList<String>()
         for (imageId in post.imagesIdsList) {
             val response = getPostImageUrlUseCase.execute(imageId)
@@ -25,6 +26,7 @@ class GetPostItemUseCase @Inject constructor(
                 ?: return@withContext Result.failure(response.exceptionOrNull()!!)
             imagesUrlsList.add(url)
         }
+        // Получение url обложек треков
         val tracksItems = ArrayList<TrackItem>()
         for (trackId in post.tracksIdsList) {
             val response = getTrackByIdUseCase.execute(trackId)

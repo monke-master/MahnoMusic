@@ -10,16 +10,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.monke.machnomusic3.R
 import com.monke.machnomusic3.data.files.IMAGE_FILES
 import com.monke.machnomusic3.databinding.FragmentUploadPostBinding
 import com.monke.machnomusic3.main.activity.MainActivity
 import com.monke.machnomusic3.ui.components.LoadingDialog
+import com.monke.machnomusic3.ui.musicFeature.adapters.TrackRWAdapter
+import com.monke.machnomusic3.ui.musicFeature.track.SelectTracksFragment
 import com.monke.machnomusic3.ui.uiModels.UiState
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -39,6 +43,18 @@ class UploadPostFragment : Fragment() {
 
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setFragmentResultListener(
+            SelectTracksFragment.SELECT_TRACK
+        ) { _, bundle ->
+            bundle.getString(SelectTracksFragment.BUNDLE_KEY_SELECTED_ID)?.let { trackId ->
+                viewModel.addTrack(trackId)
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,9 +63,11 @@ class UploadPostFragment : Fragment() {
         (activity as? MainActivity)?.mainComponent?.inject(this)
         setupUploadPhotoBtn()
         setupPhotoRecyclerList()
+        setupAddTrackBtn()
         collectUiState()
         setupTextEditText()
         setupUploadPostBtn()
+        setupTracksRecyclerList()
         return binding?.root
     }
 
@@ -66,8 +84,6 @@ class UploadPostFragment : Fragment() {
 
         })
     }
-
-
 
 
     private fun setupUploadPhotoBtn() {
@@ -103,6 +119,12 @@ class UploadPostFragment : Fragment() {
 
     }
 
+    private fun setupAddTrackBtn() {
+        binding?.btnUploadTrack?.setOnClickListener {
+            findNavController().navigate(R.id.action_uploadPostFragment_to_selectTracksFragment)
+        }
+    }
+
     private fun setupUploadPostBtn() {
         binding?.btnUploadPost?.setOnClickListener {
             viewModel.uploadPost()
@@ -110,26 +132,26 @@ class UploadPostFragment : Fragment() {
     }
 
     private fun setupTracksRecyclerList() {
-//        val tracksAdapter = TrackRWAdapter(
-//            onItemClicked = { index ->
-//                viewModel.playTrackList(viewModel.tracksList.value.map { it.track }, index)
-//            }
-//        )
-//
-//        binding?.recyclerTracks?.adapter = tracksAdapter
-//        binding?.recyclerTracks?.layoutManager = LinearLayoutManager(
-//            context,
-//            LinearLayoutManager.VERTICAL,
-//            false
-//        )
-//
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.tracksList.collect {
-//                    tracksAdapter.tracksList = it
-//                }
-//            }
-//        }
+        val tracksAdapter = TrackRWAdapter(
+            onItemClicked = { index ->
+
+            }
+        )
+
+        binding?.recyclerTracks?.adapter = tracksAdapter
+        binding?.recyclerTracks?.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.VERTICAL,
+            false
+        )
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.tracksList.collect {
+                    tracksAdapter.tracksList = it
+                }
+            }
+        }
     }
 
 

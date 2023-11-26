@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.monke.machnomusic3.databinding.ItemAlbumBinding
 import com.monke.machnomusic3.databinding.ItemPostBinding
+import com.monke.machnomusic3.ui.musicFeature.adapters.TrackRWAdapter
 import com.monke.machnomusic3.ui.recyclerViewUtils.DiffUtilCallback
 import com.monke.machnomusic3.ui.uiModels.PostItem
 
@@ -35,6 +36,7 @@ class PostRWAdapter: RecyclerView.Adapter<PostRWAdapter.PostViewHolder>() {
             binding.txtName.text = postItem.post.author.username
             binding.txtDate.text = postItem.post.text
             setupPhotoRecyclerList(postItem)
+            setupTracksRecyclerList(postItem)
         }
 
         private fun setupPhotoRecyclerList(postItem: PostItem) {
@@ -53,7 +55,26 @@ class PostRWAdapter: RecyclerView.Adapter<PostRWAdapter.PostViewHolder>() {
 
         }
 
+        private fun setupTracksRecyclerList(postItem: PostItem) {
+            val imageAdapter = TrackRWAdapter(
+                onItemClicked = {
+                }
+            )
+
+            binding.recyclerImages.adapter = imageAdapter
+            binding.recyclerImages.layoutManager = LinearLayoutManager(
+                itemView.context,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            imageAdapter.tracksList = postItem.tracksList
+
+        }
+
+
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = ItemPostBinding.inflate(
