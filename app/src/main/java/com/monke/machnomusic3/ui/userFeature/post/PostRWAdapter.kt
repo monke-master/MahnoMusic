@@ -34,9 +34,11 @@ class PostRWAdapter: RecyclerView.Adapter<PostRWAdapter.PostViewHolder>() {
         fun bind(postItem: PostItem, index: Int) {
             binding.txtLogin.text = postItem.post.author.login
             binding.txtName.text = postItem.post.author.username
-            binding.txtDate.text = postItem.post.text
+            binding.txtPost.text = postItem.post.text
+            binding.txtDate.text = postItem.post.creationDate.toString()
             setupPhotoRecyclerList(postItem)
-            //setupTracksRecyclerList(postItem)
+            setupTracksRecyclerList(postItem)
+
         }
 
         private fun setupPhotoRecyclerList(postItem: PostItem) {
@@ -61,8 +63,8 @@ class PostRWAdapter: RecyclerView.Adapter<PostRWAdapter.PostViewHolder>() {
                 }
             )
 
-            binding.recyclerImages.adapter = imageAdapter
-            binding.recyclerImages.layoutManager = LinearLayoutManager(
+            binding.recyclerTracks.adapter = imageAdapter
+            binding.recyclerTracks.layoutManager = LinearLayoutManager(
                 itemView.context,
                 LinearLayoutManager.VERTICAL,
                 false
