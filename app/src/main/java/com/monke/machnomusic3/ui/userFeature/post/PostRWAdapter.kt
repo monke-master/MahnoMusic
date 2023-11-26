@@ -36,7 +36,7 @@ class PostRWAdapter: RecyclerView.Adapter<PostRWAdapter.PostViewHolder>() {
             binding.txtName.text = postItem.post.author.username
             binding.txtDate.text = postItem.post.text
             setupPhotoRecyclerList(postItem)
-            setupTracksRecyclerList(postItem)
+            //setupTracksRecyclerList(postItem)
         }
 
         private fun setupPhotoRecyclerList(postItem: PostItem) {
