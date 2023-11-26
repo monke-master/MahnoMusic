@@ -14,4 +14,6 @@ interface UserRepository {
     suspend fun createUser(user: User): Result<Any?>
 
     suspend fun getUserById(userId: String): Result<User?>
+
+    suspend fun searchUser(query: String): Result<List<User>>
 }

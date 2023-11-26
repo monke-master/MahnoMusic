@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/searchUserFragment"
-        android:name="com.monke.machnomusic3.ui.userFeature.SearchUserFragment"
+        android:name="com.monke.machnomusic3.ui.userFeature.search.SearchUserFragment"
         android:label="fragment_search_user"
         tools:layout="@layout/fragment_search_user" />
     <fragment

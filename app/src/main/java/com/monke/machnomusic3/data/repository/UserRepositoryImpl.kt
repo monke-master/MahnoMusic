@@ -1,9 +1,11 @@
 package com.monke.machnomusic3.data.repository
 
 import com.google.firebase.auth.FirebaseAuth
+import com.monke.machnomusic3.data.extensions.toDomain
 import com.monke.machnomusic3.data.remote.firestore.UserFirestore
 import com.monke.machnomusic3.di.AppScope
 import com.monke.machnomusic3.domain.exception.NoUserException
+import com.monke.machnomusic3.domain.exception.NotFoundException
 import com.monke.machnomusic3.domain.model.User
 import com.monke.machnomusic3.domain.repository.UserRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -47,6 +49,15 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun getUserById(userId: String): Result<User?> {
         return userFirestore.getUserById(userId)
+    }
+
+    override suspend fun searchUser(query: String): Result<List<User>> {
+        val result = userFirestore.searchUser(query)
+        result.exceptionOrNull()?.let { return Result.failure(it)}
+        val users = result.getOrNull()?.map { user ->
+                user?.toDomain() ?: return Result.failure(NotFoundException())
+        } ?: return Result.failure(NotFoundException())
+        return Result.success(users)
     }
 
 }

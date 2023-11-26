@@ -13,6 +13,7 @@ import com.monke.machnomusic3.ui.musicFeature.musicPlayer.miniPlayer.MiniPlayerF
 import com.monke.machnomusic3.ui.musicFeature.playlist.UploadPlaylistFragment
 import com.monke.machnomusic3.ui.musicFeature.track.SelectTracksFragment
 import com.monke.machnomusic3.ui.musicFeature.track.UploadTrackFragment
+import com.monke.machnomusic3.ui.userFeature.search.SearchUserFragment
 import com.monke.machnomusic3.ui.userFeature.post.UploadPostFragment
 import com.monke.machnomusic3.ui.userFeature.profile.ProfileFragment
 import dagger.Subcomponent
@@ -49,6 +50,8 @@ interface MainComponent {
     fun inject(fragment: SearchMusicFragment)
 
     fun inject(fragment: SelectTracksFragment)
+
+    fun inject(fragment: SearchUserFragment)
 
     @Subcomponent.Factory
     interface Factory {

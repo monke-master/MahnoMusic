@@ -10,6 +10,11 @@ object TrackFields {
     const val title = "title"
 }
 
+object UserFields {
+    const val username = "username"
+    const val login = "login"
+}
+
 // Storage
 const val TRACKS_STORAGE = "tracks"
 const val TRACKS_COVERS_STORAGE = "tracks_covers"
