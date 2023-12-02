@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--  buttons  -->
+    <string name="save">Save</string>
+
     <!--  email  -->
     <string name="app_name" translatable="false">Mahno Music</string>
     <string name="logo_text" translatable="false">ROCK\nIT</string>
@@ -33,6 +36,9 @@
     <!--  post  -->
     <string name="write_post">Write new post</string>
     <string name="upload_post">Upload post</string>
+
+    <!--  profile  -->
+    <string name="profile_picture">Profile picture</string>
 
     <string name="tracks">Tracks</string>
     <string name="email">Email</string>

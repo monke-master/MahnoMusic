@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--  buttons  -->
+    <string name="save">Сохранить</string>
+
     <!--  email  -->
     <string name="email_form_error">Введите правильный Email!</string>
     <string name="email_taken">Данный адрес эл. почты уже занят!</string>
@@ -36,6 +39,9 @@
     <!--  post  -->
     <string name="write_post">Новый пост</string>
     <string name="upload_post">Загрузить пост</string>
+
+    <!--  profile  -->
+    <string name="profile_picture">Фото профиля</string>
 
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>

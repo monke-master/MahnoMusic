@@ -11,91 +11,47 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.FragmentProfileBinding
+import com.monke.machnomusic3.databinding.FragmentProfilePictureBinding
 import com.monke.machnomusic3.databinding.FragmentUserBinding
 import com.monke.machnomusic3.main.activity.MainActivity
 import com.monke.machnomusic3.ui.components.LoadingDialog
 import com.monke.machnomusic3.ui.uiModels.UiState
-import com.monke.machnomusic3.ui.userFeature.post.PostRWAdapter
-import com.monke.machnomusic3.ui.userFeature.profile.ProfileViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class UserFragment : Fragment() {
-
-    companion object {
-
-        const val BUNDLE_KEY_USER_ID = "com.monke.machnomusic3.ui.userFeature.user.userId"
-
-    }
+class ProfilePictureFragment : Fragment() {
 
     @Inject
-    lateinit var factory: UserViewModel.Factory
-    private val viewModel: UserViewModel by viewModels { factory }
+    lateinit var factory: ProfilePictureViewModel.Factory
+    private val viewModel: ProfilePictureViewModel by viewModels { factory }
 
-    private var binding: FragmentUserBinding? = null
+    private var binding: FragmentProfilePictureBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentUserBinding.inflate(
-            inflater,
-            container,
-            false
-        )
+        binding = FragmentProfilePictureBinding.inflate(inflater, container, false)
         (activity as? MainActivity)?.mainComponent?.inject(this)
-
-        arguments?.getString(BUNDLE_KEY_USER_ID)?.let { userId -> viewModel.loadUserData(userId) }
-
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupUserData()
+
+        setupProfilePicture()
         collectUiState()
-        setupPostsRecyclerList()
-
     }
 
-    private fun setupUserData() {
+    private fun setupProfilePicture() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.user.collect { user ->
-                    if (user == null)
-                        return@collect
-                    binding?.txtName?.text = user.username
-                    binding?.txtBio?.text = user.bio
-                    binding?.toolbar?.title = user.login
-                }
-            }
-        }
-    }
+                viewModel.profilePicture.collect { uri ->
+                    if (uri == null) return@collect
 
-
-    private fun setupPostsRecyclerList() {
-        val adapter = PostRWAdapter(
-            onTrackClicked = { tracks, index ->
-                viewModel.playTrackList(tracks, index)
-            }
-        )
-
-        binding?.recyclerPosts?.adapter = adapter
-        binding?.recyclerPosts?.layoutManager = LinearLayoutManager(
-            requireContext(),
-            RecyclerView.VERTICAL,
-            false
-        )
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.postsList.collect {
-                    adapter.postsList = it
+                    binding?.imgProfilePic?.setImageURI(uri)
                 }
             }
         }
@@ -134,5 +90,6 @@ class UserFragment : Fragment() {
             }
         }
     }
+
 
 }

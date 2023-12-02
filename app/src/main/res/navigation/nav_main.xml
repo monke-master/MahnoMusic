@@ -35,11 +35,7 @@
         android:id="@+id/profileFragment"
         android:name="com.monke.machnomusic3.ui.userFeature.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment_to_uploadPostFragment"
-            app:destination="@id/uploadPostFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.monke.machnomusic3.ui.musicFeature.album.AlbumFragment"
@@ -53,6 +49,9 @@
         <action
             android:id="@+id/action_uploadPostFragment_to_selectTracksFragment"
             app:destination="@id/selectTracksFragment" />
+        <action
+            android:id="@+id/action_uploadPostFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchMusicFragment"
@@ -69,4 +68,9 @@
         android:name="com.monke.machnomusic3.ui.userFeature.user.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/profilePictureFragment"
+        android:name="com.monke.machnomusic3.ui.userFeature.user.ProfilePictureFragment"
+        android:label="fragment_profile_picture"
+        tools:layout="@layout/fragment_profile_picture" />
 </navigation>
