@@ -74,4 +74,8 @@ class UserRepositoryImpl @Inject constructor(
         )
     }
 
+    override suspend fun getProfilePicUrlUseCase(id: String): Result<String> {
+        return storage.getDownloadUrl("$USERS_PROFILE_PICTURES/$id")
+    }
+
 }

@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import com.bumptech.glide.Glide
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.FragmentProfileBinding
 import com.monke.machnomusic3.main.activity.MainActivity
@@ -63,8 +64,21 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupProfilePicture() {
-        binding?.picProfile?.setOnClickListener {
+        val pictureView = binding?.picProfile ?: return
+        pictureView.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_profilePictureFragment)
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.pictureUrl.collect { url ->
+                    Glide
+                        .with(this@ProfileFragment)
+                        .load(url)
+                        .circleCrop()
+                        .into(pictureView)
+                }
+            }
         }
     }
 
@@ -91,8 +105,8 @@ class ProfileFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.postsList.collect {
-                    adapter.postsList = it
+                viewModel.postsList.collect { postsList ->
+                    adapter.postsList = postsList
                 }
             }
         }

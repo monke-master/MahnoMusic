@@ -1,8 +1,10 @@
 package com.monke.machnomusic3.domain.usecase.post
 
+import com.monke.machnomusic3.domain.exception.NotFoundException
 import com.monke.machnomusic3.domain.model.Post
 import com.monke.machnomusic3.domain.usecase.track.GetTrackByIdUseCase
 import com.monke.machnomusic3.domain.usecase.track.GetTrackCoverUrlUseCase
+import com.monke.machnomusic3.domain.usecase.user.GetProfilePicUrlUseCase
 import com.monke.machnomusic3.ui.uiModels.PostItem
 import com.monke.machnomusic3.ui.uiModels.TrackItem
 import kotlinx.coroutines.Dispatchers
@@ -12,12 +14,18 @@ import javax.inject.Inject
 class GetPostItemUseCase @Inject constructor(
     private val getTrackCoverUrlUseCase: GetTrackCoverUrlUseCase,
     private val getPostImageUrlUseCase: GetPostImageUrlUseCase,
-    private val getTrackByIdUseCase: GetTrackByIdUseCase
+    private val getTrackByIdUseCase: GetTrackByIdUseCase,
+    private val getProfilePicUrlUseCase: GetProfilePicUrlUseCase
 ) {
 
     suspend fun execute(
         post: Post
     ): Result<PostItem> = withContext(Dispatchers.IO) {
+        // Получение url аватарки пользователя
+        val profilePicUrl = post.author.profilePicId?.let {
+            getProfilePicUrlUseCase.execute(it).getOrNull()
+                ?: return@withContext Result.failure(NotFoundException())
+        }
         // Получение url изображений поста
         val imagesUrlsList = ArrayList<String>()
         for (imageId in post.imagesIdsList) {
@@ -41,7 +49,8 @@ class GetPostItemUseCase @Inject constructor(
             PostItem(
                 post = post,
                 imagesUrlsList = imagesUrlsList,
-                tracksList = tracksItems
+                tracksList = tracksItems,
+                userPictureUrl = profilePicUrl
             )
         )
     }

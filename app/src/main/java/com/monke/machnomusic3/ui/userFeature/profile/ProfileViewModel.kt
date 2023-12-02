@@ -10,12 +10,14 @@ import com.monke.machnomusic3.domain.usecase.post.GetPostItemUseCase
 import com.monke.machnomusic3.domain.usecase.post.GetUserPostsUseCase
 import com.monke.machnomusic3.domain.usecase.post.LoadUserPostsUseCase
 import com.monke.machnomusic3.domain.usecase.track.GetTrackCoverUrlUseCase
+import com.monke.machnomusic3.domain.usecase.user.GetProfilePicUrlUseCase
 import com.monke.machnomusic3.domain.usecase.user.GetUserUseCase
 import com.monke.machnomusic3.ui.uiModels.PostItem
 import com.monke.machnomusic3.ui.uiModels.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,6 +32,7 @@ class ProfileViewModel(
         val getUserPostsUseCase: GetUserPostsUseCase,
         val getPostItemUseCase: GetPostItemUseCase,
         val playTrackListUseCase: PlayTrackListUseCase,
+        val getProfilePicUrlUseCase: GetProfilePicUrlUseCase
     )
 
     private val getUserUseCase = profileUseCases.getUserUseCase
@@ -37,6 +40,7 @@ class ProfileViewModel(
     private val getUserPostsUseCase = profileUseCases.getUserPostsUseCase
     private val getPostItemUseCase = profileUseCases.getPostItemUseCase
     private val playTrackListUseCase = profileUseCases.playTrackListUseCase
+    private val getProfilePicUrlUseCase = profileUseCases.getProfilePicUrlUseCase
 
     private val _uiState = MutableStateFlow<UiState?>(null)
     val uiState = _uiState.asStateFlow()
@@ -46,11 +50,29 @@ class ProfileViewModel(
 
     val user = getUserUseCase.execute()
 
+    private val _pictureUrl = MutableStateFlow<String?>(null)
+    val pictureUrl = _pictureUrl.asStateFlow()
+
     init {
+        loadPicture()
         loadPosts()
         collectPosts()
     }
 
+    private fun loadPicture() {
+        viewModelScope.launch {
+            val pictureId = user.first()?.profilePicId ?: return@launch
+
+            _uiState.value = UiState.Loading
+            val result = getProfilePicUrlUseCase.execute(pictureId)
+            if (result.isFailure) {
+                result.exceptionOrNull()?.let { _uiState.value = UiState.Error(it) }
+                return@launch
+            }
+
+            _pictureUrl.value = result.getOrNull()
+        }
+    }
     private fun loadPosts() {
         viewModelScope.launch {
             _uiState.value = UiState.Loading

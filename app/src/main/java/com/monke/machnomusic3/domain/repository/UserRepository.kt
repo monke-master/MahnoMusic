@@ -26,4 +26,6 @@ interface UserRepository {
         uri: Uri,
         pictureId: String
     ): Result<Any?>
+
+    suspend fun getProfilePicUrlUseCase(id: String): Result<String>
 }

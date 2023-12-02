@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.monke.machnomusic3.domain.usecase.user.GetProfilePicUrlUseCase
 import com.monke.machnomusic3.domain.usecase.user.GetUserByIdUseCase
 import com.monke.machnomusic3.domain.usecase.user.GetUserUseCase
 import com.monke.machnomusic3.domain.usecase.user.SaveUserUseCase
@@ -21,12 +22,13 @@ class ProfilePictureViewModel(
 
     data class UseCases @Inject constructor(
         val getUserUseCase: GetUserUseCase,
-        val updateProfilePictureUseCase: UpdateProfilePictureUseCase
+        val updateProfilePictureUseCase: UpdateProfilePictureUseCase,
+        val getProfilePicUrlUseCase: GetProfilePicUrlUseCase
     )
 
     private val getUserUseCase = useCases.getUserUseCase
     private val updateProfilePictureUseCase = useCases.updateProfilePictureUseCase
-
+    private val getProfilePicUrlUseCase = useCases.getProfilePicUrlUseCase
 
     val user = getUserUseCase.execute()
 
@@ -38,6 +40,25 @@ class ProfilePictureViewModel(
 
     private val _uiState = MutableStateFlow<UiState?>(null)
     val uiState = _uiState.asStateFlow()
+
+
+    init {
+        loadPicture()
+    }
+
+    private fun loadPicture() {
+        viewModelScope.launch {
+            val pictureId = user.first()?.profilePicId ?: return@launch
+
+            val result = getProfilePicUrlUseCase.execute(pictureId)
+            if (result.isFailure) {
+                result.exceptionOrNull()?.let { _uiState.value = UiState.Error(it) }
+                return@launch
+            }
+
+            _pictureUrl.value = result.getOrNull()
+        }
+    }
 
     fun setProfilePicture(uri: Uri) {
         _profilePicture.value = uri
