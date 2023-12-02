@@ -1,5 +1,6 @@
 package com.monke.machnomusic3.ui.userFeature.user
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.bumptech.glide.Glide
 import com.monke.machnomusic3.R
+import com.monke.machnomusic3.data.files.IMAGE_FILES
 import com.monke.machnomusic3.databinding.FragmentProfileBinding
 import com.monke.machnomusic3.databinding.FragmentProfilePictureBinding
 import com.monke.machnomusic3.databinding.FragmentUserBinding
@@ -22,6 +26,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ProfilePictureFragment : Fragment() {
+
+    companion object {
+        const val PICK_IMAGE_CODE = 0
+    }
 
     @Inject
     lateinit var factory: ProfilePictureViewModel.Factory
@@ -41,20 +49,60 @@ class ProfilePictureFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupUploadPhotoButton()
         setupProfilePicture()
+        setupSaveButton()
         collectUiState()
+
     }
 
     private fun setupProfilePicture() {
+        val pictureView = binding?.imgProfilePic ?: return
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.profilePicture.collect { uri ->
-                    if (uri == null) return@collect
-
-                    binding?.imgProfilePic?.setImageURI(uri)
+                launch {
+                    viewModel.profilePicture.collect { uri ->
+                        uri?.let { pictureView.setImageURI(uri) }
+                    }
+                }
+                launch {
+                    viewModel.pictureUrl.collect { url ->
+                        url?.let {
+                            Glide
+                                .with(this@ProfilePictureFragment)
+                                .load(url)
+                                .into(pictureView)
+                        }
+                    }
                 }
             }
         }
+    }
+
+    private fun setupUploadPhotoButton() {
+        binding?.btnPickFile?.setOnClickListener {
+            val intent = Intent()
+            intent.action = Intent.ACTION_GET_CONTENT
+            intent.type = IMAGE_FILES
+            startActivityForResult(intent, PICK_IMAGE_CODE)
+        }
+    }
+
+    private fun setupSaveButton() {
+        binding?.btnSave?.setOnClickListener {
+            viewModel.save()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val uri = data?.data
+        if (resultCode != AppCompatActivity.RESULT_OK || uri == null)
+            return
+        if (requestCode == PICK_IMAGE_CODE) {
+            viewModel.setProfilePicture(uri)
+        }
+
     }
 
     private fun collectUiState() {

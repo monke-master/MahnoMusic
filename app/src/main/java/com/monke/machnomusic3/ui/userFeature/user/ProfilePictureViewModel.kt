@@ -27,6 +27,9 @@ class ProfilePictureViewModel(
     private val _profilePicture = MutableStateFlow<Uri?>(null)
     val profilePicture = _profilePicture.asStateFlow()
 
+    private val _pictureUrl = MutableStateFlow<String?>(null)
+    val pictureUrl = _pictureUrl.asStateFlow()
+
     private val _uiState = MutableStateFlow<UiState?>(null)
     val uiState = _uiState.asStateFlow()
 

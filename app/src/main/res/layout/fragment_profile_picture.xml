@@ -22,7 +22,7 @@
         android:id="@+id/img_profile_pic"
         android:layout_width="0dp"
         android:layout_height="@dimen/big_profile_pic_size"
-        android:src="@tools:sample/avatars"
+        android:src="@drawable/ic_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/img_profile_pic" />
 
     <Button
-        android:id="@+id/btn_next"
+        android:id="@+id/btn_save"
         style="@style/DefaultButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

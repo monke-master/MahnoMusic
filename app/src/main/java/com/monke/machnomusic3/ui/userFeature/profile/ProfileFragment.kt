@@ -41,6 +41,7 @@ class ProfileFragment : Fragment() {
         (activity as? MainActivity)?.mainComponent?.inject(this)
 
         setupUserData()
+        setupProfilePicture()
         setupNewPostButton()
         collectUiState()
         setupPostsRecyclerList()
@@ -58,6 +59,12 @@ class ProfileFragment : Fragment() {
                     binding?.toolbar?.title = user.login
                 }
             }
+        }
+    }
+
+    private fun setupProfilePicture() {
+        binding?.picProfile?.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_profilePictureFragment)
         }
     }
 
