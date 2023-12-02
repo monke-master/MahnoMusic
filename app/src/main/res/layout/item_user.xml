@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/img_profile_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/profile_pic_size"
+        android:layout_height="@dimen/profile_pic_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_profile" />
@@ -18,6 +18,7 @@
         android:id="@+id/txt_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/img_profile_pic"
         app:layout_constraintTop_toTopOf="@+id/img_profile_pic" />
@@ -27,6 +28,7 @@
         style="@style/DescriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/img_profile_pic"
         app:layout_constraintTop_toBottomOf="@+id/txt_username" />

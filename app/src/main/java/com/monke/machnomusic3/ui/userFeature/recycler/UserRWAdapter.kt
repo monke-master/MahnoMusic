@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.monke.machnomusic3.databinding.ItemTrackBinding
 import com.monke.machnomusic3.databinding.ItemUserBinding
 import com.monke.machnomusic3.ui.recyclerViewUtils.DiffUtilCallback
@@ -36,11 +37,19 @@ class UserRWAdapter(
         fun bind(userItem: UserItem) {
             binding.txtLogin.text = userItem.user.login
             binding.txtUsername.text = userItem.user.username
+            userItem.profilePicUrl?.let(::setupProfilePic)
             binding.root.setOnClickListener {
                 onItemClicked(userItem.user.id)
             }
         }
 
+        private fun setupProfilePic(url: String) {
+            Glide
+                .with(itemView)
+                .load(url)
+                .circleCrop()
+                .into(binding.imgProfilePic)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {

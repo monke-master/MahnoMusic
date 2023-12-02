@@ -3,11 +3,8 @@ package com.monke.machnomusic3.ui.userFeature.search
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.monke.machnomusic3.domain.model.Track
-import com.monke.machnomusic3.domain.usecase.music.SearchMusicUseCase
-import com.monke.machnomusic3.domain.usecase.track.GetTrackCoverUrlUseCase
+import com.monke.machnomusic3.domain.usecase.user.GetUserItemUseCase
 import com.monke.machnomusic3.domain.usecase.user.SearchUserUseCase
-import com.monke.machnomusic3.ui.uiModels.TrackItem
 import com.monke.machnomusic3.ui.uiModels.UiState
 import com.monke.machnomusic3.ui.uiModels.UserItem
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,9 +18,11 @@ class SearchUserViewModel(
 
     data class UseCases @Inject constructor(
         val searchUserUseCase: SearchUserUseCase,
+        val getUserItemUseCase: GetUserItemUseCase
     )
 
     private val searchUserUseCase = useCases.searchUserUseCase
+    private val getUserItemUseCase = useCases.getUserItemUseCase
 
     private val _usersList = MutableStateFlow<List<UserItem>>(emptyList())
     val usersList = _usersList.asStateFlow()
@@ -43,12 +42,18 @@ class SearchUserViewModel(
                 result.exceptionOrNull()?.let { _uiState.value = UiState.Error(it) }
                 return@launch
             }
-            _usersList.value = result.getOrNull()?.map {
-                UserItem(
-                    user = it,
-                    profilePicUrl = ""
-                )
-            } ?: emptyList()
+            val usersItems = ArrayList<UserItem>()
+            val searchedUsers = result.getOrNull() ?: emptyList()
+            for (user in searchedUsers) {
+                val result = getUserItemUseCase.execute(user)
+                if (result.isFailure) {
+                    result.exceptionOrNull()?.let { _uiState.value = UiState.Error(it) }
+                    return@launch
+                }
+                val item = result.getOrNull() ?: return@launch
+                usersItems.add(item)
+            }
+            _usersList.value = usersItems
         }
     }
 

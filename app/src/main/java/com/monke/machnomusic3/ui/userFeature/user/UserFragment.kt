@@ -14,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.FragmentProfileBinding
 import com.monke.machnomusic3.databinding.FragmentUserBinding
@@ -58,6 +59,7 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUserData()
+        setupProfilePicture()
         collectUiState()
         setupPostsRecyclerList()
 
@@ -77,6 +79,21 @@ class UserFragment : Fragment() {
         }
     }
 
+    private fun setupProfilePicture() {
+        val pictureView = binding?.picProfile ?: return
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.pictureUrl.collect { url ->
+                    Glide
+                        .with(this@UserFragment)
+                        .load(url)
+                        .circleCrop()
+                        .into(pictureView)
+                }
+            }
+        }
+    }
 
     private fun setupPostsRecyclerList() {
         val adapter = PostRWAdapter(

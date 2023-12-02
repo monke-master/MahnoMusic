@@ -8,11 +8,13 @@ import com.monke.machnomusic3.domain.model.User
 import com.monke.machnomusic3.domain.usecase.musicPlayer.PlayTrackListUseCase
 import com.monke.machnomusic3.domain.usecase.post.GetPostItemUseCase
 import com.monke.machnomusic3.domain.usecase.post.GetPostsListByAuthorUseCase
+import com.monke.machnomusic3.domain.usecase.user.GetProfilePicUrlUseCase
 import com.monke.machnomusic3.domain.usecase.user.GetUserByIdUseCase
 import com.monke.machnomusic3.ui.uiModels.PostItem
 import com.monke.machnomusic3.ui.uiModels.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,12 +27,14 @@ class UserViewModel(
         val getPostsListByAuthorUseCase: GetPostsListByAuthorUseCase,
         val getPostItemUseCase: GetPostItemUseCase,
         val playTrackListUseCase: PlayTrackListUseCase,
+        val getProfilePicUrlUseCase: GetProfilePicUrlUseCase
     )
 
     private val getUserByIdUseCase = useCases.getUserById
     private val getPostsListByAuthorUseCase= useCases.getPostsListByAuthorUseCase
     private val getPostItemUseCase = useCases.getPostItemUseCase
     private val playTrackListUseCase = useCases.playTrackListUseCase
+    private val getProfilePicUrlUseCase = useCases.getProfilePicUrlUseCase
 
     private val _uiState = MutableStateFlow<UiState?>(null)
     val uiState = _uiState.asStateFlow()
@@ -41,7 +45,23 @@ class UserViewModel(
     private val _user = MutableStateFlow<User?>(null)
     val user = _user.asStateFlow()
 
+    private val _pictureUrl = MutableStateFlow<String?>(null)
+    val pictureUrl = _pictureUrl.asStateFlow()
 
+    private fun loadPicture(user: User) {
+        viewModelScope.launch {
+            val pictureId = user.profilePicId ?: return@launch
+
+            _uiState.value = UiState.Loading
+            val result = getProfilePicUrlUseCase.execute(pictureId)
+            if (result.isFailure) {
+                result.exceptionOrNull()?.let { _uiState.value = UiState.Error(it) }
+                return@launch
+            }
+
+            _pictureUrl.value = result.getOrNull()
+        }
+    }
 
     fun loadUserData(userId: String) {
         viewModelScope.launch {
@@ -52,7 +72,10 @@ class UserViewModel(
                 return@launch
             }
             _user.value = response.getOrNull()
-            _user.value?.let { user -> loadPosts(user) }
+            _user.value?.let { user ->
+                loadPicture(user)
+                loadPosts(user)
+            }
         }
     }
 

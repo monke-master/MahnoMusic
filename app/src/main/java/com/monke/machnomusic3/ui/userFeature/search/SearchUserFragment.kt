@@ -54,8 +54,7 @@ class SearchUserFragment : Fragment() {
     private fun setupUserRecycler() {
         val usersAdapter = UserRWAdapter(
             onItemClicked = { userId ->
-                findNavController()
-                    .navigate(
+                findNavController().navigate(
                         R.id.action_searchUserFragment_to_userFragment,
                         bundleOf(
                             UserFragment.BUNDLE_KEY_USER_ID to userId

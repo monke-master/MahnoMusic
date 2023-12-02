@@ -73,6 +73,7 @@ class ProfileViewModel(
             _pictureUrl.value = result.getOrNull()
         }
     }
+
     private fun loadPosts() {
         viewModelScope.launch {
             _uiState.value = UiState.Loading
