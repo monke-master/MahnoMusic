@@ -72,6 +72,7 @@ class ProfileFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.pictureUrl.collect { url ->
+                    if (url == null) return@collect
                     Glide
                         .with(this@ProfileFragment)
                         .load(url)

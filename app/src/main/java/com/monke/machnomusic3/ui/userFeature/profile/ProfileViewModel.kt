@@ -54,9 +54,18 @@ class ProfileViewModel(
     val pictureUrl = _pictureUrl.asStateFlow()
 
     init {
-        loadPicture()
-        loadPosts()
-        collectPosts()
+        collectUser()
+    }
+
+    private fun collectUser() {
+        viewModelScope.launch {
+            user.collect { user ->
+                if (user == null) return@collect
+                loadPicture()
+                loadPosts()
+                collectPosts()
+            }
+        }
     }
 
     private fun loadPicture() {
