@@ -17,7 +17,11 @@
         tools:layout="@layout/fragment_search_user" >
         <action
             android:id="@+id/action_searchUserFragment_to_userFragment"
-            app:destination="@id/userFragment" />
+            app:destination="@id/userFragment"
+            app:enterAnim="@anim/push_left_in"
+            app:exitAnim="@anim/push_left_out"
+            app:popEnterAnim="@anim/push_right_in"
+            app:popExitAnim="@anim/push_right_out"/>
     </fragment>
     <fragment
         android:id="@+id/myMusicFragment"
@@ -26,10 +30,18 @@
         tools:layout="@layout/fragment_my_music" >
         <action
             android:id="@+id/action_myMusicFragment_to_albumFragment"
-            app:destination="@id/albumFragment" />
+            app:destination="@id/albumFragment"
+            app:enterAnim="@anim/push_left_in"
+            app:exitAnim="@anim/push_left_out"
+            app:popEnterAnim="@anim/push_right_in"
+            app:popExitAnim="@anim/push_right_out"/>
         <action
             android:id="@+id/action_myMusicFragment_to_searchMusicFragment"
-            app:destination="@id/searchMusicFragment" />
+            app:destination="@id/searchMusicFragment"
+            app:enterAnim="@anim/push_left_in"
+            app:exitAnim="@anim/push_left_out"
+            app:popEnterAnim="@anim/push_right_in"
+            app:popExitAnim="@anim/push_right_out"/>
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -38,10 +50,18 @@
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_uploadPostFragment"
-            app:destination="@id/uploadPostFragment" />
+            app:destination="@id/uploadPostFragment"
+            app:enterAnim="@anim/push_left_in"
+            app:exitAnim="@anim/push_left_out"
+            app:popEnterAnim="@anim/push_right_in"
+            app:popExitAnim="@anim/push_right_out"/>
         <action
             android:id="@+id/action_profileFragment_to_profilePictureFragment"
-            app:destination="@id/profilePictureFragment" />
+            app:destination="@id/profilePictureFragment"
+            app:enterAnim="@anim/push_left_in"
+            app:exitAnim="@anim/push_left_out"
+            app:popEnterAnim="@anim/push_right_in"
+            app:popExitAnim="@anim/push_right_out"/>
     </fragment>
     <fragment
         android:id="@+id/albumFragment"
@@ -55,7 +75,11 @@
         tools:layout="@layout/fragment_upload_post" >
         <action
             android:id="@+id/action_uploadPostFragment_to_selectTracksFragment"
-            app:destination="@id/selectTracksFragment" />
+            app:destination="@id/selectTracksFragment"
+            app:enterAnim="@anim/push_left_in"
+            app:exitAnim="@anim/push_left_out"
+            app:popEnterAnim="@anim/push_right_in"
+            app:popExitAnim="@anim/push_right_out"/>
     </fragment>
     <fragment
         android:id="@+id/searchMusicFragment"
