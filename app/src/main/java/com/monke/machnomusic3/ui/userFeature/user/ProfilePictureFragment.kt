@@ -63,17 +63,20 @@ class ProfilePictureFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.profilePicture.collect { uri ->
-                        uri?.let { pictureView.setImageURI(uri) }
+                        if (uri == null) return@collect
+                        Glide
+                            .with(this@ProfilePictureFragment)
+                            .load(uri)
+                            .into(pictureView)
                     }
                 }
                 launch {
                     viewModel.pictureUrl.collect { url ->
-                        url?.let {
-                            Glide
-                                .with(this@ProfilePictureFragment)
-                                .load(url)
-                                .into(pictureView)
-                        }
+                        if (url == null || viewModel.profilePicture.value != null) return@collect
+                        Glide
+                            .with(this@ProfilePictureFragment)
+                            .load(url)
+                            .into(pictureView)
                     }
                 }
             }
