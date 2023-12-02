@@ -7,11 +7,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.monke.machnomusic3.databinding.ItemAlbumBinding
 import com.monke.machnomusic3.databinding.ItemPostBinding
+import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.ui.musicFeature.adapters.TrackRWAdapter
 import com.monke.machnomusic3.ui.recyclerViewUtils.DiffUtilCallback
 import com.monke.machnomusic3.ui.uiModels.PostItem
 
-class PostRWAdapter: RecyclerView.Adapter<PostRWAdapter.PostViewHolder>() {
+class PostRWAdapter(
+    private val onTrackClicked: (
+        tracksList: List<Track>,
+        index: Int) -> Unit,
+): RecyclerView.Adapter<PostRWAdapter.PostViewHolder>() {
 
     var postsList: List<PostItem> = ArrayList()
     set(value) {
@@ -28,7 +33,8 @@ class PostRWAdapter: RecyclerView.Adapter<PostRWAdapter.PostViewHolder>() {
 
 
     class PostViewHolder(
-        private val binding: ItemPostBinding
+        private val binding: ItemPostBinding,
+        private val onTrackClicked: (tracksList: List<Track>, index: Int) -> Unit
     ): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(postItem: PostItem, index: Int) {
@@ -37,7 +43,7 @@ class PostRWAdapter: RecyclerView.Adapter<PostRWAdapter.PostViewHolder>() {
             binding.txtPost.text = postItem.post.text
             binding.txtDate.text = postItem.post.creationDate.toString()
             setupPhotoRecyclerList(postItem)
-            setupTracksRecyclerList(postItem)
+            setupTracksRecyclerList(postItem, onTrackClicked)
 
         }
 
@@ -57,9 +63,13 @@ class PostRWAdapter: RecyclerView.Adapter<PostRWAdapter.PostViewHolder>() {
 
         }
 
-        private fun setupTracksRecyclerList(postItem: PostItem) {
+        private fun setupTracksRecyclerList(
+            postItem: PostItem,
+            onTrackClicked: (tracksList: List<Track>, index: Int) -> Unit
+        ) {
             val imageAdapter = TrackRWAdapter(
-                onItemClicked = {
+                onItemClicked = { index ->
+                    onTrackClicked(postItem.tracksList.map { it.track }, index)
                 }
             )
 
@@ -84,7 +94,7 @@ class PostRWAdapter: RecyclerView.Adapter<PostRWAdapter.PostViewHolder>() {
             parent,
             false
         )
-        return PostViewHolder(binding)
+        return PostViewHolder(binding, onTrackClicked)
     }
 
     override fun getItemCount(): Int = postsList.size

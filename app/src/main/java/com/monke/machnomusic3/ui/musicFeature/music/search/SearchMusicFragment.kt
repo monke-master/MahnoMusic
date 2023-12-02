@@ -55,7 +55,7 @@ class SearchMusicFragment : Fragment() {
     private fun setupTracksRecycler() {
         val tracksAdapter = TrackRWAdapter(
             onItemClicked = { index ->
-                //viewModel.playTrackList(viewModel.tracksList.value.map { it.track }, index)
+                viewModel.playTrackList(viewModel.tracksList.value.map { it.track }, index)
             }
         )
 

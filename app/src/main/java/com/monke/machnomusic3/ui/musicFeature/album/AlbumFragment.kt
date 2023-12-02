@@ -45,10 +45,17 @@ class AlbumFragment : Fragment() {
         val albumId = arguments?.getString(BUNDLE_KEY_ALBUM_ID)
         albumId?.let { viewModel.loadAlbum(albumId) }
 
+        setupAlbumTitle()
         setupTracksRecyclerList()
         setupCoverImage()
         collectUiState()
         return binding?.root
+    }
+
+
+    private fun setupAlbumTitle() {
+        binding?.txtTitle?.text = viewModel.album.value?.title
+        binding?.txtAuthor?.text = viewModel.album.value?.author?.username
     }
 
 

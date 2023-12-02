@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.monke.machnomusic3.domain.model.Track
+import com.monke.machnomusic3.domain.usecase.musicPlayer.PlayTrackListUseCase
 import com.monke.machnomusic3.domain.usecase.post.GetPostImageUrlUseCase
 import com.monke.machnomusic3.domain.usecase.post.GetPostItemUseCase
 import com.monke.machnomusic3.domain.usecase.post.GetUserPostsUseCase
@@ -27,13 +28,15 @@ class ProfileViewModel(
         val getUserUseCase: GetUserUseCase,
         val loadUserPostsUseCase: LoadUserPostsUseCase,
         val getUserPostsUseCase: GetUserPostsUseCase,
-        val getPostItemUseCase: GetPostItemUseCase
+        val getPostItemUseCase: GetPostItemUseCase,
+        val playTrackListUseCase: PlayTrackListUseCase,
     )
 
     private val getUserUseCase = profileUseCases.getUserUseCase
     private val loadUserPostsUseCase = profileUseCases.loadUserPostsUseCase
     private val getUserPostsUseCase = profileUseCases.getUserPostsUseCase
     private val getPostItemUseCase = profileUseCases.getPostItemUseCase
+    private val playTrackListUseCase = profileUseCases.playTrackListUseCase
 
     private val _uiState = MutableStateFlow<UiState?>(null)
     val uiState = _uiState.asStateFlow()
@@ -72,6 +75,13 @@ class ProfileViewModel(
                 _uiState.value = UiState.Success()
             }
         }
+    }
+
+    fun playTrackList(
+        trackList: List<Track>,
+        index: Int
+    ) {
+        playTrackListUseCase.execute(trackList, index)
     }
 
 

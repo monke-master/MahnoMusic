@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.domain.usecase.music.SearchMusicUseCase
+import com.monke.machnomusic3.domain.usecase.musicPlayer.PlayTrackListUseCase
 import com.monke.machnomusic3.domain.usecase.track.GetTrackCoverUrlUseCase
 import com.monke.machnomusic3.ui.uiModels.TrackItem
 import com.monke.machnomusic3.ui.uiModels.UiState
@@ -17,8 +18,15 @@ class SearchMusicViewModel(
     useCases: UseCases
 ) : ViewModel() {
 
+    data class UseCases @Inject constructor(
+        val searchMusicUseCase: SearchMusicUseCase,
+        val getTrackCoverUrlUseCase: GetTrackCoverUrlUseCase,
+        val playTrackListUseCase: PlayTrackListUseCase,
+    )
+
     private val searchMusicUseCase = useCases.searchMusicUseCase
     private val getTrackCoverUrlUseCase = useCases.getTrackCoverUrlUseCase
+    private val playTrackListUseCase = useCases.playTrackListUseCase
 
     private val _tracksList = MutableStateFlow<List<TrackItem>>(emptyList())
     val tracksList = _tracksList.asStateFlow()
@@ -28,10 +36,7 @@ class SearchMusicViewModel(
 
     var query = ""
 
-    data class UseCases @Inject constructor(
-        val searchMusicUseCase: SearchMusicUseCase,
-        val getTrackCoverUrlUseCase: GetTrackCoverUrlUseCase
-    )
+
 
     private suspend fun loadTracks(tracksList: List<Track>) {
         val tracksItems = ArrayList<TrackItem>()
@@ -54,6 +59,13 @@ class SearchMusicViewModel(
             }
             loadTracks(result.getOrNull() ?: emptyList())
         }
+    }
+
+    fun playTrackList(
+        trackList: List<Track>,
+        index: Int
+    ) {
+        playTrackListUseCase.execute(trackList, index)
     }
 
     class Factory @Inject constructor(

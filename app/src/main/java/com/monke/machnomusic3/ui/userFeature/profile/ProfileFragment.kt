@@ -69,7 +69,11 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupPostsRecyclerList() {
-        val adapter = PostRWAdapter()
+        val adapter = PostRWAdapter(
+            onTrackClicked = { tracks, index ->
+                viewModel.playTrackList(tracks, index)
+            }
+        )
 
         binding?.recyclerPosts?.adapter = adapter
         binding?.recyclerPosts?.layoutManager = LinearLayoutManager(

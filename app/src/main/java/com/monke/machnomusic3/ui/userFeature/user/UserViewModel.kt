@@ -3,7 +3,9 @@ package com.monke.machnomusic3.ui.userFeature.user
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.domain.model.User
+import com.monke.machnomusic3.domain.usecase.musicPlayer.PlayTrackListUseCase
 import com.monke.machnomusic3.domain.usecase.post.GetPostItemUseCase
 import com.monke.machnomusic3.domain.usecase.post.GetPostsListByAuthorUseCase
 import com.monke.machnomusic3.domain.usecase.user.GetUserByIdUseCase
@@ -21,12 +23,14 @@ class UserViewModel(
     data class UseCases @Inject constructor(
         val getUserById: GetUserByIdUseCase,
         val getPostsListByAuthorUseCase: GetPostsListByAuthorUseCase,
-        val getPostItemUseCase: GetPostItemUseCase
+        val getPostItemUseCase: GetPostItemUseCase,
+        val playTrackListUseCase: PlayTrackListUseCase,
     )
 
     private val getUserByIdUseCase = useCases.getUserById
     private val getPostsListByAuthorUseCase= useCases.getPostsListByAuthorUseCase
     private val getPostItemUseCase = useCases.getPostItemUseCase
+    private val playTrackListUseCase = useCases.playTrackListUseCase
 
     private val _uiState = MutableStateFlow<UiState?>(null)
     val uiState = _uiState.asStateFlow()
@@ -78,6 +82,13 @@ class UserViewModel(
             _postsList.value = postsItemsList
             _uiState.value = UiState.Success()
         }
+    }
+
+    fun playTrackList(
+        trackList: List<Track>,
+        index: Int
+    ) {
+        playTrackListUseCase.execute(trackList, index)
     }
 
 
