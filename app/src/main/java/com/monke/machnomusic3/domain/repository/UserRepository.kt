@@ -1,5 +1,6 @@
 package com.monke.machnomusic3.domain.repository
 
+import android.net.Uri
 import com.monke.machnomusic3.domain.model.User
 import kotlinx.coroutines.flow.Flow
 
@@ -16,4 +17,13 @@ interface UserRepository {
     suspend fun getUserById(userId: String): Result<User?>
 
     suspend fun searchUser(query: String): Result<List<User>>
+
+    /**
+     * Saves new picture to storage
+     * @return result
+     */
+    suspend fun updateProfilePicture(
+        uri: Uri,
+        pictureId: String
+    ): Result<Any?>
 }

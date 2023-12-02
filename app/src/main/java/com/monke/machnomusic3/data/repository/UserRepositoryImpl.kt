@@ -1,8 +1,11 @@
 package com.monke.machnomusic3.data.repository
 
+import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.monke.machnomusic3.data.extensions.toDomain
+import com.monke.machnomusic3.data.remote.USERS_PROFILE_PICTURES
 import com.monke.machnomusic3.data.remote.firestore.UserFirestore
+import com.monke.machnomusic3.data.remote.storage.Storage
 import com.monke.machnomusic3.di.AppScope
 import com.monke.machnomusic3.domain.exception.NoUserException
 import com.monke.machnomusic3.domain.exception.NotFoundException
@@ -15,7 +18,8 @@ import javax.inject.Inject
 @AppScope
 class UserRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
-    private val userFirestore: UserFirestore
+    private val userFirestore: UserFirestore,
+    private val storage: Storage
 ) : UserRepository {
 
     override val user = MutableStateFlow<User?>(null)
@@ -58,6 +62,16 @@ class UserRepositoryImpl @Inject constructor(
                 user?.toDomain() ?: return Result.failure(NotFoundException())
         } ?: return Result.failure(NotFoundException())
         return Result.success(users)
+    }
+
+    override suspend fun updateProfilePicture(
+        uri: Uri,
+        pictureId: String
+    ): Result<Any?> {
+        return storage.uploadFileWithUri(
+            uri = uri,
+            path = "$USERS_PROFILE_PICTURES/$pictureId"
+        )
     }
 
 }

@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.data.files.IMAGE_FILES
@@ -118,6 +119,7 @@ class ProfilePictureFragment : Fragment() {
                                 Toast.LENGTH_SHORT).
                             show()
                         is UiState.Success -> {
+                            findNavController().popBackStack()
                         }
                         else -> {}
                     }
