@@ -36,6 +36,7 @@ class AlbumRWAdapter(
         fun bind(albumItem: AlbumItem) {
             binding.txtTitle.text = albumItem.album.title
             binding.txtAuthor.text = albumItem.album.author.username
+
             Glide
                 .with(binding.picCover)
                 .load(albumItem.coverUrl)

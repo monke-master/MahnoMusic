@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.monke.machnomusic3.R
+import com.monke.machnomusic3.data.extensions.formatDuration
 import com.monke.machnomusic3.databinding.ItemTrackBinding
 import com.monke.machnomusic3.ui.recyclerViewUtils.DiffUtilCallback
 import com.monke.machnomusic3.ui.uiModels.TrackItem
@@ -37,6 +38,7 @@ class TrackRWAdapter(
         fun bind(trackItem: TrackItem, index: Int) {
             binding.txtTitle.text = trackItem.track.title
             binding.txtAuthor.text = trackItem.track.author.username
+            binding.txtDuration.text = trackItem.track.duration.formatDuration()
             Glide
                 .with(binding.picCover)
                 .load(trackItem.coverUrl)

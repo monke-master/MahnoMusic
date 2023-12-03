@@ -39,6 +39,7 @@
     <!--  post  -->
     <string name="write_post">Новый пост</string>
     <string name="upload_post">Загрузить пост</string>
+    <string name="no_posts">Новых постов пока нет!</string>
 
     <!--  profile  -->
     <string name="profile_picture">Фото профиля</string>

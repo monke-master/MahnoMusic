@@ -36,6 +36,7 @@
     <!--  post  -->
     <string name="write_post">Write new post</string>
     <string name="upload_post">Upload post</string>
+    <string name="no_posts">There is no new posts yet!</string>
 
     <!--  profile  -->
     <string name="profile_picture">Profile picture</string>

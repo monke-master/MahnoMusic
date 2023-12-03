@@ -4,13 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.monke.machnomusic3.R
+import com.monke.machnomusic3.data.extensions.formatDuration
 import com.monke.machnomusic3.databinding.ItemAlbumTrackBinding
-import com.monke.machnomusic3.databinding.ItemTrackBinding
 import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.ui.recyclerViewUtils.DiffUtilCallback
-import com.monke.machnomusic3.ui.uiModels.TrackItem
 
 class AlbumTrackRWAdapter(
     private val onItemClicked: (Int) -> Unit
@@ -35,9 +32,10 @@ class AlbumTrackRWAdapter(
         private val onItemClicked: (Int) -> Unit
     ): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(trackItem: Track, index: Int) {
-            binding.txtTitle.text = trackItem.title
-            binding.txtAuthor.text = trackItem.author.username
+        fun bind(track: Track, index: Int) {
+            binding.txtTitle.text = track.title
+            binding.txtAuthor.text = track.author.username
+            binding.txtDuration.text = track.duration.formatDuration()
             binding.txtNumber.text = "${index + 1}"
             binding.root.setOnClickListener { onItemClicked(index) }
         }
