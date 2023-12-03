@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/pic_profile"
-        android:layout_width="@dimen/profile_pic_size"
-        android:layout_height="@dimen/profile_pic_size"
+        android:layout_width="@dimen/post_profile_pic_size"
+        android:layout_height="@dimen/post_profile_pic_size"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
