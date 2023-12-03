@@ -49,6 +49,13 @@
             app:exitAnim="@anim/push_left_out"
             app:popEnterAnim="@anim/push_right_in"
             app:popExitAnim="@anim/push_right_out"/>
+        <action
+            android:id="@+id/action_myMusicFragment_to_playlistFragment"
+            app:destination="@id/playlistFragment"
+            app:enterAnim="@anim/push_left_in"
+            app:exitAnim="@anim/push_left_out"
+            app:popEnterAnim="@anim/push_right_in"
+            app:popExitAnim="@anim/push_right_out"/>
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -121,4 +128,9 @@
             app:popEnterAnim="@anim/push_right_in"
             app:popExitAnim="@anim/push_right_out"/>
     </fragment>
+    <fragment
+        android:id="@+id/playlistFragment"
+        android:name="com.monke.machnomusic3.ui.musicFeature.playlist.PlaylistFragment"
+        android:label="fragment_playlist"
+        tools:layout="@layout/fragment_playlist" />
 </navigation>

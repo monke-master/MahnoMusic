@@ -1,6 +1,5 @@
 package com.monke.machnomusic3.ui.musicFeature.album
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,13 +12,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.FragmentAlbumBinding
-import com.monke.machnomusic3.databinding.FragmentMyMusicBinding
 import com.monke.machnomusic3.main.activity.MainActivity
 import com.monke.machnomusic3.ui.components.LoadingDialog
 import com.monke.machnomusic3.ui.musicFeature.adapters.AlbumTrackRWAdapter
-import com.monke.machnomusic3.ui.musicFeature.adapters.TrackRWAdapter
 import com.monke.machnomusic3.ui.uiModels.UiState
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -54,8 +50,15 @@ class AlbumFragment : Fragment() {
 
 
     private fun setupAlbumTitle() {
-        binding?.txtTitle?.text = viewModel.album.value?.title
-        binding?.txtAuthor?.text = viewModel.album.value?.author?.username
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.album.collect { album ->
+                    if (album == null) return@collect
+                    binding?.txtTitle?.text = album.title
+                    binding?.txtAuthor?.text = album.author.username
+                }
+            }
+        }
     }
 
 

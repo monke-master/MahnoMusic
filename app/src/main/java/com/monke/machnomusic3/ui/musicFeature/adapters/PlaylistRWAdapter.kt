@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.ItemPlaylistBinding
 import com.monke.machnomusic3.ui.recyclerViewUtils.DiffUtilCallback
-import com.monke.machnomusic3.ui.uiModels.AlbumItem
 import com.monke.machnomusic3.ui.uiModels.PlaylistItem
 
 class PlaylistRWAdapter(
