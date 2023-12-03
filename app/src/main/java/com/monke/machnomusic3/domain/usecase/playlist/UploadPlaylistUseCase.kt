@@ -47,7 +47,7 @@ class UploadPlaylistUseCase @Inject constructor(
         // Обновление данных пользователя
         return@withContext userRepository.updateUser(
             author.copy(
-                tracksIdsList = author.tracksIdsList + playlistId
+                playlistsIdsList = author.playlistsIdsList + playlistId
             )
         )
     }

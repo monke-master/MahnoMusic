@@ -46,8 +46,8 @@ class PlaylistRepositoryImpl @Inject constructor(
     }
 
     override suspend fun loadPlaylists(user: User): Result<Any?> {
-        for (albumsId in user.playlistsIdsList) {
-            val trackRequest = playlistFirestore.getPlaylistById(albumsId)
+        for (playlistId in user.playlistsIdsList) {
+            val trackRequest = playlistFirestore.getPlaylistById(playlistId)
             if (trackRequest.isFailure) return trackRequest
             trackRequest.getOrNull()?.let {
                 userPlaylistsList.value =

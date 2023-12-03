@@ -4,7 +4,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.monke.machnomusic3.domain.model.Track
+import com.monke.machnomusic3.domain.usecase.album.GetUserAlbumsUseCase
+import com.monke.machnomusic3.domain.usecase.album.LoadAlbumsListUseCase
+import com.monke.machnomusic3.domain.usecase.musicPlayer.PlayTrackListUseCase
+import com.monke.machnomusic3.domain.usecase.playlist.GetUserPlaylistsUseCase
+import com.monke.machnomusic3.domain.usecase.playlist.LoadPlaylistsListUseCase
+import com.monke.machnomusic3.domain.usecase.track.GetTrackCoverUrlUseCase
+import com.monke.machnomusic3.domain.usecase.track.GetUserTracksUseCase
+import com.monke.machnomusic3.domain.usecase.track.LoadLikedTracksUseCase
 import com.monke.machnomusic3.ui.uiModels.AlbumItem
+import com.monke.machnomusic3.ui.uiModels.PlaylistItem
 import com.monke.machnomusic3.ui.uiModels.TrackItem
 import com.monke.machnomusic3.ui.uiModels.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,15 +22,32 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MyMusicViewModel(
-    myMusicUseCases: MyMusicUseCases
+    myMusicUseCases: UseCases
 ): ViewModel() {
 
+    data class UseCases @Inject constructor(
+        val playTrackListUseCase: PlayTrackListUseCase,
+        val loadLikedTracksUseCase: LoadLikedTracksUseCase,
+        val getUserTracksUseCase: GetUserTracksUseCase,
+        val getTrackCoverUrlUseCase: GetTrackCoverUrlUseCase,
+        val getUserAlbumsUseCase: GetUserAlbumsUseCase,
+        val loadAlbumsListUseCase: LoadAlbumsListUseCase,
+        val loadPlaylistsListUseCase: LoadPlaylistsListUseCase,
+        val getUserPlaylistsUseCase: GetUserPlaylistsUseCase
+    )
+
+    // Tracks
     private val playTrackListUseCase = myMusicUseCases.playTrackListUseCase
     private val loadTrackUseCase = myMusicUseCases.loadLikedTracksUseCase
     private val getUserTracksUseCase = myMusicUseCases.getUserTracksUseCase
     private val getTrackCoverUrlUseCase = myMusicUseCases.getTrackCoverUrlUseCase
+    // Albums
     private val getUserAlbumsUseCase = myMusicUseCases.getUserAlbumsUseCase
     private val loadAlbumsListUseCase = myMusicUseCases.loadAlbumsListUseCase
+    // Playlists
+    private val loadPlaylistsListUseCase = myMusicUseCases.loadPlaylistsListUseCase
+    private val getUserPlaylistsUseCase = myMusicUseCases.getUserPlaylistsUseCase
+
 
     private val _uiState = MutableStateFlow<UiState?>(null)
     val uiState = _uiState.asStateFlow()
@@ -32,12 +58,17 @@ class MyMusicViewModel(
     private val _albumsList = MutableStateFlow<List<AlbumItem>>(emptyList())
     val albumsList = _albumsList.asStateFlow()
 
+    private val _playlistsList = MutableStateFlow<List<PlaylistItem>>(emptyList())
+    val playlistsList = _playlistsList.asStateFlow()
+
 
     init {
         loadAlbums()
+        loadPlaylists()
         loadTracks()
         collectAlbumsList()
         collectTracksList()
+        collectPlaylists()
     }
 
     private fun loadAlbums() {
@@ -45,6 +76,19 @@ class MyMusicViewModel(
         viewModelScope.launch {
             _uiState.value = UiState.Loading
             val result = loadAlbumsListUseCase.execute()
+            if (result.isFailure) {
+                result.exceptionOrNull()?.let { _uiState.value = UiState.Error(it) }
+                return@launch
+            }
+            _uiState.value = UiState.Success()
+        }
+    }
+
+    private fun loadPlaylists() {
+        // Получение плейлистов с сервера
+        viewModelScope.launch {
+            _uiState.value = UiState.Loading
+            val result = loadPlaylistsListUseCase.execute()
             if (result.isFailure) {
                 result.exceptionOrNull()?.let { _uiState.value = UiState.Error(it) }
                 return@launch
@@ -81,6 +125,21 @@ class MyMusicViewModel(
         }
     }
 
+    private fun collectPlaylists() {
+        // Подписка на изменение списка плейлистов
+        viewModelScope.launch {
+            getUserPlaylistsUseCase.execute().collect { playlists ->
+                val playlistItems = ArrayList<PlaylistItem>()
+                for (playlist in playlists) {
+                    val result = getTrackCoverUrlUseCase.execute(playlist.coverId)
+                    result.exceptionOrNull()?.let { _uiState.value = UiState.Error(it) }
+                    result.getOrNull()?.let { url -> playlistItems.add(PlaylistItem(playlist, url)) }
+                }
+                _playlistsList.value = playlistItems
+            }
+        }
+    }
+
     private fun collectTracksList() {
         // Подписка на изменение списка треков
         viewModelScope.launch {
@@ -106,7 +165,7 @@ class MyMusicViewModel(
     }
 
     class Factory @Inject constructor(
-        private val myMusicUseCases: MyMusicUseCases
+        private val myMusicUseCases: UseCases
     ): ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -20,6 +20,7 @@ import com.monke.machnomusic3.main.activity.MainActivity
 import com.monke.machnomusic3.ui.components.LoadingDialog
 import com.monke.machnomusic3.ui.mainFeature.MainFragment
 import com.monke.machnomusic3.ui.musicFeature.adapters.AlbumRWAdapter
+import com.monke.machnomusic3.ui.musicFeature.adapters.PlaylistRWAdapter
 import com.monke.machnomusic3.ui.musicFeature.adapters.TrackRWAdapter
 import com.monke.machnomusic3.ui.musicFeature.album.AlbumFragment
 import com.monke.machnomusic3.ui.recyclerViewUtils.HorizontalSpaceItemDecoration
@@ -57,6 +58,7 @@ class MyMusicFragment : Fragment() {
         setupUploadTrackButton()
         setupTracksRecyclerList()
         setupUploadPlaylistButton()
+        setupPlaylistsRecyclerList()
         setupAlbumsRecyclerList()
         setupSearchEditText()
         collectUiState()
@@ -98,14 +100,12 @@ class MyMusicFragment : Fragment() {
             LinearLayoutManager.HORIZONTAL,
             false
         )
-
-
+        // Space decorator
         val spaceDecoration = HorizontalSpaceItemDecoration(
             horizontalPadding = resources.getDimensionPixelSize(R.dimen.album_padding)
         )
-
         binding?.recyclerAlbums?.addItemDecoration(spaceDecoration)
-
+        // Подписывается на изменение списка альбомов
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.albumsList.collect {
@@ -114,6 +114,39 @@ class MyMusicFragment : Fragment() {
             }
         }
     }
+
+    private fun setupPlaylistsRecyclerList() {
+        val recyclerView = binding?.recyclerPlaylists ?: return
+        val playlistAdapter = PlaylistRWAdapter(
+            onItemClicked = { albumId ->
+                val bundle = Bundle()
+                bundle.putString(AlbumFragment.BUNDLE_KEY_ALBUM_ID, albumId)
+                navController.navigate(R.id.action_myMusicFragment_to_albumFragment, bundle)
+            }
+        )
+
+        recyclerView.adapter = playlistAdapter
+        recyclerView.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        // Space decorator
+        val spaceDecoration = HorizontalSpaceItemDecoration(
+            horizontalPadding = resources.getDimensionPixelSize(R.dimen.album_padding)
+        )
+        recyclerView.addItemDecoration(spaceDecoration)
+        // Подписывается на изменение списка альбомов
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.playlistsList.collect {
+                    playlistAdapter.playlistItems = it
+                }
+            }
+        }
+    }
+
+
 
     private fun setupUploadTrackButton() {
         binding?.btnUploadTrack?.setOnClickListener {
