@@ -27,7 +27,8 @@ class MusicRepositoryImpl @Inject constructor(): MusicRepository {
         Log.d("MusicRepositoryImpl", "init block")
     }
 
-    override fun addTracksToQueue(trackList: List<Track>) {
+    override fun setTrackQueue(trackList: List<Track>) {
+        tracksQueue.clear()
         tracksQueue.addTracks(trackList)
     }
 

@@ -14,7 +14,7 @@ interface MusicRepository {
 
     val trackProgress: Flow<TrackProgress>
 
-    fun addTracksToQueue(trackList: List<Track>)
+    fun setTrackQueue(trackList: List<Track>)
 
     fun nextTrack(): Track?
 

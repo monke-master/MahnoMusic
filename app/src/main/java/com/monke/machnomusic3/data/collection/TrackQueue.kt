@@ -33,6 +33,11 @@ class TrackQueue() {
         return tracksList[index]
     }
 
+    fun clear() {
+        tracksList.clear()
+        currentTrack = 0
+    }
+
 
 
 
