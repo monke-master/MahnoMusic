@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.monke.machnomusic3.data.extensions.formatDate
 import com.monke.machnomusic3.databinding.ItemAlbumBinding
 import com.monke.machnomusic3.databinding.ItemPostBinding
 import com.monke.machnomusic3.domain.model.Track
@@ -42,7 +43,8 @@ class PostRWAdapter(
             binding.txtLogin.text = postItem.post.author.login
             binding.txtName.text = postItem.post.author.username
             binding.txtPost.text = postItem.post.text
-            binding.txtDate.text = postItem.post.creationDate.toString()
+            binding.txtDate.text =
+                postItem.post.creationDate.formatDate(itemView.resources.configuration.locales[0])
 
             postItem.userPictureUrl?.let { setupAuthorPic(it) }
             setupPhotoRecyclerList(postItem)

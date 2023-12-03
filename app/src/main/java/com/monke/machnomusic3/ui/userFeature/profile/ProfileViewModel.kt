@@ -103,7 +103,7 @@ class ProfileViewModel(
                     }
                     response.getOrNull()?.let { postsList.add(it) }
                 }
-                _postsList.value = postsList
+                _postsList.value = postsList.sortedByDescending { it.post.creationDate }
                 _uiState.value = UiState.Success()
             }
         }
