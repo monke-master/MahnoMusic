@@ -80,8 +80,8 @@ class UploadAlbumFragment() : Fragment() {
         val uri = data?.data
         if (resultCode == AppCompatActivity.RESULT_OK && uri != null) {
             when (requestCode) {
-                UploadTrackFragment.PICK_AUDIO_CODE -> pickTrack(uri)
-                UploadTrackFragment.PICK_IMAGE_CODE -> viewModel.setCoverUri(uri)
+                PICK_AUDIO_CODE -> pickTrack(uri)
+                PICK_IMAGE_CODE -> viewModel.setCoverUri(uri)
             }
         }
         super.onActivityResult(requestCode, resultCode, data)

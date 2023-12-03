@@ -15,19 +15,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/menu_confirm"
         app:navigationIcon="@drawable/ic_close"
         app:title="@string/new_playlist" />
 
     <ImageView
-        android:id="@+id/pic_playlist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/img_cover"
+        android:layout_width="@dimen/playlist_cover_size"
+        android:layout_height="@dimen/playlist_cover_size"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:src="@tools:sample/avatars" />
+        android:src="@drawable/ic_insert_photo" />
 
     <EditText
         android:id="@+id/edit_text_title"
@@ -35,9 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:hint="@string/title"
-        app:layout_constraintBottom_toBottomOf="@+id/pic_playlist"
+        app:layout_constraintBottom_toBottomOf="@+id/img_cover"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pic_playlist" />
+        app:layout_constraintStart_toEndOf="@+id/img_cover" />
 
     <EditText
         android:id="@+id/edit_text_description"
@@ -48,7 +47,7 @@
         android:hint="@string/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pic_playlist" />
+        app:layout_constraintTop_toBottomOf="@+id/img_cover" />
 
     <Button
         android:id="@+id/btn_upload_track"
@@ -71,7 +70,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_upload_track"
         tools:itemCount="5"
-        tools:listitem="@layout/item_uploading_track" />
+        tools:listitem="@layout/item_track" />
+
+    <Button
+        android:id="@+id/btn_upload"
+        style="@style/DefaultButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/button_margin_bottom"
+        android:layout_marginHorizontal="16dp"
+        android:text="@string/create_playlist"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 

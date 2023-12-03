@@ -4,7 +4,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.monke.machnomusic3.data.extensions.toDomain
 import com.monke.machnomusic3.data.extensions.toRemote
-import com.monke.machnomusic3.data.remote.ALBUM_COLLECTION
+import com.monke.machnomusic3.data.remote.ALBUMS_COLLECTION
 import com.monke.machnomusic3.data.remote.dto.AlbumRemote
 import com.monke.machnomusic3.domain.exception.NotFoundException
 import com.monke.machnomusic3.domain.model.Album
@@ -19,7 +19,7 @@ class AlbumFirestore @Inject constructor(
 
     suspend fun setAlbum(album: Album): Result<Any?> {
         try {
-            firestore.collection(ALBUM_COLLECTION).document(album.id).set(album.toRemote()).await()
+            firestore.collection(ALBUMS_COLLECTION).document(album.id).set(album.toRemote()).await()
             return Result.success(null)
         } catch (exception: Exception) {
             exception.printStackTrace()
@@ -29,7 +29,7 @@ class AlbumFirestore @Inject constructor(
 
     suspend fun getAlbumById(id: String): Result<Album> {
         try {
-            val response = firestore.collection(ALBUM_COLLECTION).document(id).get().await()
+            val response = firestore.collection(ALBUMS_COLLECTION).document(id).get().await()
             val album = response.toObject<AlbumRemote>()
             // Получение автора альбома
             val authorId = album?.authorId ?: return Result.failure(NotFoundException())

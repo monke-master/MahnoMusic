@@ -2,6 +2,8 @@
 <resources>
     <!--  buttons  -->
     <string name="save">Save</string>
+    <string name="create">Create</string>
+    <string name="confirm">Confirm</string>
 
     <!--  email  -->
     <string name="app_name" translatable="false">Mahno Music</string>
@@ -40,6 +42,9 @@
 
     <!--  profile  -->
     <string name="profile_picture">Profile picture</string>
+
+    <!--  playlist  -->
+    <string name="create_playlist">Create playlist</string>
 
     <string name="tracks">Tracks</string>
     <string name="email">Email</string>

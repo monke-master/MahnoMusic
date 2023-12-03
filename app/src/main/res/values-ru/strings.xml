@@ -2,6 +2,8 @@
 <resources>
     <!--  buttons  -->
     <string name="save">Сохранить</string>
+    <string name="create">Создать</string>
+    <string name="confirm">Подтвердить</string>
 
     <!--  email  -->
     <string name="email_form_error">Введите правильный Email!</string>
@@ -43,6 +45,10 @@
 
     <!--  profile  -->
     <string name="profile_picture">Фото профиля</string>
+
+    <!--  playlist  -->
+    <string name="create_playlist">Новый плейлист</string>
+
 
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>

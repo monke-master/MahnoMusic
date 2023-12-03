@@ -12,8 +12,8 @@ interface AlbumRepository {
 
     /**
      * Загружает альбом на сервер
-     * @param track - данные трека
-     * @param coverUri - изображение обложки
+     * @param album данные альбома
+     * @param coverUri изображение обложки
      */
     suspend fun uploadAlbum(
         album: Album,

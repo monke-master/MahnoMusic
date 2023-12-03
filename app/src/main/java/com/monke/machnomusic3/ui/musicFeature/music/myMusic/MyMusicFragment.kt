@@ -56,13 +56,13 @@ class MyMusicFragment : Fragment() {
         setupUploadAlbumButton()
         setupUploadTrackButton()
         setupTracksRecyclerList()
+        setupUploadPlaylistButton()
         setupAlbumsRecyclerList()
         setupSearchEditText()
         collectUiState()
     }
 
     private fun setupSearchEditText() {
-
         binding?.editTextSearch?.setOnFocusChangeListener { view, focused ->
             if (focused)
                 findNavController().navigate(R.id.action_myMusicFragment_to_searchMusicFragment)
@@ -73,6 +73,12 @@ class MyMusicFragment : Fragment() {
         binding?.btnUploadAlbum?.setOnClickListener {
             (parentFragment?.parentFragment as? MainFragment)?.mainNavController
                 ?.navigate(R.id.action_mainFragment_to_uploadAlbumFragment)
+        }
+    }
+
+    private fun setupUploadPlaylistButton() {
+        binding?.btnUploadPlaylist?.setOnClickListener {
+           findNavController().navigate(R.id.action_myMusicFragment_to_uploadPlaylistFragment)
         }
     }
 

@@ -3,8 +3,9 @@ package com.monke.machnomusic3.data.remote
 // Collection
 const val USERS_COLLECTION = "users"
 const val TRACKS_COLLECTION = "tracks"
-const val ALBUM_COLLECTION = "albums"
+const val ALBUMS_COLLECTION = "albums"
 const val POSTS_COLLECTION = "posts"
+const val PLAYLISTS_COLLECTION = "playlists"
 
 object TrackFields {
     const val title = "title"

@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/btn_close"
+        android:id="@+id/btn_confirm"
         android:icon="@drawable/ic_pick"
-        android:title="close"
+        android:title="@string/confirm"
         app:showAsAction="always" />
 </menu>

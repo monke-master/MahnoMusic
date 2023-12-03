@@ -81,6 +81,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recycler_albums" />
 
+        <Button
+            android:id="@+id/btn_upload_playlist"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/new_playlist"
+            app:icon="@drawable/ic_upload"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hdr_playlists" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_playlists"
@@ -92,7 +105,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hdr_playlists"
+            app:layout_constraintTop_toBottomOf="@+id/btn_upload_playlist"
             tools:itemCount="5"
             tools:listitem="@layout/item_playlist" />
 

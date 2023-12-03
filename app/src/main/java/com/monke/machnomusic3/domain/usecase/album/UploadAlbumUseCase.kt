@@ -26,8 +26,10 @@ class UploadAlbumUseCase @Inject constructor(
         title: String,
         coverUri: Uri,
     ) = withContext(Dispatchers.IO) {
+        // Получение автора
         val author = userRepository.user.first()
             ?: return@withContext Result.failure(NotFoundException())
+        // Инициализация списка загружаемых треков
         val albumId = UUID.randomUUID().toString()
         val releaseDate = Calendar.getInstance().timeInMillis
         val tracksList = uploadingTracksList.map {
@@ -41,6 +43,7 @@ class UploadAlbumUseCase @Inject constructor(
             )
         }
 
+        // Загрузка треков
         for (index in tracksList.indices) {
             val track = tracksList[index]
             val res = trackRepository.uploadTrack(track, uploadingTracksList[index].uri)
@@ -48,6 +51,7 @@ class UploadAlbumUseCase @Inject constructor(
                 return@withContext res
         }
 
+        // Инициализация альбома
         val album = Album(
             id = albumId,
             author = author,
@@ -57,10 +61,12 @@ class UploadAlbumUseCase @Inject constructor(
             releaseDate = releaseDate
         )
 
+        // Загрузка альбома
         val result = albumRepository.uploadAlbum(album, coverUri)
         if (result.isFailure)
             return@withContext result
 
+        // Обновление данных пользователя
         return@withContext userRepository.updateUser(
             author.copy(
                 tracksIdsList = author.tracksIdsList + tracksList.map { it.id },
