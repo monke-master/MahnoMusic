@@ -69,8 +69,8 @@ class MainFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.musicState.collect { state ->
                     when (state) {
-                        MusicState.Start -> binding?.fragmentMiniPlayer?.visibility = View.VISIBLE
-                        else -> {}
+                        is MusicState.Stop -> binding?.fragmentMiniPlayer?.visibility = View.GONE
+                        else -> binding?.fragmentMiniPlayer?.visibility = View.VISIBLE
                     }
                 }
             }
