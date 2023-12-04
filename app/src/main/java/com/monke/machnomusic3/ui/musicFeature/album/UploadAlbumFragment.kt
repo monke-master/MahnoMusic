@@ -153,6 +153,7 @@ class UploadAlbumFragment() : Fragment() {
     }
 
     private fun pickTrack(uri: Uri) {
+        viewModel.setTrackUri(uri)
         val dialog = TitleTrackDialog()
         dialog.show(childFragmentManager, dialog.tag)
 
@@ -160,8 +161,8 @@ class UploadAlbumFragment() : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.trackTitle.collect { trackTitle ->
                     if (trackTitle.isNotEmpty()) {
-                        val duration = getTrackDuration(uri) ?: 0
-                        viewModel.addTrack(uri, duration)
+                        val duration = getTrackDuration(viewModel.trackUri.value) ?: 0
+                        viewModel.addTrack(viewModel.trackUri.value, duration)
                     }
                 }
             }

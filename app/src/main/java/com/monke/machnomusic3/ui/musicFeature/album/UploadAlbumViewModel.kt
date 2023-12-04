@@ -37,6 +37,9 @@ class UploadAlbumViewModel(
     private val _trackTitle = MutableStateFlow("")
     val trackTitle = _trackTitle.asStateFlow()
 
+    private val _trackUri = MutableStateFlow<Uri>(Uri.EMPTY)
+    val trackUri = _trackUri.asStateFlow()
+
 
     init {
         Log.d("UploadAlbumViewModel", "init block")
@@ -68,6 +71,10 @@ class UploadAlbumViewModel(
 
     fun setTrackTitle(title: String) {
         _trackTitle.value = title
+    }
+
+    fun setTrackUri(uri: Uri) {
+        _trackUri.value = uri
     }
 
     fun uploadAlbum() {
