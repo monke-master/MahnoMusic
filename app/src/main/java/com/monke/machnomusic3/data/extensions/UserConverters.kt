@@ -15,5 +15,7 @@ fun UserRemote.toDomain() =
         profilePicId = this.profilePicId,
         tracksIdsList = this.tracksIdsList,
         albumsIdsList = this.albumsIdsList,
-        playlistsIdsList = this.playlistsIdsList
+        playlistsIdsList = this.playlistsIdsList,
+        subscribersIdsList = this.subscribersIdsList,
+        subscriptionsIdsList = this.subscriptionsIdsList
 )

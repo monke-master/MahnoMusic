@@ -5,20 +5,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.monke.machnomusic3.domain.model.Track
 import com.monke.machnomusic3.domain.usecase.musicPlayer.PlayTrackListUseCase
-import com.monke.machnomusic3.domain.usecase.post.GetPostImageUrlUseCase
 import com.monke.machnomusic3.domain.usecase.post.GetPostItemUseCase
 import com.monke.machnomusic3.domain.usecase.post.GetUserPostsUseCase
 import com.monke.machnomusic3.domain.usecase.post.LoadUserPostsUseCase
-import com.monke.machnomusic3.domain.usecase.track.GetTrackCoverUrlUseCase
 import com.monke.machnomusic3.domain.usecase.user.GetProfilePicUrlUseCase
-import com.monke.machnomusic3.domain.usecase.user.GetUserUseCase
+import com.monke.machnomusic3.domain.usecase.user.GetCurrentUserUseCase
 import com.monke.machnomusic3.ui.uiModels.PostItem
 import com.monke.machnomusic3.ui.uiModels.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,7 +23,7 @@ class ProfileViewModel(
 ) : ViewModel() {
 
     data class UseCases @Inject constructor(
-        val getUserUseCase: GetUserUseCase,
+        val getCurrentUserUseCase: GetCurrentUserUseCase,
         val loadUserPostsUseCase: LoadUserPostsUseCase,
         val getUserPostsUseCase: GetUserPostsUseCase,
         val getPostItemUseCase: GetPostItemUseCase,
@@ -35,7 +31,7 @@ class ProfileViewModel(
         val getProfilePicUrlUseCase: GetProfilePicUrlUseCase
     )
 
-    private val getUserUseCase = profileUseCases.getUserUseCase
+    private val getUserUseCase = profileUseCases.getCurrentUserUseCase
     private val loadUserPostsUseCase = profileUseCases.loadUserPostsUseCase
     private val getUserPostsUseCase = profileUseCases.getUserPostsUseCase
     private val getPostItemUseCase = profileUseCases.getPostItemUseCase

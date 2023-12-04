@@ -5,9 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.monke.machnomusic3.domain.usecase.user.GetProfilePicUrlUseCase
-import com.monke.machnomusic3.domain.usecase.user.GetUserByIdUseCase
-import com.monke.machnomusic3.domain.usecase.user.GetUserUseCase
-import com.monke.machnomusic3.domain.usecase.user.SaveUserUseCase
+import com.monke.machnomusic3.domain.usecase.user.GetCurrentUserUseCase
 import com.monke.machnomusic3.domain.usecase.user.UpdateProfilePictureUseCase
 import com.monke.machnomusic3.ui.uiModels.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,12 +19,12 @@ class ProfilePictureViewModel(
 ): ViewModel() {
 
     data class UseCases @Inject constructor(
-        val getUserUseCase: GetUserUseCase,
+        val getCurrentUserUseCase: GetCurrentUserUseCase,
         val updateProfilePictureUseCase: UpdateProfilePictureUseCase,
         val getProfilePicUrlUseCase: GetProfilePicUrlUseCase
     )
 
-    private val getUserUseCase = useCases.getUserUseCase
+    private val getUserUseCase = useCases.getCurrentUserUseCase
     private val updateProfilePictureUseCase = useCases.updateProfilePictureUseCase
     private val getProfilePicUrlUseCase = useCases.getProfilePicUrlUseCase
 

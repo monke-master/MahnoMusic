@@ -12,4 +12,6 @@ data class UserRemote(
     var tracksIdsList: List<String> = emptyList(),
     val albumsIdsList: List<String> = emptyList(),
     val playlistsIdsList: List<String> = emptyList(),
+    val subscribersIdsList: List<String> = emptyList(),
+    val subscriptionsIdsList: List<String> = emptyList(),
 )

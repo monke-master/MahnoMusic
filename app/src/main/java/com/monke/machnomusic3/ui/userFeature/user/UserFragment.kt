@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
 import com.monke.machnomusic3.R
 import com.monke.machnomusic3.databinding.FragmentProfileBinding
 import com.monke.machnomusic3.databinding.FragmentUserBinding
@@ -50,9 +51,7 @@ class UserFragment : Fragment() {
             false
         )
         (activity as? MainActivity)?.mainComponent?.inject(this)
-
         arguments?.getString(BUNDLE_KEY_USER_ID)?.let { userId -> viewModel.loadUserData(userId) }
-
         return binding?.root
     }
 
@@ -60,6 +59,7 @@ class UserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupUserData()
         setupProfilePicture()
+        setupFollowButton()
         collectUiState()
         setupPostsRecyclerList()
 
@@ -93,6 +93,28 @@ class UserFragment : Fragment() {
             }
         }
     }
+
+    private fun setupFollowButton() {
+        val button = binding?.btnFollow as? MaterialButton ?: return
+        button.setOnClickListener {
+            viewModel.changeSubscriptionStatus()
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isSubscription.collect { isSubscription ->
+                    if (isSubscription) {
+                        button.text = getString(R.string.unfollow)
+                        button.icon = resources.getDrawable(R.drawable.ic_unfollow)
+                    } else {
+                        button.text = getString(R.string.follow)
+                        button.icon = resources.getDrawable(R.drawable.ic_follow)
+                    }
+                }
+            }
+        }
+    }
+
+
 
     private fun setupPostsRecyclerList() {
         val adapter = PostRWAdapter(
