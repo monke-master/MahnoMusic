@@ -71,7 +71,6 @@ class UserFragment : Fragment() {
                 viewModel.user.collect { user ->
                     if (user == null)
                         return@collect
-                    binding?.txtName?.text = user.username
                     binding?.txtBio?.text = user.bio
                     binding?.toolbar?.title = user.login
                 }
