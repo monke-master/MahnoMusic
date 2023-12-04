@@ -30,8 +30,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        app:layout_constraintBaseline_toBaselineOf="@id/txt_name"
-        app:layout_constraintStart_toEndOf="@+id/txt_name"
+        app:layout_constraintStart_toEndOf="@+id/pic_profile"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name"
         tools:text="kobain" />
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/pic_profile"
-        app:layout_constraintTop_toBottomOf="@+id/txt_name"
+        app:layout_constraintTop_toBottomOf="@+id/txt_login"
         tools:text="Вчера в 19:17" />
 
     <TextView
