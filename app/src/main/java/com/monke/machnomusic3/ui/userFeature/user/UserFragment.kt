@@ -73,8 +73,36 @@ class UserFragment : Fragment() {
                         return@collect
                     binding?.txtBio?.text = user.bio
                     binding?.toolbar?.title = user.login
+                    setupSubscribersText(user.subscribersIdsList)
+                    setupSubscriptionsText(user.subscriptionsIdsList)
                 }
             }
+        }
+    }
+
+    private fun setupSubscribersText(subscribersList: List<String>) {
+        val text = binding?.txtSubscribers ?: return
+        text.text = getString(R.string.subscribers, subscribersList.size)
+        text.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putStringArray(
+                UsersListFragment.BUNDLE_KEY_ID_LIST,
+                subscribersList.toTypedArray()
+            )
+            findNavController().navigate(R.id.action_userFragment_to_usersListFragment, bundle)
+        }
+    }
+
+    private fun setupSubscriptionsText(subscriptionsList: List<String>) {
+        val text = binding?.txtSubscriptions ?: return
+        text.text = getString(R.string.subscriptions, subscriptionsList.size)
+        text.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putStringArray(
+                UsersListFragment.BUNDLE_KEY_ID_LIST,
+                subscriptionsList.toTypedArray()
+            )
+            findNavController().navigate(R.id.action_userFragment_to_usersListFragment, bundle)
         }
     }
 

@@ -76,6 +76,13 @@
             app:exitAnim="@anim/push_left_out"
             app:popEnterAnim="@anim/push_right_in"
             app:popExitAnim="@anim/push_right_out"/>
+        <action
+            android:id="@+id/action_profileFragment_to_usersListFragment"
+            app:destination="@id/usersListFragment"
+            app:enterAnim="@anim/push_left_in"
+            app:exitAnim="@anim/push_left_out"
+            app:popEnterAnim="@anim/push_right_in"
+            app:popExitAnim="@anim/push_right_out"/>
     </fragment>
     <fragment
         android:id="@+id/albumFragment"
@@ -109,10 +116,18 @@
         android:id="@+id/userFragment"
         android:name="com.monke.machnomusic3.ui.userFeature.user.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_userFragment_to_usersListFragment"
+            app:destination="@id/usersListFragment"
+            app:enterAnim="@anim/push_left_in"
+            app:exitAnim="@anim/push_left_out"
+            app:popEnterAnim="@anim/push_right_in"
+            app:popExitAnim="@anim/push_right_out"/>
+    </fragment>
     <fragment
         android:id="@+id/profilePictureFragment"
-        android:name="com.monke.machnomusic3.ui.userFeature.user.ProfilePictureFragment"
+        android:name="com.monke.machnomusic3.ui.userFeature.profile.ProfilePictureFragment"
         android:label="fragment_profile_picture"
         tools:layout="@layout/fragment_profile_picture" />
     <fragment
@@ -133,4 +148,17 @@
         android:name="com.monke.machnomusic3.ui.musicFeature.playlist.PlaylistFragment"
         android:label="fragment_playlist"
         tools:layout="@layout/fragment_playlist" />
+    <fragment
+        android:id="@+id/usersListFragment"
+        android:name="com.monke.machnomusic3.ui.userFeature.user.UsersListFragment"
+        android:label="fragment_users_list"
+        tools:layout="@layout/fragment_users_list" >
+        <action
+            android:id="@+id/action_usersListFragment_to_userFragment"
+            app:destination="@id/userFragment"
+            app:enterAnim="@anim/push_left_in"
+            app:exitAnim="@anim/push_left_out"
+            app:popEnterAnim="@anim/push_right_in"
+            app:popExitAnim="@anim/push_right_out"/>
+    </fragment>
 </navigation>

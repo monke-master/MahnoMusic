@@ -45,6 +45,8 @@
 
     <!--  profile  -->
     <string name="profile_picture">Фото профиля</string>
+    <string name="subscribers">%1$d \n подписчики</string>
+    <string name="subscriptions">%1$d \n подписки</string>
 
     <!--  playlist  -->
     <string name="create_playlist">Новый плейлист</string>

@@ -1,4 +1,4 @@
-package com.monke.machnomusic3.ui.userFeature.user
+package com.monke.machnomusic3.ui.userFeature.profile
 
 import android.net.Uri
 import androidx.lifecycle.ViewModel

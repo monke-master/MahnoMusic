@@ -19,13 +19,13 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/main.collapsing"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="300dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/background"
             app:expandedTitleGravity="center_horizontal|bottom"
-            app:expandedTitleMarginStart="48dp"
-            app:expandedTitleMarginEnd="64dp">
+
+           >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -53,18 +53,39 @@
                     app:layout_constraintTop_toBottomOf="@+id/pic_profile"
                     tools:text="Za Дзержинского!" />
 
+                <TextView
+                    android:id="@+id/txt_subscribers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="@string/subscribers"
+                    android:textAlignment="center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_bio" />
+
+                <TextView
+                    android:id="@+id/txt_subscriptions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:text="@string/subscriptions"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_bio" />
+
                 <Button
                     android:id="@+id/btn_new_post"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:text="@string/write_post"
                     app:icon="@drawable/ic_new_post"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_bio" />
+                    app:layout_constraintTop_toBottomOf="@+id/txt_subscribers" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -77,7 +98,6 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:layout_collapseMode="pin"
                 app:title="Кудж Кобейн"
-
                 />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

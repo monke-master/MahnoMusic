@@ -1,7 +1,6 @@
-package com.monke.machnomusic3.ui.userFeature.user
+package com.monke.machnomusic3.ui.userFeature.profile
 
 import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,11 +14,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.monke.machnomusic3.R
 import com.monke.machnomusic3.data.files.IMAGE_FILES
-import com.monke.machnomusic3.databinding.FragmentProfileBinding
 import com.monke.machnomusic3.databinding.FragmentProfilePictureBinding
-import com.monke.machnomusic3.databinding.FragmentUserBinding
 import com.monke.machnomusic3.main.activity.MainActivity
 import com.monke.machnomusic3.ui.components.LoadingDialog
 import com.monke.machnomusic3.ui.uiModels.UiState

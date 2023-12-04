@@ -42,6 +42,8 @@
 
     <!--  profile  -->
     <string name="profile_picture">Profile picture</string>
+    <string name="subscribers">%1$d \n subscribers</string>
+    <string name="subscriptions">%1$d \n subscriptions</string>
 
     <!--  playlist  -->
     <string name="create_playlist">Create playlist</string>
