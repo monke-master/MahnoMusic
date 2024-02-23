@@ -6,9 +6,7 @@ import javax.inject.Inject
 class SaveEmailUseCase @Inject constructor(
     private val registrationRepository: RegistrationRepository
 ) {
-
     fun execute(email: String) {
         registrationRepository.email = email
     }
-
 }
