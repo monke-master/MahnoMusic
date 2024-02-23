@@ -31,6 +31,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels { factory }
 
     private var binding: FragmentHomeBinding? = null
+    ddddf
 
     override fun onCreateView(
         inflater: LayoutInflater,
